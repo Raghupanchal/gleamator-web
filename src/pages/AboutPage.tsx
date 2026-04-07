@@ -75,7 +75,7 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-hero">Vision</h3>
                 </div>
-                <p className="text-hero/70 leading-relaxed">
+                <p className="text-hero/70 leading-relaxed text-white">
                   To empower individuals and businesses with advanced skills, innovative IT solutions, and reliable manpower services, fostering growth and success in the digital age.
                 </p>
               </div>
@@ -88,7 +88,7 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-hero">Mission</h3>
                 </div>
-                <p className="text-hero/70 leading-relaxed">
+                <p className="text-hero/70 leading-relaxed text-white">
                   Bridge skill gaps, offer innovative IT solutions, and connect businesses with the right talent to drive growth and success.
                 </p>
               </div>
