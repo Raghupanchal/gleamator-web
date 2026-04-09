@@ -1,7 +1,8 @@
+import React, { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import heroBg from "@/assets/hero-bg.jpg";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import dashboardBg from "@/assets/Dashboard.jpg";
 
 const stats = [
   { value: "10,000", label: "Youth Skilled Across India" },
@@ -9,11 +10,39 @@ const stats = [
   { value: "150+", label: "Hiring Companies" },
 ];
 
+// --- Custom Animated Counter Component ---
+const AnimatedCounter = ({ valueText, delay }) => {
+  // Extract numeric value and formatting details
+  const numericPart = parseInt(valueText.replace(/,/g, "").replace(/\+/g, ""));
+  const hasPlus = valueText.includes("+");
+  const isThousands = valueText.includes(",");
+
+  const count = useMotionValue(0);
+  
+  // Transform running number back into formatted text (e.g., 10000 -> "10,000+")
+  const displayValue = useTransform(count, (latest) => {
+    let currentNum = Math.round(latest);
+    let formattedNum = isThousands ? currentNum.toLocaleString() : currentNum;
+    return `${formattedNum}${hasPlus ? "+" : ""}`;
+  });
+
+  useEffect(() => {
+    const animationControls = animate(count, numericPart, {
+      duration: 2.5,
+      delay: delay, // Syncs with the fade-in animation
+      ease: "easeOut",
+    });
+    return animationControls.stop;
+  }, [numericPart, delay, count]);
+
+  return <motion.span>{displayValue}</motion.span>;
+};
+
 const HeroSection = () => {
   return (
     <section className="relative min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Technology background" className="w-full h-full object-cover" width={1920} height={1080} />
+        <img src={dashboardBg} alt="Dashboard background" className="w-full h-full object-cover" width={1920} height={1080} />
         <div className="absolute inset-0 bg-navy/70" />
       </div>
 
@@ -23,7 +52,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-hero leading-tight mb-6"
+            className="text-white text-4xl md:text-5xl lg:text-6xl font-bold text-hero leading-tight mb-6"
           >
             Building Careers Through Practical Learning
           </motion.h1>
@@ -31,7 +60,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="text-hero/80 text-lg mb-8 max-w-lg"
+            className="text-white text-hero/80 text-lg mb-8 max-w-lg"
           >
             We offer hands-on internships that turn learning into real-world skills and career readiness.
           </motion.p>
@@ -56,8 +85,11 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 + i * 0.15, ease: "easeOut" }}
               >
-                <p className="text-3xl md:text-4xl font-bold text-hero">{stat.value}</p>
-                <p className="text-hero/70 text-sm">{stat.label}</p>
+                <p className="text-3xl md:text-4xl font-bold text-white">
+                  {/* Replaced static {stat.value} with the animated counter */}
+                  <AnimatedCounter valueText={stat.value} delay={0.6 + i * 0.15} />
+                </p>
+                <p className="text-white/80 text-sm">{stat.label}</p>
               </motion.div>
             ))}
           </div>

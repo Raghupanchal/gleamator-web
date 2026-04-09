@@ -125,15 +125,15 @@ const AboutPage = () => {
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Leadership</h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
             {leadership.map((person, i) => (
               <AnimatedSection key={person.name} delay={i * 0.15}>
-                <div className="text-center bg-card rounded-lg shadow-md p-6">
-                  <div className="w-36 h-36 mx-auto mb-4 rounded-full border-4 border-navy overflow-hidden">
+                <div className="text-center bg-card rounded-2xl shadow-md p-8 transition-transform duration-500 ease-out hover:-translate-y-2 hover:shadow-2xl">
+                  <div className="w-52 h-52 mx-auto mb-6 rounded-full border-4 border-accent/30 overflow-hidden shadow-lg transition-transform duration-500 ease-out hover:scale-105">
                     <img src={person.image} alt={person.name} className="w-full h-full object-cover" loading="lazy" width={512} height={512} />
                   </div>
-                  <h3 className="font-bold text-accent text-lg">{person.name}</h3>
-                  <p className="text-muted-foreground text-sm">{person.role}</p>
+                  <h3 className="font-bold text-accent text-xl mb-2">{person.name}</h3>
+                  <p className="text-muted-foreground text-sm font-medium">{person.role}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -147,15 +147,15 @@ const AboutPage = () => {
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Directors</h2>
           </AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {directors.map((person, i) => (
               <AnimatedSection key={person.name} delay={i * 0.1}>
-                <div className="text-center bg-card rounded-lg shadow-md p-5">
-                  <div className="w-28 h-28 mx-auto mb-3 rounded-full border-3 border-navy overflow-hidden">
+                <div className="text-center bg-card rounded-2xl shadow-md p-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl">
+                  <div className="w-40 h-40 mx-auto mb-4 rounded-full border-3 border-accent/30 overflow-hidden shadow-lg transition-transform duration-500 ease-out hover:scale-110">
                     <img src={person.image} alt={person.name} className="w-full h-full object-cover" loading="lazy" width={512} height={512} />
                   </div>
-                  <h3 className="font-bold text-accent">{person.name}</h3>
-                  <p className="text-muted-foreground text-sm">{person.role}</p>
+                  <h3 className="font-bold text-accent text-base mb-1">{person.name}</h3>
+                  <p className="text-muted-foreground text-sm font-medium">{person.role}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -179,14 +179,18 @@ const AboutPage = () => {
       <section className="py-20 bg-secondary">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Awards & Recognition</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-14">Awards & Recognition</h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <AnimatedSection direction="left">
-              <img src={awardTrophy} alt="The Great Indian Startup Awards trophy" className="rounded-lg shadow-lg w-full object-cover h-96" loading="lazy" width={640} height={800} />
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <AnimatedSection direction="left"> 
+              <div className="overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 ease-out hover:scale-105 hover:shadow-xl">
+                <img src={awardTrophy} alt="The Great Indian Startup Awards trophy" className="w-full h-full object-cover min-h-96" loading="lazy" width={640} height={800} />
+              </div>
             </AnimatedSection>
             <AnimatedSection direction="right" delay={0.15}>
-              <img src={awardCertificate} alt="Certificate of Recognition" className="rounded-lg shadow-lg w-full object-cover h-96" loading="lazy" width={640} height={800} />
+              <div className="overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 ease-out hover:scale-105 hover:shadow-xl">
+                <img src={awardCertificate} alt="Certificate of Recognition" className="w-full h-full object-cover min-h-96" loading="lazy" width={640} height={800} />
+              </div>
             </AnimatedSection>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { MonitorSmartphone, DollarSign, Briefcase } from "lucide-react";
+import { MonitorSmartphone, DollarSign, Briefcase, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AnimatedSection from "./AnimatedSection";
 
@@ -12,7 +12,7 @@ const services = [
   {
     icon: DollarSign,
     title: "IT Services",
-    description: "We design, implement, and maintain the technology your business runs on from networks to software to day-to-day support.",
+    description: "We design, implement, and maintain the technology your business runs on—from networks to software to day-to-day support.",
     path: "/services/it-services",
   },
   {
@@ -26,25 +26,45 @@ const services = [
 const ServicesSection = () => {
   const navigate = useNavigate();
 
-  const handleServiceClick = (path: string) => {
+  const handleServiceClick = (path) => {
     navigate(path);
   };
 
   return (
-    <section id="services" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8 -mt-24 relative z-10">
+    <section id="services" className="py-20 bg-[#F8FAFC]">
+      <div className="container mx-auto px-4 sm:px-6">
+        
+        {/* Added max-w-7xl to let the cards breathe, and increased gap */}
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-10 -mt-24 relative z-10 max-w-7xl mx-auto">
           {services.map((service, i) => (
             <AnimatedSection key={service.title} delay={i * 0.15}>
               <div
-                className="bg-card rounded-lg shadow-lg p-8 text-center border-t-4 border-t-navy hover:shadow-xl transition-shadow group h-full cursor-pointer"
                 onClick={() => handleServiceClick(service.path)}
+                className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-8 lg:p-12 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 group h-full flex flex-col cursor-pointer border border-slate-100 hover:-translate-y-2 relative overflow-hidden"
               >
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full border-2 border-muted flex items-center justify-center group-hover:border-accent transition-colors">
-                  <service.icon className="w-8 h-8 text-navy-light" />
+                
+                {/* Subtle decorative background shape on hover */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-bl-full -z-10 group-hover:scale-125 transition-transform duration-700" />
+
+                {/* Premium Icon Container */}
+                <div className="w-20 h-20 lg:w-24 lg:h-24 mx-auto mb-8 rounded-[1.25rem] bg-slate-50 flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-500 shadow-sm border border-slate-100 group-hover:border-orange-500">
+                  <service.icon className="w-10 h-10 lg:w-12 lg:h-12 text-slate-700 group-hover:text-white transition-colors duration-500 stroke-[1.5]" />
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-3">{service.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                
+                {/* Typography Upgrades */}
+                <h3 className="text-xl lg:text-2xl font-extrabold text-slate-900 mb-4 leading-tight">
+                  {service.title}
+                </h3>
+                <p className="text-slate-600 text-sm lg:text-base leading-relaxed flex-grow mb-8">
+                  {service.description}
+                </p>
+
+                {/* Action Link at the bottom to fill out the card */}
+                <div className="mt-auto inline-flex items-center justify-center gap-2 text-slate-900 font-bold text-sm uppercase tracking-wider group-hover:text-orange-600 transition-colors">
+                  Explore Service 
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+
               </div>
             </AnimatedSection>
           ))}

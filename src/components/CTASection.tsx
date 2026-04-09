@@ -15,7 +15,7 @@ const CTASection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-hero mb-4">
             Start Your Skill Journey Today
           </h2>
-          <p className="text-hero/70 mb-8 max-w-lg">
+          <p className=" text-white text-hero/70 mb-8 max-w-lg">
             Take the first step toward building a future you're proud of.
           </p>
           <Link

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin, MessageSquare } from "lucide-react";
 import logo from "@/assets/gleamator-logo.png";
 
 const Footer = () => {
@@ -23,9 +23,9 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4 text-gray-900">Services</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="#">Skill Development Programs</Link></li>
-              <li><Link to="#">HR Services</Link></li>
-              <li><Link to="#">IT Services</Link></li>
+              <li><Link to="/services/skill-development">Skill Development Programs</Link></li>
+              <li><Link to="/services/hr-services">HR Services</Link></li>
+              <li><Link to="/services/it-services">IT Services</Link></li>
             </ul>
           </div>
 
@@ -33,11 +33,11 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4 text-gray-900">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="#">About Us</Link></li>
-              <li><Link to="#">Gallery</Link></li>
-              <li><Link to="#">Internships</Link></li>
-              <li><Link to="#">Job Opportunity</Link></li>
-              <li><Link to="#">Contact Us</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/gallery">Gallery</Link></li>
+              <li><Link to="/internships">Internships</Link></li>
+              <li><Link to="/contact">Job Opportunity</Link></li>
+              <li><Link to="/contact">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -53,7 +53,7 @@ const Footer = () => {
 
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-blue-600" />
-                +91 77608 26949
+                <a href="tel:+917760826949" className="transition-colors hover:text-blue-800">+91 77608 26949</a>
               </li>
 
               <li className="flex items-start gap-2">
@@ -65,14 +65,21 @@ const Footer = () => {
 
             {/* Social Icons */}
             <div className="flex gap-3 mt-4">
-              {[Facebook, Youtube, Instagram, Linkedin].map((Icon, i) => (
-                <div
-                  key={i}
-                  className="w-9 h-9 bg-[#2f3b80] text-white flex items-center justify-center rounded"
-                >
-                  <Icon className="w-4 h-4" />
-                </div>
-              ))}
+              <a href="https://www.facebook.com/Gleamator/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-[#2f3b80] text-white flex items-center justify-center rounded hover:bg-blue-600 transition-colors">
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a href="https://www.youtube.com/@gleamator" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-[#2f3b80] text-white flex items-center justify-center rounded hover:bg-red-600 transition-colors">
+                <Youtube className="w-4 h-4" />
+              </a>
+              <a href="https://www.instagram.com/gleamator/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-[#2f3b80] text-white flex items-center justify-center rounded hover:bg-pink-600 transition-colors">
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a href="https://wa.me/917760826949" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-[#2f3b80] text-white flex items-center justify-center rounded hover:bg-green-600 transition-colors">
+                <MessageSquare className="w-4 h-4" />
+              </a>
+              <a href="https://www.linkedin.com/company/gleamator/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-[#2f3b80] text-white flex items-center justify-center rounded hover:bg-blue-700 transition-colors">
+                <Linkedin className="w-4 h-4" />
+              </a>
             </div>
           </div>
 

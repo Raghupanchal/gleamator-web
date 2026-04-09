@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Layout from "@/components/Layout";
 import internshipHero from "@/assets/internship-hero.jpg";
 
 const InternshipsPage = () => {
+  const location = useLocation();
+  const selectedCourse = location.state?.course;
+
   const [formData, setFormData] = useState({
     name: "", email: "", phone: "", college: "",
     qualification: "", stream: "", dob: "", aadhar: "",
@@ -61,6 +65,13 @@ const InternshipsPage = () => {
           <p className="text-muted-foreground mb-8 leading-relaxed">
             Our internships are designed to provide a comprehensive learning experience, with opportunities to work on live projects, collaborate with experienced professionals, and develop a strong foundation for your future career.
           </p>
+
+          {selectedCourse && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <h3 className="text-lg font-semibold text-blue-900 mb-2">Applying for: {selectedCourse}</h3>
+              <p className="text-blue-700 text-sm">You've selected this course from our active programs. Please fill out the form below to apply.</p>
+            </div>
+          )}
 
           <div className="bg-card rounded-lg shadow-lg p-8">
             <form onSubmit={handleSubmit} className="space-y-5">

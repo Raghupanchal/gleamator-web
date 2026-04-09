@@ -20,8 +20,8 @@ const galleryImages = [
   { id: 15, src: "/src/assets/img-39.jpeg", caption: "Gleamator Team at University" },
   { id: 16, src: "/src/assets/image-13.jpeg", caption: "Signing Ceremony Highlights" },
   { id: 17, src: "/src/assets/image-12.jpeg", caption: "University Collaboration" },
-  { id: 18, src: "/src/assets/image-9.jpeg", caption: "Gleamator and University Partnership" },
-  { id: 19, src: "/src/assets/image-3.jpeg", caption: "Gleamator Team with University Leaders" },
+  { id: 18, src: "/src/assets/img-8.jpeg", caption: "Gleamator and University Partnership" },
+  { id: 19, src: "/src/assets/image-7.jpeg", caption: "Gleamator Team with  Leaders" },
   { id: 22, src: "/src/assets/img-36.jpeg", caption: "Media Coverage of University Partnership" },
 ];
 

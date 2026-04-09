@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import PageBanner from "@/components/PageBanner";
+import { Link } from "react-router-dom";
 import hrImage from "@/assets/hr-services.jpg";
 import { Users, UserCheck, FileText, Building, BarChart3, Handshake, CheckCircle } from "lucide-react";
 
@@ -47,8 +48,8 @@ const HRServicesPage = () => {
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center">
                   <o.icon className="w-6 h-6 text-accent" />
                 </div>
-                <h3 className="font-bold text-hero mb-2 text-sm">{o.title}</h3>
-                <p className="text-hero/60 text-sm">{o.description}</p>
+                <h3 className="font-bold text-white mb-2 text-sm">{o.title}</h3>
+                <p className="text-white/90 font-medium text-sm leading-relaxed">{o.description}</p>
               </div>
             ))}
           </div>
@@ -75,9 +76,12 @@ const HRServicesPage = () => {
       <section className="py-16 bg-navy text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-hero mb-4">Your HR Partner for Growth</h2>
-          <p className="text-hero/70 max-w-2xl mx-auto">
+          <p className="text-white text-hero/70 max-w-2xl mx-auto mb-6">
             Whether you're a startup, SME, or established enterprise, we help you build the right team and maintain a strong HR foundation that scales with your growth.
           </p>
+          <Link to="/contact" className="inline-flex items-center gap-2 bg-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors">
+            Contact Us
+          </Link>
         </div>
       </section>
     </Layout>
