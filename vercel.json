@@ -5,7 +5,7 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/:path((?!(?:api/.*|.*\\.\\w+)$).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]

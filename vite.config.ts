@@ -4,9 +4,12 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
+  base: "/",
   build: {
     outDir: "dist",
     sourcemap: false,
+    emptyOutDir: true,
+    minify: "terser",
   },
   server: {
     host: "::",
