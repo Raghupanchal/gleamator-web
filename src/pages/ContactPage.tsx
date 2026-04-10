@@ -1,15 +1,47 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import Layout from "@/components/Layout";
 import PageBanner from "@/components/PageBanner";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { toast } from "sonner";
+import { supabase } from "@/lib/supabase";
+
+interface ContactFormData {
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: "", phone: "", email: "", message: "" });
+  const [formData, setFormData] = useState<ContactFormData>({ name: "", phone: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Thank you for your message! We'll get back to you soon.");
-    setFormData({ name: "", phone: "", email: "", message: "" });
+
+    const { error } = await supabase
+      .from("contact_messages")
+      .insert([
+        {
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
+        },
+      ]);
+
+    if (error) {
+      console.error(error);
+      toast.error("Failed to send message");
+    } else {
+      toast.success("Message sent successfully!");
+
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+    }
   };
 
   return (

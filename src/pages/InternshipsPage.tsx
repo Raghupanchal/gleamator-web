@@ -1,29 +1,80 @@
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "@/components/Layout";
 import internshipHero from "@/assets/internship-hero.jpg";
+import { toast } from "sonner";
+import { supabase } from "@/lib/supabase";
+
+interface InternshipsFormData {
+  name: string;
+  email: string;
+  phone: string;
+  college: string;
+  qualification: string;
+  stream: string;
+  dob: string;
+  aadhar: string;
+  yearOfPassing: string;
+  lookingFor: string;
+}
 
 const InternshipsPage = () => {
   const location = useLocation();
-  const selectedCourse = location.state?.course;
+  const selectedCourse = (location.state as { course?: string } | null)?.course;
 
-  const [formData, setFormData] = useState({
-    name: "", email: "", phone: "", college: "",
-    qualification: "", stream: "", dob: "", aadhar: "",
-    yearOfPassing: "", lookingFor: "Internship",
+  const [formData, setFormData] = useState<InternshipsFormData>({
+    name: "",
+    email: "",
+    phone: "",
+    college: "",
+    qualification: "",
+    stream: "",
+    dob: "",
+    aadhar: "",
+    yearOfPassing: "",
+    lookingFor: "Internship",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Application submitted successfully! We'll contact you soon.");
-    setFormData({
-      name: "", email: "", phone: "", college: "",
-      qualification: "", stream: "", dob: "", aadhar: "",
-      yearOfPassing: "", lookingFor: "Internship",
-    });
+
+    const { error } = await supabase
+      .from("applications")
+      .insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          college: formData.college,
+          qualification: formData.qualification,
+          stream: formData.stream,
+          dob: formData.dob,
+          aadhar: formData.aadhar,
+          year_of_passing: formData.yearOfPassing,
+          looking_for: formData.lookingFor,
+        },
+      ]);
+
+    if (error) {
+      toast.error("Error: " + error.message);
+    } else {
+      toast.success("Application submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        college: "",
+        qualification: "",
+        stream: "",
+        dob: "",
+        aadhar: "",
+        yearOfPassing: "",
+        lookingFor: "Internship",
+      });
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 

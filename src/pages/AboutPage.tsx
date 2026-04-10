@@ -8,7 +8,7 @@ import leader3 from "@/assets/leader-3.png";
 import director1 from "@/assets/director-1.png";
 import director2 from "@/assets/director-2.webp";
 import director3 from "@/assets/director-3.png";
-import director4 from "@/assets/director-4.jpg";
+import director4 from "@/assets/director-4.webp";
 import teamPhoto from "@/assets/team-photo.jpg";
 import awardTrophy from "@/assets/award-trophy.jpg";
 import awardCertificate from "@/assets/awards-certificate.jpg";

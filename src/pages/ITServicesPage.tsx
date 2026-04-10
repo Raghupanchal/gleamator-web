@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react"; 
 import Layout from "@/components/Layout";
 import PageBanner from "@/components/PageBanner";
-import itImage from "@/assets/it-services.jpg";
+import it1 from "@/assets/it1.jpeg";
+import it2 from "@/assets/it2.jpeg";
 import securityImage from "@/assets/hr-services.jpg";
-import whyImage from "@/assets/why-gleamator.jpg";
+import whyImage from "@/assets/about-office.jpg";
 import { CheckCircle, ArrowRight } from "lucide-react"; 
 import { motion } from "framer-motion";
 
@@ -16,7 +17,7 @@ const offerings = [
     description: "End-to-end hardware deployment, network setup, and 24/7 system maintenance.",
     details: "Streamline your operations with robust infrastructure. We handle everything from initial assessment to ongoing optimization.",
     features: ["Hardware Deployment", "Network Config", "24/7 Tech Support", "System Maintenance"],
-    image: itImage,
+    image: it1,
     color: "from-blue-600/20 to-indigo-600/20"
   },
   {
@@ -25,14 +26,25 @@ const offerings = [
     description: "Integrated CCTV and access control systems for comprehensive premise protection.",
     details: "State-of-the-art surveillance and real-time alerts. Our systems combine monitoring with smart access for total safety.",
     features: ["CCTV Installation", "Access Control", "Real-time Alerts", "System Integration"],
-    image: securityImage,
+    image: it2,
     color: "from-emerald-600/20 to-teal-600/20"
   },
 ];
 
 const ITServicesPage = () => {
   const [flippedCardIndex, setFlippedCardIndex] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const navigate = useNavigate();
+
+  const images = [it1, it2];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 2000); // 0.1 seconds = 100ms
+
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   const handleContactClick = () => navigate('/contact');
 
@@ -41,26 +53,38 @@ const ITServicesPage = () => {
       <PageBanner subtitle="Smart Solutions. Seamless Execution." title="IT Services & ITeS" />
 
       {/* Intro Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative group">
                <div className="absolute -inset-1 bg-gradient-to-r from-accent to-primary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-               <img src={itImage} alt="IT services" className="relative rounded-2xl shadow-2xl w-full object-cover h-[350px] md:h-[400px]" />
+               <div className="relative rounded-2xl shadow-2xl w-full h-[350px] md:h-[400px] overflow-hidden">
+                 {images.map((image, index) => (
+                   <motion.img
+                     key={index}
+                     src={image}
+                     alt={`IT services ${index + 1}`}
+                     className="absolute inset-0 w-full h-full object-cover"
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: currentImageIndex === index ? 1 : 0 }}
+                     transition={{ duration: 0.1, ease: "easeInOut" }}
+                   />
+                 ))}
+               </div>
             </div>
             <div className="space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold text-primary tracking-tight">Smart Solutions. <br/>Seamless Execution.</h2>
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
                 At Gleamator Technologies, we deliver robust IT services and ITeS solutions that help businesses operate efficiently and scale confidently. Our team combines deep technical expertise with a customer-first mindset.
               </p>
               <div className="flex gap-8 pt-4">
                 <div className="flex flex-col border-l-4 border-accent pl-4">
                     <span className="text-2xl md:text-3xl font-bold text-primary">100%</span>
-                    <span className="text-xs md:text-sm uppercase tracking-widest text-muted-foreground">Reliability</span>
+                    <span className="text-xs md:text-sm uppercase tracking-widest text-slate-500">Reliability</span>
                 </div>
                 <div className="flex flex-col border-l-4 border-accent pl-4">
                     <span className="text-2xl md:text-3xl font-bold text-primary">24/7</span>
-                    <span className="text-xs md:text-sm uppercase tracking-widest text-muted-foreground">Support</span>
+                    <span className="text-xs md:text-sm uppercase tracking-widest text-slate-500">Support</span>
                 </div>
               </div>
             </div>
@@ -68,12 +92,15 @@ const ITServicesPage = () => {
         </div>
       </section>
 
-      {/* Offerings Section - Responsive Cards */}
-      <section className="py-20 md:py-24 bg-slate-950">
-        <div className="container mx-auto px-4">
+      {/* Offerings Section - Light Background */}
+      <section className="py-20 md:py-24 bg-slate-50 relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our <span className="text-accent">Specializations</span></h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base px-4">Click a card to explore technical features and service details.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our <span className="text-accent">Specializations</span></h2>
+            <p className="text-slate-600 max-w-xl mx-auto text-sm md:text-base px-4">Click a card to explore technical features and service details.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -90,9 +117,10 @@ const ITServicesPage = () => {
                 >
                   {/* Front Side */}
                   <div className="absolute inset-0 [backface-visibility:hidden]">
-                    <div className="h-full w-full rounded-3xl bg-slate-900/50 border border-slate-800 p-8 md:p-10 flex flex-col items-center text-center justify-between hover:border-accent/40 transition-colors backdrop-blur-sm">
+                    {/* Light Card Background */}
+                    <div className="h-full w-full rounded-3xl bg-white border border-slate-200 p-8 md:p-10 flex flex-col items-center text-center justify-between hover:border-accent/50 transition-colors shadow-xl">
                       
-                      {/* FIXED OVERLAP - FRONT: Explicit dimensions, overflow-hidden, and absolute position */}
+                      {/* FIXED OVERLAP - FRONT */}
                       <div className={`relative w-24 h-24 md:w-28 md:h-28 rounded-3xl bg-gradient-to-br ${o.color} mb-4 md:mb-6 shadow-inner flex items-center justify-center overflow-hidden`}>
                         {o.lottieSrc && (
                           <div className="absolute inset-0 flex items-center justify-center scale-[1.35]">
@@ -102,8 +130,8 @@ const ITServicesPage = () => {
                       </div>
 
                       <div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">{o.title}</h3>
-                        <p className="text-slate-400 text-sm leading-relaxed px-2 md:px-4">{o.description}</p>
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 md:mb-4">{o.title}</h3>
+                        <p className="text-slate-600 text-sm leading-relaxed px-2 md:px-4">{o.description}</p>
                       </div>
                       <div className="flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-[0.2em] mt-6 group-hover:gap-4 transition-all">
                         Explore Details <ArrowRight className="w-4 h-4" />
@@ -112,14 +140,15 @@ const ITServicesPage = () => {
                   </div>
 
                   {/* Back Side */}
-                  <div className="absolute inset-0 h-full w-full rounded-3xl bg-slate-800 [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-hidden">
-                    <img src={o.image} className="absolute inset-0 w-full h-full object-cover opacity-20" alt="service background" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent p-6 md:p-8 flex flex-col justify-between">
+                  <div className="absolute inset-0 h-full w-full rounded-3xl bg-white [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-hidden shadow-xl border border-slate-200">
+                    <img src={o.image} className="absolute inset-0 w-full h-full object-cover opacity-10" alt="service background" />
+                    {/* Light Gradient on Back */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-slate-50/95 to-slate-50/80 p-6 md:p-8 flex flex-col justify-between">
                       <div>
                         <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                            
-                           {/* FIXED OVERLAP - BACK: Explicit dimensions and overflow-hidden */}
-                           <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-xl bg-accent/20 shrink-0 flex items-center justify-center overflow-hidden">
+                           {/* FIXED OVERLAP - BACK */}
+                           <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-xl bg-accent/20 shrink-0 flex items-center justify-center overflow-hidden border border-accent/30">
                              {o.lottieSrc && (
                                 <div className="absolute inset-0 flex items-center justify-center scale-[1.4]">
                                   <DotLottieReact src={o.lottieSrc} loop autoplay className="w-full h-full" />
@@ -127,15 +156,15 @@ const ITServicesPage = () => {
                              )}
                            </div>
 
-                           <h3 className="text-lg md:text-xl font-bold text-white leading-tight">{o.title}</h3>
+                           <h3 className="text-lg md:text-xl font-bold text-slate-900 leading-tight">{o.title}</h3>
                         </div>
-                        <p className="text-slate-300 text-xs md:text-sm leading-relaxed mb-6 md:mb-8">{o.details}</p>
+                        <p className="text-slate-700 text-xs md:text-sm leading-relaxed mb-6 md:mb-8">{o.details}</p>
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
                           {o.features.map((f) => (
-                            <div key={f} className="flex items-center gap-2 bg-white/5 rounded-xl p-2.5 md:p-3 border border-white/10">
+                            <div key={f} className="flex items-center gap-2 bg-slate-100 rounded-xl p-2.5 md:p-3 border border-slate-200">
                               <CheckCircle className="w-3.5 h-3.5 text-accent shrink-0" />
-                              <span className="text-[11px] md:text-xs font-semibold text-white/90 tracking-wide">{f}</span>
+                              <span className="text-[11px] md:text-xs font-semibold text-slate-800 tracking-wide">{f}</span>
                             </div>
                           ))}
                         </div>

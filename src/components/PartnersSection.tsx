@@ -15,7 +15,6 @@ import vrif from '../assets/vrif.png';
 import VTU_Logo from '../assets/VTU-Logo.webp';
 
 const partnerLogos = [
-  { name: "BIET", logo: op1 },
   { name: "Goushiya", logo: op2 },
   { name: "Karnataka State Women's", logo: op3 },
   { name: "Maratha", logo: op4 },
@@ -23,9 +22,7 @@ const partnerLogos = [
   { name: "Veerappa", logo: op6 },
   { name: "Vivekananda", logo: op7 },
   { name: "JNTU Hyderabad", logo: op10},
-  { name: "L&T", logo: op9 },
   { name: "NPSS", logo: op11 },
-  { name: "VTU", logo: op12 },
 ];
 
 const officialPartners = [
@@ -40,7 +37,7 @@ const PartnersSection = () => {
   return (
     <section className="py-16 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4 mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary text-center">Official Partners</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-primary text-center"> MOE Partners</h2>
       </div>
       <div className="relative">
         <div className="flex flex-wrap justify-center gap-6">
