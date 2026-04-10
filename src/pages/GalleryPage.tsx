@@ -1,28 +1,47 @@
 import Layout from "@/components/Layout";
 import PageBanner from "@/components/PageBanner";
 
+// Import all gallery images
+import campusVisit from "@/assets/Campus visit.jpeg";
+import vtuSkillDev from "@/assets/Vtu skill development.jpeg";
+import workshopDay from "@/assets/Workshop day.jpeg";
+import awards from "@/assets/Awards.jpeg";
+import teamPhoto from "@/assets/team-photo.jpg";
+import classroomAction from "@/assets/Classroom action.jpg";
+import academicPartnerships from "@/assets/Academic Partnerships.jpeg";
+import govtSkillProgram from "@/assets/govt-skill-program.jpeg";
+import ctaBg from "@/assets/cta-bg.jpg";
+import image9 from "@/assets/image-9.jpeg";
+import image12 from "@/assets/image-12.jpeg";
+import image13 from "@/assets/image-13.jpeg";
+import image3 from "@/assets/image-3.jpeg";
+import img36 from "@/assets/img-36.jpeg";
+import img39 from "@/assets/img-39.jpeg";
+import img8 from "@/assets/img-8.jpeg";
+import image7 from "@/assets/image-7.jpeg";
+
 const galleryImages = [
-  { id: 1, src: "/src/assets/Campus visit.jpeg", caption: "Campus visit" },
-  { id: 2, src: "/src/assets/Vtu skill development.jpeg", caption: "VTU Skill Development Center" },
-  { id: 3, src: "/src/assets/Workshop day.jpeg", caption: "Workshop day" },
-  { id: 4, src: "/src/assets/awards.jpeg", caption: "Recognized for Excellence" },
-  { id: 5, src: "/src/assets/team-photo.jpg", caption: "Gleamator team" },
-  { id: 6, src: "/src/assets/Classroom action.jpg", caption: "Classroom action" },
-  { id: 7, src: "/src/assets/Academic Partnerships.jpeg", caption: "Academic Partnerships" },
-  { id: 8, src: "/src/assets/govt-skill-program.jpeg", caption: "Govt Skill Program" },
-  { id: 9, src: "/src/assets/cta-bg.jpg", caption: "Internship day" },
+  { id: 1, src: campusVisit, caption: "Campus visit" },
+  { id: 2, src: vtuSkillDev, caption: "VTU Skill Development Center" },
+  { id: 3, src: workshopDay, caption: "Workshop day" },
+  { id: 4, src: awards, caption: "Recognized for Excellence" },
+  { id: 5, src: teamPhoto, caption: "Gleamator team" },
+  { id: 6, src: classroomAction, caption: "Classroom action" },
+  { id: 7, src: academicPartnerships, caption: "Academic Partnerships" },
+  { id: 8, src: govtSkillProgram, caption: "Govt Skill Program" },
+  { id: 9, src: ctaBg, caption: "Internship day" },
   // Newly added images from user uploads
-  { id: 10, src: "/src/assets/image-9.jpeg", caption: "Welcoming Ceremony" },
-  { id: 11, src: "/src/assets/image-12.jpeg", caption: "MoU Signing at University" },
-  { id: 12, src: "/src/assets/image-13.jpeg", caption: "Document Exchange Event" },
-  { id: 13, src: "/src/assets/image-3.jpeg", caption: "Group Photo with University Officials" },
-  { id: 14, src: "/src/assets/img-36.jpeg", caption: "Press Coverage of Event" },
-  { id: 15, src: "/src/assets/img-39.jpeg", caption: "Gleamator Team at University" },
-  { id: 16, src: "/src/assets/image-13.jpeg", caption: "Signing Ceremony Highlights" },
-  { id: 17, src: "/src/assets/image-12.jpeg", caption: "University Collaboration" },
-  { id: 18, src: "/src/assets/img-8.jpeg", caption: "Gleamator and University Partnership" },
-  { id: 19, src: "/src/assets/image-7.jpeg", caption: "Gleamator Team with  Leaders" },
-  { id: 22, src: "/src/assets/img-36.jpeg", caption: "Media Coverage of University Partnership" },
+  { id: 10, src: image9, caption: "Welcoming Ceremony" },
+  { id: 11, src: image12, caption: "MoU Signing at University" },
+  { id: 12, src: image13, caption: "Document Exchange Event" },
+  { id: 13, src: image3, caption: "Group Photo with University Officials" },
+  { id: 14, src: img36, caption: "Press Coverage of Event" },
+  { id: 15, src: img39, caption: "Gleamator Team at University" },
+  { id: 16, src: image13, caption: "Signing Ceremony Highlights" },
+  { id: 17, src: image12, caption: "University Collaboration" },
+  { id: 18, src: img8, caption: "Gleamator and University Partnership" },
+  { id: 19, src: image7, caption: "Gleamator Team with Leaders" },
+  { id: 22, src: img36, caption: "Media Coverage of University Partnership" },
 ];
 
 const GalleryPage = () => {
