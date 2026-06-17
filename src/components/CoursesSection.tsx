@@ -12,15 +12,17 @@ const courses = [
     description: "A 12-month industry-driven Recruit, Train & Deploy program that offers 100% job guarantee with Google and its consortium companies.",
     badge: "100% Job Guarantee",
     duration: "12 Months | Offline",
+    slug: "recruit-train-deploy",
     accentColor: "bg-yellow-400"
   },
   { 
-    // Added the new Artificial Intelligence Lottie animation here
-    lottieSrc: "https://lottie.host/1f9264f9-c360-4e24-8131-23524eb199d7/fClNZgQC1i.lottie", 
-    title: "Applied Artificial Intelligence (Hybrid)", 
-    description: "A 12-month industry-driven Recruit, Train & Deploy program that offers 100% job guarantee with Google and its consortium companies.",
+    // Updated: Java Fullstack + AIML program (replaced Applied AI card)
+    lottieSrc: "https://lottie.host/1f9264f9-c360-4e24-8131-23524eb199d7/fClNZgQC1i.lottie",
+    title: "Java Fullstack & AIML (Hybrid)", 
+    description: "A 12-month Recruit → Train → Deploy program with 100% job guarantee through Google consortium partners. Java backend, modern frontend, and applied AI/ML modules.",
     badge: "Internship Opportunity",
     duration: "12 Months | Hybrid",
+    slug: "java-fullstack-aiml",
     accentColor: "bg-yellow-400 text-slate-900"
   },
   { 
@@ -29,6 +31,7 @@ const courses = [
     description: "Frontend: HTML, CSS, JS, React | Backend: Python, Django/Flask | Database: MySQL/PostgreSQL",
     badge: "Internship",
     duration: "3 Months | Offline",
+    slug: "python-fullstack",
     accentColor: "bg-yellow-400 text-slate-900"
   },
 ];
@@ -36,9 +39,9 @@ const courses = [
 const CoursesSection = () => {
   const navigate = useNavigate();
 
-  const handleApplyNow = (courseTitle) => {
-    // Navigate to internships page with course info in state
-    navigate('/internships', { state: { course: courseTitle, source: 'course-application' } });
+  const handleApplyNow = (slug) => {
+    // Navigate to course detail page
+    navigate(`/courses/${slug}`);
   };
 
   return (
@@ -119,10 +122,10 @@ const CoursesSection = () => {
                     className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
                     onClick={(e) => {
                       e.stopPropagation(); // Prevent card click when button is clicked
-                      handleApplyNow(course.title);
+                      handleApplyNow(course.slug || course.title);
                     }}
                   >
-                    Apply Now
+                    Learn More
                   </button>
                 </div>
                 

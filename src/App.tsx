@@ -11,6 +11,7 @@ import HRServicesPage from "./pages/HRServicesPage.tsx";
 import GalleryPage from "./pages/GalleryPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import InternshipsPage from "./pages/InternshipsPage.tsx";
+import CourseDetail from "./pages/CourseDetail.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/services/hr-services" element={<HRServicesPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/courses/:slug" element={<CourseDetail />} />
           <Route path="/internships" element={<InternshipsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
