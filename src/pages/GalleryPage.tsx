@@ -19,6 +19,8 @@ import img36 from "@/assets/img-36.jpeg";
 import img39 from "@/assets/img-39.jpeg";
 import image7 from "@/assets/image-7.jpeg";
 import gleamatoropening from "@/assets/gleamatoropening.jpeg";
+import imgDash from "@/assets/img--.jpeg";
+import img000 from "@/assets/img-000.jpeg";
 
 const galleryImages = [
   { id: 1, src: campusVisit, caption: "Campus visit" },
@@ -37,11 +39,11 @@ const galleryImages = [
   { id: 13, src: image3, caption: "Group Photo with University Officials" },
   { id: 14, src: img36, caption: "Press Coverage of Event" },
   { id: 15, src: img39, caption: "Gleamator Team at University" },
-  { id: 16, src: image13, caption: "Signing Ceremony Highlights" },
-  { id: 17, src: image12, caption: "University Collaboration" },
+  { id: 16, src: imgDash, caption: "Student Interaction Moment" },
+  { id: 17, src: img000, caption: "Campus Outreach Snapshot" },
   { id: 18, src: image7, caption: "Gleamator and University Partnership" },
   { id: 19, src: gleamatoropening, caption: "Gleamator Opening Ceremony" },
-  { id: 22, src: img36, caption: "Media Coverage of University Partnership" },
+  { id: 22, src: img000, caption: "Media Coverage of University Partnership" },
 ];
 
 const GalleryPage = () => {
