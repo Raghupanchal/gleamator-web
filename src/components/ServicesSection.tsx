@@ -33,33 +33,11 @@ const ServicesSection = () => {
   return (
     <section id="services" className="py-20 bg-[#F8FAFC]">
       <div className="container mx-auto px-4 sm:px-6">
-        {/* Mobile decorative background wrapper */}
         <div className="services-wrapper -mt-24 relative z-10 max-w-7xl mx-auto">
           <style>{`
-            /* Mobile-only decorative bubbles and soft gradient */
             @media (max-width: 640px) {
-              .services-wrapper {
-                padding: 1.5rem 0 2.5rem;
-                background: radial-gradient(1200px 400px at 10% 0%, rgba(234,88,12,0.04), transparent 10%), radial-gradient(800px 300px at 90% 100%, rgba(47,59,128,0.04), transparent 12%);
-                border-radius: 1rem;
-                overflow: visible;
-              }
-
-              .services-bubble {
-                position: absolute;
-                border-radius: 9999px;
-                filter: blur(8px);
-                opacity: 0.9;
-                transform: translate3d(0,0,0);
-                animation: floaty 6s ease-in-out infinite;
-                pointer-events: none;
-              }
-
-              .services-bubble.small { width: 48px; height: 48px; background: rgba(250,204,21,0.08); left: 8%; top: 8%; }
-              .services-bubble.med { width: 84px; height: 84px; background: rgba(234,88,12,0.06); right: 10%; top: 12%; }
-              .services-bubble.large { width: 120px; height: 120px; background: rgba(47,59,128,0.05); left: 40%; bottom: -10px; }
-
-              @keyframes floaty { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+              .services-wrapper { padding: 1.5rem 0 2.5rem; }
+              .services-bubble { display: block; }
             }
           `}</style>
 
@@ -68,42 +46,39 @@ const ServicesSection = () => {
           <span className="services-bubble large" aria-hidden />
 
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10 relative">
-          {services.map((service, i) => (
-            <AnimatedSection key={service.title} delay={i * 0.15}>
-              <div
-                onClick={() => handleServiceClick(service.path)}
-                role="button"
-                tabIndex={0}
-                className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-6 sm:p-8 lg:p-10 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 group h-full flex flex-col cursor-pointer border border-[#E2E8F0] hover:-translate-y-2 relative overflow-hidden active:scale-95"
-              >
-                
-                {/* Decorative shape using exact hex to bypass Tailwind config issues */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFF7ED] rounded-bl-full -z-10 group-hover:scale-125 transition-transform duration-700 opacity-0 group-hover:opacity-100" />
+            {services.map((s, i) => {
+              const Icon = s.icon;
+              return (
+                <AnimatedSection key={s.title} delay={i * 0.15}>
+                  <div
+                    onClick={() => handleServiceClick(s.path)}
+                    role="button"
+                    tabIndex={0}
+                    className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-6 sm:p-8 lg:p-10 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 group h-full flex flex-col cursor-pointer border border-[#E2E8F0] hover:-translate-y-2 relative overflow-hidden active:scale-95"
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFF7ED] rounded-bl-full -z-10 group-hover:scale-125 transition-transform duration-700 opacity-0 group-hover:opacity-100" />
 
-                {/* Icon Container using exact hex colors */}
-                <div className="w-20 h-20 lg:w-24 lg:h-24 mx-auto mb-8 rounded-[1.25rem] bg-[#F8FAFC] flex items-center justify-center group-hover:bg-[#FFF7ED] transition-colors duration-500 shadow-sm border border-[#E2E8F0] group-hover:border-[#FDBA74]">
-                  <service.icon className="w-10 h-10 lg:w-12 lg:h-12 text-[#334155] group-hover:text-[#EA580C] transition-colors duration-500 stroke-[1.5]" />
-                </div>
-                
-                {/* Typography */}
-                <h3 className="text-xl lg:text-2xl font-extrabold text-[#0F172A] mb-4 leading-tight">
-                  {service.title}
-                </h3>
-                <p className="text-[#475569] text-sm lg:text-base leading-relaxed flex-grow mb-8">
-                  {service.description}
-                </p>
+                    <div className="w-20 h-20 lg:w-24 lg:h-24 mx-auto mb-8 rounded-[1.25rem] bg-[#F8FAFC] flex items-center justify-center group-hover:bg-[#FFF7ED] transition-colors duration-500 shadow-sm border border-[#E2E8F0] group-hover:border-[#FDBA74]">
+                      <Icon className="w-10 h-10 lg:w-12 lg:h-12 text-[#334155] group-hover:text-[#EA580C] transition-colors duration-500 stroke-[1.5]" />
+                    </div>
 
-                {/* BULLETPROOF BUTTON: Forces Dark Orange text on Light Orange background */}
-                <div className="mt-auto w-full">
-                  <button className="w-full py-4 px-6 rounded-xl bg-[#F8FAFC] text-[#0F172A] font-bold text-sm uppercase tracking-wider border border-[#E2E8F0] flex items-center justify-center gap-3 transition-all duration-300 group-hover:border-[#EA580C] group-hover:text-[#EA580C] group-hover:bg-[#FFF7ED] shadow-sm">
-                    Explore Service 
-                    <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
-                  </button>
-                </div>
+                    <h3 className="text-xl lg:text-2xl font-extrabold text-[#0F172A] mb-4 leading-tight">
+                      {s.title}
+                    </h3>
+                    <p className="text-[#475569] text-sm lg:text-base leading-relaxed flex-grow mb-8">
+                      {s.description}
+                    </p>
 
-              </div>
-            </AnimatedSection>
-          ))}
+                    <div className="mt-auto w-full">
+                      <button className="w-full py-4 px-6 rounded-xl bg-[#F8FAFC] text-[#0F172A] font-bold text-sm uppercase tracking-wider border border-[#E2E8F0] flex items-center justify-center gap-3 transition-all duration-300 group-hover:border-[#EA580C] group-hover:text-[#EA580C] group-hover:bg-[#FFF7ED] shadow-sm">
+                        Explore Service
+                      </button>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
