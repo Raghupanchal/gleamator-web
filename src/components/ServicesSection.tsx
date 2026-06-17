@@ -33,13 +33,48 @@ const ServicesSection = () => {
   return (
     <section id="services" className="py-20 bg-[#F8FAFC]">
       <div className="container mx-auto px-4 sm:px-6">
-        
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-10 -mt-24 relative z-10 max-w-7xl mx-auto">
+        {/* Mobile decorative background wrapper */}
+        <div className="services-wrapper -mt-24 relative z-10 max-w-7xl mx-auto">
+          <style>{`
+            /* Mobile-only decorative bubbles and soft gradient */
+            @media (max-width: 640px) {
+              .services-wrapper {
+                padding: 1.5rem 0 2.5rem;
+                background: radial-gradient(1200px 400px at 10% 0%, rgba(234,88,12,0.04), transparent 10%), radial-gradient(800px 300px at 90% 100%, rgba(47,59,128,0.04), transparent 12%);
+                border-radius: 1rem;
+                overflow: visible;
+              }
+
+              .services-bubble {
+                position: absolute;
+                border-radius: 9999px;
+                filter: blur(8px);
+                opacity: 0.9;
+                transform: translate3d(0,0,0);
+                animation: floaty 6s ease-in-out infinite;
+                pointer-events: none;
+              }
+
+              .services-bubble.small { width: 48px; height: 48px; background: rgba(250,204,21,0.08); left: 8%; top: 8%; }
+              .services-bubble.med { width: 84px; height: 84px; background: rgba(234,88,12,0.06); right: 10%; top: 12%; }
+              .services-bubble.large { width: 120px; height: 120px; background: rgba(47,59,128,0.05); left: 40%; bottom: -10px; }
+
+              @keyframes floaty { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+            }
+          `}</style>
+
+          <span className="services-bubble small" aria-hidden />
+          <span className="services-bubble med" aria-hidden />
+          <span className="services-bubble large" aria-hidden />
+
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-10 relative">
           {services.map((service, i) => (
             <AnimatedSection key={service.title} delay={i * 0.15}>
               <div
                 onClick={() => handleServiceClick(service.path)}
-                className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-8 lg:p-10 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 group h-full flex flex-col cursor-pointer border border-[#E2E8F0] hover:-translate-y-2 relative overflow-hidden"
+                role="button"
+                tabIndex={0}
+                className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-6 sm:p-8 lg:p-10 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 group h-full flex flex-col cursor-pointer border border-[#E2E8F0] hover:-translate-y-2 relative overflow-hidden active:scale-95"
               >
                 
                 {/* Decorative shape using exact hex to bypass Tailwind config issues */}
