@@ -88,9 +88,17 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="bg-[#2f3b80] text-white text-sm mt-12 py-4">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-3">
           <span>Gleamator © 2024 | All Rights Reserved.</span>
-          <span>Crafted & Engineered by Stalight Technology </span>
+          <a
+            href="https://stalight.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Visit Stalight Technologies"
+            className="text-white/90 hover:text-white underline md:no-underline md:hover:underline transition-colors"
+          >
+            Powered by Stalight Technologies
+          </a>
         </div>
       </div>
     </footer>

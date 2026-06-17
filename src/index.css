@@ -63,6 +63,24 @@
     @apply bg-background text-foreground font-sans;
     font-family: 'Poppins', sans-serif;
   }
+
+  /* Prevent horizontal overflow on small devices */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Make images and svgs responsive by default */
+  img, svg, picture {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Improve tap targets and prevent accidental double-tap zoom on mobile */
+  button, a, input, textarea, label {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    touch-action: manipulation;
+  }
 }
 
 @layer utilities {

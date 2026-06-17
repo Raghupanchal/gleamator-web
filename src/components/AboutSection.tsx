@@ -80,7 +80,8 @@ const AboutSection = () => {
         /* Book Cover Open Interaction */
         .my-3d-card:hover .img-container,
         .my-3d-card:focus .img-container { 
-          transform: rotateY(-160deg); 
+          /* slightly reduce the open angle to avoid content overshoot */
+          transform: rotateY(-140deg); 
           box-shadow: 15px 0 25px rgba(0,0,0,0.15); 
         }
 
@@ -158,6 +159,31 @@ const AboutSection = () => {
           background-size: 20px 20px;
           display: flex; flex-direction: column;
         }
+
+        /* Ensure inner cover content wraps and stays inside the card when opened */
+        .cover-back .content-wrap {
+          box-sizing: border-box;
+          padding-left: 18px;
+          padding-right: 18px;
+          width: 100%;
+          max-width: 100%;
+          transform: translateX(10px);
+          opacity: 0;
+          transition: transform 0.6s cubic-bezier(.2,.8,.2,1), opacity 0.5s ease;
+        }
+
+        .cover-back .content-wrap p {
+          overflow-wrap: break-word;
+          word-break: break-word;
+          max-width: 100%;
+          margin: 0;
+        }
+
+        .my-3d-card:hover .cover-back .content-wrap,
+        .my-3d-card:focus .cover-back .content-wrap {
+          transform: translateX(0px);
+          opacity: 1;
+        }
       `}</style>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -196,7 +222,7 @@ const AboutSection = () => {
                     <div className="absolute right-0 top-0 w-8 h-full bg-gradient-to-l from-black/60 to-transparent pointer-events-none z-10" />
                     
                     {/* Content inside the photo cover */}
-                    <div className="relative z-20 flex flex-col items-center justify-center h-full p-6 text-center">
+                    <div className="relative z-20 flex flex-col items-center justify-center h-full p-6 text-center content-wrap">
                       
                       <div className="w-16 h-16 rounded-full border border-orange-500/50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(249,115,22,0.3)] overflow-hidden p-1.5">
                         <img src={giconImage} alt="Gleamator Icon" className="w-full h-full object-contain" />

@@ -5,9 +5,9 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import dashboardBg from "@/assets/Dashboard.jpg";
 
 const stats = [
-  { value: "10,000", label: "Youth Skilled Across India" },
-  { value: "50+", label: "Training Centers" },
-  { value: "150+", label: "Hiring Companies" },
+  { value: "15,000", label: "Youth Skilled Across India" },
+  { value: "100+", label: "Training Centers" },
+  { value: "50+", label: "Hiring Companies" },
 ];
 
 // --- Custom Animated Counter Component ---
@@ -52,7 +52,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-white text-4xl md:text-5xl lg:text-6xl font-bold text-hero leading-tight mb-6"
+            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.06] sm:leading-[1.04] md:leading-[1.02] lg:leading-[1.02] mb-6 whitespace-normal break-words max-w-full"
           >
             Building Careers Through Practical Learning
           </motion.h1>
