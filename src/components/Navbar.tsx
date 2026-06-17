@@ -6,6 +6,7 @@ import logo from "@/assets/gleamator-logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [coursesOpen, setCoursesOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -28,6 +29,17 @@ const Navbar = () => {
               <Link to="/services/skill-development" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Skill Development Programs</Link>
               <Link to="/services/it-services" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">IT Services</Link>
               <Link to="/services/hr-services" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">HR Services</Link>
+            </div>
+          </div>
+
+          <div className="relative group">
+            <button className="text-sm font-medium text-foreground hover:text-accent transition-colors flex items-center gap-1">
+              Courses <ChevronDown className="w-4 h-4" />
+            </button>
+            <div className="absolute top-full left-0 bg-background shadow-lg rounded-md py-2 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+              <Link to="/courses/python-fullstack" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Python Fullstack</Link>
+              <Link to="/courses/java-fullstack-aiml" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Java Fullstack & AIML</Link>
+              <Link to="/courses/aiml" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">AIML</Link>
             </div>
           </div>
           <Link to="/gallery" className={`text-sm font-medium transition-colors ${isActive("/gallery") ? "text-accent" : "text-foreground hover:text-accent"}`}>Gallery</Link>
@@ -55,6 +67,17 @@ const Navbar = () => {
               <Link to="/services/skill-development" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>Skill Development</Link>
               <Link to="/services/it-services" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>IT Services</Link>
               <Link to="/services/hr-services" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>HR Services</Link>
+            </div>
+          )}
+
+          <button onClick={() => setCoursesOpen(!coursesOpen)} className="flex items-center gap-1 text-sm font-medium text-foreground">
+            Courses <ChevronDown className="w-4 h-4" />
+          </button>
+          {coursesOpen && (
+            <div className="pl-4 space-y-2">
+              <Link to="/courses/python-fullstack" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>Python Fullstack</Link>
+              <Link to="/courses/java-fullstack-aiml" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>Java Fullstack & AIML</Link>
+              <Link to="/courses/aiml" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>AIML</Link>
             </div>
           )}
           <Link to="/gallery" className="block text-sm font-medium text-foreground" onClick={() => setIsOpen(false)}>Gallery</Link>
