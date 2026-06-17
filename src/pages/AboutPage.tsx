@@ -97,21 +97,46 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
+      {/* Values (Updated UI) */}
+      <section className="py-24 bg-secondary relative overflow-hidden">
+        {/* Subtle background glow for a premium aesthetic */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Why Choose Us</h2>
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight">
+                Why Choose Us
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Delivering excellence through innovation, expertise, and a commitment to your success.
+              </p>
+            </div>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {values.map((v, i) => (
               <AnimatedSection key={v.title} delay={i * 0.1}>
-                <div className="bg-card rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow h-full">
-                  <div className="w-14 h-14 mb-4 rounded-full bg-accent/10 flex items-center justify-center">
-                    <v.icon className="w-6 h-6 text-accent" />
+                <div className="group relative bg-card/80 backdrop-blur-md border border-border/40 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out h-full overflow-hidden cursor-default">
+                  
+                  {/* Animated Top Border */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Inner Content */}
+                  <div className="flex flex-col h-full relative z-10">
+                    {/* Icon Container with subtle inner shadow and hover scale */}
+                    <div className="w-16 h-16 mb-8 rounded-2xl bg-accent/5 border border-accent/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-accent/10 group-hover:border-accent/30 transition-all duration-500 ease-out shadow-sm">
+                      <v.icon className="w-8 h-8 text-accent drop-shadow-sm transition-transform duration-500" />
+                    </div>
+                    
+                    <h3 className="font-bold text-xl text-foreground mb-3 tracking-wide group-hover:text-accent transition-colors duration-300">
+                      {v.title}
+                    </h3>
+                    
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
+                      {v.description}
+                    </p>
                   </div>
-                  <h3 className="font-bold text-foreground mb-2">{v.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{v.description}</p>
                 </div>
               </AnimatedSection>
             ))}

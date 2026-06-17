@@ -16,17 +16,23 @@ const WhyChooseUs = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Why Choose Us</h2>
         </AnimatedSection>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reasons.map((reason, i) => (
+          {reasons.map((reason, i) => {
+            const Icon = reason.icon;
+            return (
             <AnimatedSection key={reason.title} delay={i * 0.1}>
-              <div className="bg-card rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow h-full">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-accent/10 flex items-center justify-center">
-                  <reason.icon className="w-6 h-6 text-accent" />
+              <div className="group bg-card rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-400 h-full ring-1 ring-transparent hover:ring-accent/10">
+                <div className="mx-auto mb-5 w-16 h-16 rounded-full bg-gradient-to-br from-accent to-[#EA580C] flex items-center justify-center text-white shadow-md">
+                  <Icon className="w-7 h-7" />
                 </div>
-                <h3 className="font-bold text-foreground mb-2">{reason.title}</h3>
-                <p className="text-muted-foreground text-sm">{reason.description}</p>
+                <h3 className="font-semibold text-foreground text-lg mb-2">{reason.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{reason.description}</p>
+                <div className="mt-6 flex items-center justify-center">
+                  <span className="inline-block w-10 h-1 bg-accent rounded-full opacity-90" />
+                </div>
               </div>
             </AnimatedSection>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
