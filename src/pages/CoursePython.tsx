@@ -364,7 +364,7 @@ const CoursePython = () => {
       <div className="bg-[#FAFAFC] font-sans selection:bg-indigo-500/20 selection:text-indigo-900 overflow-x-hidden text-slate-900">
 
         {/* HERO SECTION */}
-        <section className="relative flex items-center pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden border-b border-white">
+        <section className="relative pt-8 pb-16 md:pt-10 md:pb-20 overflow-hidden border-b border-white">
           <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
             <motion.div
               animate={{ x: bgPosition.x, y: bgPosition.y }}
