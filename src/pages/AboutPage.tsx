@@ -8,7 +8,7 @@ import leader3 from "@/assets/leader-3.png";
 import director1 from "@/assets/director-1.png";
 import director2 from "@/assets/director-2.webp";
 import director3 from "@/assets/director-3.png";
-import director4 from "@/assets/director-4.webp";
+import director4 from "@/assets/raghavendra.jpeg";
 import teamPhoto from "@/assets/team-photo.jpg";
 import awardTrophy from "@/assets/award-trophy.jpg";
 import awardCertificate from "@/assets/awards-certificate.jpg";
@@ -173,17 +173,22 @@ const AboutPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Directors</h2>
           </AnimatedSection>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {directors.map((person, i) => (
-              <AnimatedSection key={person.name} delay={i * 0.1}>
-                <div className="text-center bg-card rounded-2xl shadow-md p-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl">
-                  <div className="w-40 h-40 mx-auto mb-4 rounded-full border-3 border-accent/30 overflow-hidden shadow-lg transition-transform duration-500 ease-out hover:scale-110">
-                    <img src={person.image} alt={person.name} className="w-full h-full object-cover" loading="lazy" width={512} height={512} />
+            {directors.map((person, i) => {
+              const isRaghavendra = person.name === "Raghavendra";
+              return (
+                <AnimatedSection key={person.name} delay={i * 0.1}>
+                  <div className="text-center bg-card rounded-2xl shadow-md p-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl">
+                    <div className={`w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden shadow-lg transition-transform duration-500 ease-out hover:scale-110 flex items-center justify-center ${
+                      isRaghavendra ? "border border-blue-400 p-0.5 bg-white" : "border-3 border-accent/30"
+                    }`}>
+                      <img src={person.image} alt={person.name} className={`w-full h-full object-cover ${isRaghavendra ? "rounded-full" : ""}`} loading="lazy" width={512} height={512} />
+                    </div>
+                    <h3 className="font-bold text-accent text-base mb-1">{person.name}</h3>
+                    <p className="text-muted-foreground text-sm font-medium">{person.role}</p>
                   </div>
-                  <h3 className="font-bold text-accent text-base mb-1">{person.name}</h3>
-                  <p className="text-muted-foreground text-sm font-medium">{person.role}</p>
-                </div>
-              </AnimatedSection>
-            ))}
+                </AnimatedSection>
+              );
+            })}
           </div>
         </div>
       </section>

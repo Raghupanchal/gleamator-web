@@ -51,46 +51,64 @@ const FadeUp = ({ children, delay = 0, className = "", duration = 0.6 }) => (
   </motion.div>
 );
 
+const PythonIcon = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.898 0C5.394 0 5.617 2.825 5.617 2.825l.006 2.925h5.811V6.9h-8.15S0 7.234 0 13.067c0 5.836 2.956 5.616 2.956 5.616l2.637-.006v-3.714s-.073-4.42 4.364-4.42h4.526s4.116-.01 4.116-4.047V3.535S18.596 0 11.898 0z" fill="#306998" />
+    <path d="M12.102 24c6.504 0 6.281-2.825 6.281-2.825l-.007-2.925h-5.81V17.1h8.15s3.284-.334 3.284-6.167c0-5.836-2.956-5.616-2.956-5.616l-2.637.006v3.714s.073 4.42-4.364 4.42H9.516s-4.116.01-4.116 4.047v2.928S5.404 24 12.102 24z" fill="#FFE873" />
+    <path d="M8.384 1.706a.82.82 0 1 1 0 1.638.82.82 0 0 1 0-1.638z" fill="#FFF" />
+    <path d="M15.616 22.294a.82.82 0 1 1 0-1.638.82.82 0 0 1 0 1.638z" fill="#FFF" />
+  </svg>
+);
+
 const ColorfulTechOrbit = () => {
   return (
     <div className="relative w-full aspect-square max-w-[320px] md:max-w-[450px] mx-auto flex items-center justify-center scale-90 md:scale-100">
-      {/* Center Core */}
-      <motion.div
-        animate={{ scale: [1, 1.05, 1], rotate: [0, 360] }}
-        transition={{ scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 30, repeat: Infinity, ease: "linear" } }}
-        className="absolute z-30 w-20 h-20 md:w-24 md:h-24 bg-white/90 backdrop-blur-md rounded-full shadow-[0_0_60px_rgba(99,102,241,0.3)] flex items-center justify-center border border-white"
-      >
+      {/* Center Core - Constant (No rotation or scaling animations) */}
+      <div className="absolute z-30 w-20 h-20 md:w-24 md:h-24 bg-white backdrop-blur-md rounded-full shadow-[0_0_60px_rgba(99,102,241,0.4)] flex items-center justify-center border border-slate-200">
         <img src={gicon} alt="Gleamator Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-md" />
-      </motion.div>
+      </div>
 
-      {/* Inner Orbit */}
+      {/* Inner Orbit (Faster Rotation) */}
       <motion.div
         animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute z-20 w-[60%] h-[60%] border border-indigo-200/50 border-dashed rounded-full"
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        className="absolute z-20 w-[60%] h-[60%] border border-indigo-300/40 border-dashed rounded-full"
       >
-        <div className="absolute -top-4 md:-top-5 left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm border border-white shadow-xl rounded-full flex items-center justify-center text-indigo-500">
-          <TerminalSquare size={18} />
+        {/* Python Logo - Top */}
+        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-11 h-11 bg-white border border-indigo-200 shadow-[0_0_20px_rgba(99,102,241,0.2)] rounded-full flex items-center justify-center p-2 hover:scale-110 transition-transform">
+          <PythonIcon className="w-6 h-6" />
         </div>
-        <div className="absolute -bottom-4 md:-bottom-5 left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-sm border border-white shadow-xl rounded-full flex items-center justify-center text-rose-500">
-          <LayoutTemplate size={18} />
+        
+        {/* Code Icon - Bottom Right */}
+        <div className="absolute bottom-2 -right-2 w-9 h-9 bg-gradient-to-br from-indigo-500 to-indigo-600 border border-indigo-400 shadow-lg rounded-full flex items-center justify-center text-white">
+          <Code2 size={16} />
+        </div>
+
+        {/* Database Icon - Bottom Left */}
+        <div className="absolute bottom-2 -left-2 w-9 h-9 bg-gradient-to-br from-cyan-500 to-cyan-600 border border-cyan-400 shadow-lg rounded-full flex items-center justify-center text-white">
+          <Database size={16} />
         </div>
       </motion.div>
 
-      {/* Outer Orbit */}
+      {/* Outer Orbit (Slower Counter-Rotation) */}
       <motion.div
         animate={{ rotate: -360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute z-10 w-[100%] h-[100%] border border-slate-200/60 rounded-full"
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute z-10 w-[95%] h-[95%] border border-slate-300/50 rounded-full"
       >
-        <div className="absolute top-1/4 -left-4 md:-left-5 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm border border-white shadow-xl rounded-full flex items-center justify-center text-cyan-500">
-          <Database size={20} />
+        {/* Terminal/Django - Left */}
+        <div className="absolute top-1/2 -left-5 transform -translate-y-1/2 w-10 h-10 bg-slate-900 border border-slate-700 shadow-xl rounded-full flex items-center justify-center text-emerald-400">
+          <TerminalSquare size={18} />
         </div>
-        <div className="absolute top-1/4 -right-4 md:-right-5 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm border border-white shadow-xl rounded-full flex items-center justify-center text-violet-500">
-          <Cloud size={20} />
+
+        {/* Cloud - Right */}
+        <div className="absolute top-1/2 -right-5 transform -translate-y-1/2 w-10 h-10 bg-gradient-to-br from-violet-500 to-indigo-500 border border-violet-400 shadow-xl rounded-full flex items-center justify-center text-white">
+          <Cloud size={18} />
         </div>
-        <div className="absolute -bottom-2 left-1/4 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm border border-white shadow-xl rounded-full flex items-center justify-center text-amber-500">
-          <Code2 size={20} />
+
+        {/* Brain/AI - Bottom */}
+        <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 border border-amber-400 shadow-xl rounded-full flex items-center justify-center text-white">
+          <BrainCircuit size={18} />
         </div>
       </motion.div>
     </div>
@@ -196,6 +214,7 @@ const CoursePython = () => {
     email: "",
     mobile: "",
     qualification: "",
+    course: "Python Fullstack Engineering",
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -223,10 +242,11 @@ const CoursePython = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (formData.name && formData.email && formData.mobile && formData.qualification) {
+      // Form payload is ready with formData.course included to differentiate Python leads
       setFormSubmitted(true);
       setTimeout(() => {
         setFormSubmitted(false);
-        setFormData({ name: "", email: "", mobile: "", qualification: "" });
+        setFormData({ name: "", email: "", mobile: "", qualification: "", course: "Python Fullstack Engineering" });
       }, 4000);
     }
   };
@@ -275,9 +295,9 @@ const CoursePython = () => {
         iconBg: "bg-rose-50",
         icon: <Layers size={20} />,
         items: [
-          "Semantic layout structures and advanced Tailwind CSS grids.",
-          "Modern JavaScript (ES6+), async data fetching, and DOM logic.",
-          "React.js ecosystem: custom hooks, context, and state management."
+          "Interactive UI development using React 18, Hooks, and TypeScript.",
+          "State management setups with Redux Toolkit and Context API.",
+          "Data integration with Axios, REST clients, and Tailwind CSS layouts."
         ],
       },
       {
@@ -288,9 +308,9 @@ const CoursePython = () => {
         iconBg: "bg-indigo-50",
         icon: <TerminalSquare size={20} />,
         items: [
-          "Python deep dive: OOP, decorators, and memory management.",
-          "Django & Flask RESTful API design and middleware routing.",
-          "Secure authentication utilizing JWT and OAuth2.0 standards."
+          "Advanced Python: OOP, Meta-programming, and Decorators.",
+          "Django REST Framework (DRF): Serializers, Viewsets, and Filters.",
+          "Robust API routing, Custom Middleware, and JWT Authentication."
         ],
       },
       {
@@ -301,22 +321,22 @@ const CoursePython = () => {
         iconBg: "bg-cyan-50",
         icon: <Database size={20} />,
         items: [
-          "PostgreSQL schema design and complex relational queries.",
-          "Docker containerization for consistent development environments.",
-          "Automated CI/CD implementation via GitHub Actions."
+          "PostgreSQL Schema optimization, Indexes, and Transactions.",
+          "Dockerizing Python applications and multi-container Compose setups.",
+          "AWS deployment basics (EC2, S3, RDS) and CI/CD pipelines."
         ],
       },
       {
-        title: "AI Integration",
+        title: "AI Integration & Queues",
         duration: "Phase 4 • Week 17-18",
         color: "text-amber-500",
         iconColor: "text-amber-500",
         iconBg: "bg-amber-50",
         icon: <BrainCircuit size={20} />,
         items: [
-          "Vector databases and intelligent search mechanisms.",
-          "Building context-aware agents using LangChain.",
-          "Integrating OpenAI APIs into live application endpoints."
+          "Retrieval-Augmented Generation (RAG) using LangChain agents.",
+          "Vector databases (ChromaDB, Pinecone) semantic search integration.",
+          "Asynchronous task queues using Celery, Redis, and WebSockets."
         ],
       },
     ],
@@ -443,6 +463,224 @@ const CoursePython = () => {
           </div>
         </section>
 
+
+        {/* HIGH-END ALTERNATING ROADMAP */}
+        <section id="roadmap" className="pt-10 pb-20 md:pt-12 md:pb-24 bg-[#FAFAFC] relative overflow-hidden border-b border-slate-200">
+          <style>{`
+            @keyframes roadFlowAnimation {
+              to { stroke-dashoffset: -28; }
+            }
+            .animate-road-flow {
+              animation: roadFlowAnimation 1.5s linear infinite;
+            }
+          `}</style>
+
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-400/5 blur-[120px] rounded-full pointer-events-none" />
+
+          <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
+
+            <FadeUp className="text-center max-w-2xl mx-auto mb-20 md:mb-24">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 shadow-sm rounded-full mb-6">
+                <Target size={14} className="text-rose-500" />
+                <span className="text-xs font-bold tracking-widest uppercase text-slate-600">
+                  Curriculum Architecture
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+                Structured Progression
+              </h2>
+              <p className="text-lg text-slate-500 font-medium leading-relaxed">
+                A blueprint designed for mastery. Transition from foundational architecture to advanced AI integration week over week.
+              </p>
+            </FadeUp>
+
+            {/* DESKTOP WINDING ROAD TIMELINE */}
+            <div className="relative w-[1000px] h-[980px] mx-auto hidden md:block">
+              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 1000 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#f8fafc" strokeWidth="82" strokeLinecap="round" />
+                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#0f172a" strokeWidth="72" strokeLinecap="round" />
+                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#ffffff" strokeWidth="3" strokeDasharray="14 14" strokeLinecap="round" opacity="0.9" className="animate-road-flow" />
+
+                {/* Animated course-specific Python icon moving along the path */}
+                <foreignObject width="40" height="40" className="overflow-visible">
+                  <div 
+                    style={{ transform: 'translate(-20px, -20px)' }}
+                    className="w-10 h-10 rounded-full bg-white border-2 border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.7)] flex items-center justify-center p-1.5 animate-pulse"
+                  >
+                    <PythonIcon className="w-full h-full" />
+                  </div>
+                  <animateMotion
+                    dur="10s"
+                    repeatCount="indefinite"
+                    path="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980"
+                  />
+                </foreignObject>
+
+                <line x1="180" y1="200" x2="640" y2="200" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4 4" />
+                <foreignObject x="156" y="176" width="48" height="48" className="overflow-visible">
+                  <div className="w-12 h-12 rounded-full bg-white border border-rose-200 shadow-[0_0_20px_rgba(244,63,94,0.4)] flex items-center justify-center animate-bounce text-rose-500">
+                    <Layers size={22} className="animate-pulse" />
+                  </div>
+                </foreignObject>
+                <circle cx="640" cy="200" r="4" fill="#f43f5e" />
+
+                <line x1="820" y1="420" x2="360" y2="420" stroke="#6366f1" strokeWidth="2" strokeDasharray="4 4" />
+                <foreignObject x="796" y="396" width="48" height="48" className="overflow-visible">
+                  <div className="w-12 h-12 rounded-full bg-white border border-indigo-200 shadow-[0_0_20px_rgba(99,102,241,0.4)] flex items-center justify-center animate-bounce p-2.5">
+                    <PythonIcon className="w-full h-full" />
+                  </div>
+                </foreignObject>
+                <circle cx="360" cy="420" r="4" fill="#6366f1" />
+
+                <line x1="180" y1="640" x2="640" y2="640" stroke="#0891b2" strokeWidth="2" strokeDasharray="4 4" />
+                <foreignObject x="156" y="616" width="48" height="48" className="overflow-visible">
+                  <div className="w-12 h-12 rounded-full bg-white border border-cyan-200 shadow-[0_0_20px_rgba(8,145,178,0.4)] flex items-center justify-center animate-bounce text-cyan-600">
+                    <Database size={22} className="animate-pulse" />
+                  </div>
+                </foreignObject>
+                <circle cx="640" cy="640" r="4" fill="#0891b2" />
+
+                <line x1="820" y1="860" x2="360" y2="860" stroke="#f59e0b" strokeWidth="2" strokeDasharray="4 4" />
+                <foreignObject x="796" y="836" width="48" height="48" className="overflow-visible">
+                  <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-700 shadow-[0_0_20px_rgba(245,158,11,0.4)] flex items-center justify-center animate-bounce text-amber-400">
+                    <BrainCircuit size={22} className="animate-pulse" />
+                  </div>
+                </foreignObject>
+                <circle cx="360" cy="860" r="4" fill="#f59e0b" />
+
+                {/* Starting Gate Node */}
+                <circle cx="500" cy="15" r="12" fill="#0f172a" stroke="#10b981" strokeWidth="3" />
+                <circle cx="500" cy="15" r="5" fill="#10b981" className="animate-pulse" />
+
+                {/* Ending Placement / Graduation Node */}
+                <foreignObject x="476" y="930" width="48" height="48" className="overflow-visible">
+                  <div className="w-12 h-12 rounded-full bg-slate-950 border border-indigo-400 shadow-[0_0_25px_rgba(99,102,241,0.8)] flex items-center justify-center text-white">
+                    <GraduationCap size={22} className="animate-bounce" />
+                  </div>
+                </foreignObject>
+              </svg>
+
+              <div className="absolute inset-0 z-10 pointer-events-none">
+                {data.syllabus.map((step, index) => {
+                  const phaseNumber = `0${index + 1}`;
+                  const positions = [
+                    { left: "640px", top: "110px", width: "360px" },
+                    { left: "0px", top: "330px", width: "360px" },
+                    { left: "640px", top: "550px", width: "360px" },
+                    { left: "0px", top: "770px", width: "360px" }
+                  ];
+
+                  return (
+                    <div key={index} style={{ position: "absolute", left: positions[index].left, top: positions[index].top, width: positions[index].width }} className="pointer-events-auto">
+                      <FadeUp delay={0.1}>
+                        <div className="relative bg-white/90 backdrop-blur-xl border border-white p-7 rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 overflow-hidden group">
+                          <div className={`absolute top-0 inset-x-0 h-1.5 bg-current`} style={{ color: step.iconColor.replace('text-', '') }} />
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className={`w-10 h-10 rounded-xl flex items-center justify-center border border-white/50 shadow-sm ${step.iconBg} ${step.iconColor}`}>
+                                {step.icon}
+                              </div>
+                              <span className={`text-[11px] font-black tracking-widest uppercase ${step.color}`}>
+                                {step.duration}
+                              </span>
+                            </div>
+                            <span className="text-2xl font-black text-slate-100 select-none drop-shadow-sm">
+                              {phaseNumber}
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-slate-900 leading-tight mb-4 group-hover:text-indigo-600 transition-colors duration-300">
+                            {step.title}
+                          </h3>
+                          <div className="space-y-3">
+                            {step.items.map((item, i) => (
+                              <div key={i} className="flex items-start gap-3 group/item">
+                                <div className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200 group-hover/item:border-indigo-400 group-hover/item:bg-indigo-50 transition-colors">
+                                  <CheckCircle2 size={12} className="text-slate-400 group-hover/item:text-indigo-600 transition-colors" />
+                                </div>
+                                <span className="text-slate-600 text-[13px] font-medium leading-relaxed">
+                                  {item}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </FadeUp>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* MOBILE WAVY VERTICAL ROADMAP */}
+            <div className="block md:hidden relative pl-16 sm:pl-20 pb-8 min-h-[900px]">
+              {/* Vertical Winding SVG for Mobile */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-20 pointer-events-none z-0">
+                <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 80 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M 40,0 C 80,100 0,200 40,300 C 80,400 0,500 40,600 C 80,700 0,800 40,900 C 80,1000 40,1000 40,1000" stroke="#f8fafc" strokeWidth="34" strokeLinecap="round" />
+                  <path d="M 40,0 C 80,100 0,200 40,300 C 80,400 0,500 40,600 C 80,700 0,800 40,900 C 80,1000 40,1000 40,1000" stroke="#0f172a" strokeWidth="28" strokeLinecap="round" />
+                  <path d="M 40,0 C 80,100 0,200 40,300 C 80,400 0,500 40,600 C 80,700 0,800 40,900 C 80,1000 40,1000 40,1000" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="6 6" strokeLinecap="round" opacity="0.9" className="animate-road-flow" />
+                </svg>
+              </div>
+
+              <div className="flex flex-col justify-between h-full space-y-12 relative z-10 py-10">
+                {data.syllabus.map((step, index) => {
+                  const phaseNumber = `0${index + 1}`;
+                  // Calculate dynamic left position to follow the curve visually
+                  const dotLeft = index % 2 === 0 ? '-8px' : '24px';
+
+                  return (
+                    <FadeUp key={index} delay={0.1} className="relative flex items-center min-h-[180px]">
+                      {/* Node Point */}
+                      <div
+                        className="absolute z-20 w-8 h-8 rounded-full bg-slate-900 border-2 border-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300"
+                        style={{ left: dotLeft, top: '50%', transform: 'translateY(-50%)' }}
+                      >
+                        <span className="text-[10px] font-black text-white">{phaseNumber}</span>
+                        <span className="absolute -inset-2 rounded-full border border-slate-900/20 animate-pulse bg-slate-900/5 -z-10" />
+                      </div>
+
+                      {/* Card Content */}
+                      <div className="w-full pl-6">
+                        <div className="relative bg-white/95 backdrop-blur-md border border-slate-200/60 p-6 sm:p-7 rounded-[1.5rem] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden group">
+                          <div className={`absolute top-0 inset-x-0 h-1 bg-current`} style={{ color: step.iconColor.replace('text-', '') }} />
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-2.5">
+                              <div className={`w-8 h-8 rounded-xl flex items-center justify-center border border-white/50 shadow-sm ${step.iconBg} ${step.iconColor}`}>
+                                {step.icon}
+                              </div>
+                              <span className={`text-[10px] font-black tracking-widest uppercase ${step.color}`}>
+                                {step.duration}
+                              </span>
+                            </div>
+                            <span className="text-xl font-black text-slate-100 select-none">
+                              {phaseNumber}
+                            </span>
+                          </div>
+                          <h3 className="text-base font-bold text-slate-900 leading-tight mb-3 group-hover:text-indigo-600 transition-colors duration-300">
+                            {step.title}
+                          </h3>
+                          <div className="space-y-2.5">
+                            {step.items.map((item, i) => (
+                              <div key={i} className="flex items-start gap-2.5 group/item">
+                                <div className="mt-0.5 flex-shrink-0 w-4.5 h-4.5 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200 group-hover/item:border-indigo-400 group-hover/item:bg-indigo-50 transition-colors">
+                                  <CheckCircle2 size={10} className="text-slate-400 group-hover/item:text-indigo-600 transition-colors" />
+                                </div>
+                                <span className="text-slate-600 text-xs font-medium leading-relaxed">
+                                  {item}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </FadeUp>
+                  );
+                })}
+              </div>
+            </div>
+
+          </div>
+        </section>
 
         {/* PROJECTS & CAREER SLIDER SECTION */}
         <section className="pt-16 pb-6 md:pt-20 md:pb-8 bg-[#F4F4F6] text-slate-900 relative overflow-hidden border-b border-slate-200">
@@ -579,192 +817,10 @@ const CoursePython = () => {
           </div>
         </section>
 
-        {/* HIGH-END ALTERNATING ROADMAP */}
-        <section id="roadmap" className="pt-10 pb-20 md:pt-12 md:pb-24 bg-[#FAFAFC] relative overflow-hidden border-b border-slate-200">
-          <style>{`
-            @keyframes roadFlowAnimation {
-              to { stroke-dashoffset: -28; }
-            }
-            .animate-road-flow {
-              animation: roadFlowAnimation 1.5s linear infinite;
-            }
-          `}</style>
-
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-400/5 blur-[120px] rounded-full pointer-events-none" />
-
-          <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
-
-            <FadeUp className="text-center max-w-2xl mx-auto mb-20 md:mb-24">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 shadow-sm rounded-full mb-6">
-                <Target size={14} className="text-rose-500" />
-                <span className="text-xs font-bold tracking-widest uppercase text-slate-600">
-                  Curriculum Architecture
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
-                Structured Progression
-              </h2>
-              <p className="text-lg text-slate-500 font-medium leading-relaxed">
-                A blueprint designed for mastery. Transition from foundational architecture to advanced AI integration week over week.
-              </p>
-            </FadeUp>
-
-            {/* DESKTOP WINDING ROAD TIMELINE */}
-            <div className="relative w-[1000px] h-[980px] mx-auto hidden md:block">
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 1000 980" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#f8fafc" strokeWidth="82" strokeLinecap="round" />
-                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#0f172a" strokeWidth="72" strokeLinecap="round" />
-                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#ffffff" strokeWidth="3" strokeDasharray="14 14" strokeLinecap="round" opacity="0.9" className="animate-road-flow" />
-
-                <line x1="180" y1="200" x2="640" y2="200" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="180" cy="200" r="8" fill="#f43f5e" className="animate-pulse" />
-                <circle cx="640" cy="200" r="4" fill="#f43f5e" />
-
-                <line x1="820" y1="420" x2="360" y2="420" stroke="#6366f1" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="820" cy="420" r="8" fill="#6366f1" className="animate-pulse" />
-                <circle cx="360" cy="420" r="4" fill="#6366f1" />
-
-                <line x1="180" y1="640" x2="640" y2="640" stroke="#0891b2" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="180" cy="640" r="8" fill="#0891b2" className="animate-pulse" />
-                <circle cx="640" cy="640" r="4" fill="#0891b2" />
-
-                <line x1="820" y1="860" x2="360" y2="860" stroke="#f59e0b" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="820" cy="860" r="8" fill="#f59e0b" className="animate-pulse" />
-                <circle cx="360" cy="860" r="4" fill="#f59e0b" />
-              </svg>
-
-              <div className="absolute inset-0 z-10 pointer-events-none">
-                {data.syllabus.map((step, index) => {
-                  const phaseNumber = `0${index + 1}`;
-                  const positions = [
-                    { left: "640px", top: "110px", width: "360px" },
-                    { left: "0px", top: "330px", width: "360px" },
-                    { left: "640px", top: "550px", width: "360px" },
-                    { left: "0px", top: "770px", width: "360px" }
-                  ];
-
-                  return (
-                    <div key={index} style={{ position: "absolute", left: positions[index].left, top: positions[index].top, width: positions[index].width }} className="pointer-events-auto">
-                      <FadeUp delay={0.1}>
-                        <div className="relative bg-white/90 backdrop-blur-xl border border-white p-7 rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 overflow-hidden group">
-                          <div className={`absolute top-0 inset-x-0 h-1.5 bg-current`} style={{ color: step.iconColor.replace('text-', '') }} />
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="flex items-center gap-3">
-                              <div className={`w-10 h-10 rounded-xl flex items-center justify-center border border-white/50 shadow-sm ${step.iconBg} ${step.iconColor}`}>
-                                {step.icon}
-                              </div>
-                              <span className={`text-[11px] font-black tracking-widest uppercase ${step.color}`}>
-                                {step.duration}
-                              </span>
-                            </div>
-                            <span className="text-2xl font-black text-slate-100 select-none drop-shadow-sm">
-                              {phaseNumber}
-                            </span>
-                          </div>
-                          <h3 className="text-lg font-bold text-slate-900 leading-tight mb-4 group-hover:text-indigo-600 transition-colors duration-300">
-                            {step.title}
-                          </h3>
-                          <div className="space-y-3">
-                            {step.items.map((item, i) => (
-                              <div key={i} className="flex items-start gap-3 group/item">
-                                <div className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200 group-hover/item:border-indigo-400 group-hover/item:bg-indigo-50 transition-colors">
-                                  <CheckCircle2 size={12} className="text-slate-400 group-hover/item:text-indigo-600 transition-colors" />
-                                </div>
-                                <span className="text-slate-600 text-[13px] font-medium leading-relaxed">
-                                  {item}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </FadeUp>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* MOBILE WAVY VERTICAL ROADMAP */}
-            <div className="block md:hidden relative pl-16 sm:pl-20 pb-8 min-h-[900px]">
-              {/* Vertical Winding SVG for Mobile */}
-              <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-20 pointer-events-none z-0">
-                <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 80 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M 40,0 C 80,100 0,200 40,300 C 80,400 0,500 40,600 C 80,700 0,800 40,900 C 80,1000 40,1000 40,1000" stroke="#f8fafc" strokeWidth="34" strokeLinecap="round" />
-                  <path d="M 40,0 C 80,100 0,200 40,300 C 80,400 0,500 40,600 C 80,700 0,800 40,900 C 80,1000 40,1000 40,1000" stroke="#0f172a" strokeWidth="28" strokeLinecap="round" />
-                  <path d="M 40,0 C 80,100 0,200 40,300 C 80,400 0,500 40,600 C 80,700 0,800 40,900 C 80,1000 40,1000 40,1000" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="6 6" strokeLinecap="round" opacity="0.9" className="animate-road-flow" />
-                </svg>
-              </div>
-
-              <div className="flex flex-col justify-between h-full space-y-12 relative z-10 py-10">
-                {data.syllabus.map((step, index) => {
-                  const phaseNumber = `0${index + 1}`;
-                  // Calculate dynamic left position to follow the curve visually
-                  const dotLeft = index % 2 === 0 ? '-8px' : '24px';
-
-                  return (
-                    <FadeUp key={index} delay={0.1} className="relative flex items-center min-h-[180px]">
-                      {/* Node Point */}
-                      <div
-                        className="absolute z-20 w-8 h-8 rounded-full bg-slate-900 border-2 border-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300"
-                        style={{ left: dotLeft, top: '50%', transform: 'translateY(-50%)' }}
-                      >
-                        <span className="text-[10px] font-black text-white">{phaseNumber}</span>
-                        <span className="absolute -inset-2 rounded-full border border-slate-900/20 animate-pulse bg-slate-900/5 -z-10" />
-                      </div>
-
-                      {/* Card Content */}
-                      <div className="w-full pl-6">
-                        <div className="relative bg-white/95 backdrop-blur-md border border-slate-200/60 p-6 sm:p-7 rounded-[1.5rem] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden group">
-                          <div className={`absolute top-0 inset-x-0 h-1 bg-current`} style={{ color: step.iconColor.replace('text-', '') }} />
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="flex items-center gap-2.5">
-                              <div className={`w-8 h-8 rounded-xl flex items-center justify-center border border-white/50 shadow-sm ${step.iconBg} ${step.iconColor}`}>
-                                {step.icon}
-                              </div>
-                              <span className={`text-[10px] font-black tracking-widest uppercase ${step.color}`}>
-                                {step.duration}
-                              </span>
-                            </div>
-                            <span className="text-xl font-black text-slate-100 select-none">
-                              {phaseNumber}
-                            </span>
-                          </div>
-                          <h3 className="text-base font-bold text-slate-900 leading-tight mb-3 group-hover:text-indigo-600 transition-colors duration-300">
-                            {step.title}
-                          </h3>
-                          <div className="space-y-2.5">
-                            {step.items.map((item, i) => (
-                              <div key={i} className="flex items-start gap-2.5 group/item">
-                                <div className="mt-0.5 flex-shrink-0 w-4.5 h-4.5 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200 group-hover/item:border-indigo-400 group-hover/item:bg-indigo-50 transition-colors">
-                                  <CheckCircle2 size={10} className="text-slate-400 group-hover/item:text-indigo-600 transition-colors" />
-                                </div>
-                                <span className="text-slate-600 text-xs font-medium leading-relaxed">
-                                  {item}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </FadeUp>
-                  );
-                })}
-              </div>
-            </div>
-
-          </div>
-        </section>
-
         {/* ENROLLMENT INQUIRY FORM */}
         <section id="admission-form" className="bg-white py-24 md:py-32 relative z-20 border-b border-slate-100">
           <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
             <FadeUp className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-slate-50 border border-slate-200 shadow-sm rounded-full mb-6">
-                <Target size={14} className="text-indigo-600" />
-                <span className="text-xs font-bold tracking-widest uppercase text-slate-600">
-                  Secure Your Seat
-                </span>
-              </div>
               <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-6 tracking-tight">
                 Admission & Inquiry
               </h2>
@@ -777,15 +833,11 @@ const CoursePython = () => {
               <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-stretch">
 
                 {/* Left Column (Info Panel) */}
-                <div className="lg:col-span-2 flex flex-col justify-between p-8 md:p-12 bg-slate-950 text-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-slate-800">
+                <div className="lg:col-span-2 flex flex-col justify-between p-8 md:p-12 bg-slate-950 text-white rounded-none shadow-2xl relative overflow-hidden border border-slate-800">
                   <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
                   <div className="absolute -top-32 -left-32 w-64 h-64 bg-gradient-to-tr from-indigo-500/30 to-rose-500/30 blur-[100px] rounded-full" />
 
                   <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/10 backdrop-blur-md rounded-full mb-8">
-                      <Sparkles size={12} className="text-indigo-400" />
-                      <span className="text-[10px] font-bold tracking-widest uppercase text-slate-300">Admission Process</span>
-                    </div>
                     <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight leading-tight">
                       Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-rose-400">Journey</span>
                     </h3>
@@ -800,11 +852,11 @@ const CoursePython = () => {
                         { num: 3, title: "Cohort Onboarding", desc: "Initialize repository and workspace setup.", color: "emerald" }
                       ].map((step) => (
                         <div key={step.num} className="flex items-start gap-4 group cursor-default">
-                          <div className={`w-10 h-10 rounded-xl bg-${step.color}-500/20 border border-${step.color}-500/30 flex items-center justify-center text-${step.color}-400 font-bold text-sm group-hover:scale-110 transition-transform`}>
+                          <div className={`w-10 h-10 rounded-none bg-${step.color}-500/20 border border-${step.color}-500/30 flex items-center justify-center text-${step.color}-400 font-bold text-sm group-hover:scale-110 transition-transform`}>
                             {step.num}
                           </div>
                           <div className="mt-1">
-                            <h4 className={`font-bold text-sm text-white group-hover:text-${step.color}-400 transition-colors`}>{step.title}</h4>
+                            <h4 className="font-bold text-sm text-white">{step.title}</h4>
                             <p className="text-xs text-slate-400 mt-1 leading-relaxed">{step.desc}</p>
                           </div>
                         </div>
@@ -822,7 +874,7 @@ const CoursePython = () => {
                 </div>
 
                 {/* Right Column (Form Box) */}
-                <div className="lg:col-span-3 bg-white border border-slate-100 p-8 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(99,102,241,0.05)] transition-all duration-500 flex flex-col justify-center relative overflow-hidden">
+                <div className="lg:col-span-3 bg-white border border-slate-200 p-8 md:p-12 rounded-none shadow-[0_20px_50px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(99,102,241,0.05)] transition-all duration-500 flex flex-col justify-center relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/30 rounded-full blur-[80px] -z-10" />
 
                   {formSubmitted ? (
@@ -831,7 +883,7 @@ const CoursePython = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       className="flex flex-col items-center justify-center py-12 text-center"
                     >
-                      <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center border border-emerald-100 shadow-lg mb-6 animate-bounce">
+                      <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-none flex items-center justify-center border border-emerald-100 shadow-lg mb-6 animate-bounce">
                         <CheckCircle2 size={40} />
                       </div>
                       <h3 className="text-3xl font-extrabold text-slate-900 mb-3 tracking-tight">Application Received!</h3>
@@ -841,6 +893,11 @@ const CoursePython = () => {
                     </motion.div>
                   ) : (
                     <form onSubmit={handleFormSubmit} className="space-y-6 md:space-y-8 relative z-10">
+                      {/* Small Gleamator Branding Header */}
+                      <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-2">
+                        <img src={gicon} alt="Gleamator Icon" className="w-6 h-6 object-contain" />
+                        <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Gleamator Admissions Center</span>
+                      </div>
                       <div className="grid md:grid-cols-2 gap-6 md:gap-8">
 
                         {/* Name */}
@@ -853,7 +910,7 @@ const CoursePython = () => {
                             <input
                               type="text" id="name" required placeholder="John Doe"
                               value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 outline-none rounded-2xl text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
                             />
                             {formData.name.trim().length > 2 && (
                               <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
@@ -871,7 +928,7 @@ const CoursePython = () => {
                             <input
                               type="email" id="email" required placeholder="johndoe@example.com"
                               value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 outline-none rounded-2xl text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
                             />
                             {/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && (
                               <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
@@ -889,7 +946,7 @@ const CoursePython = () => {
                             <input
                               type="tel" id="mobile" required placeholder="+91 98765 43210"
                               value={formData.mobile} onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 outline-none rounded-2xl text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
                             />
                             {formData.mobile.trim().length >= 10 && (
                               <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
@@ -907,7 +964,7 @@ const CoursePython = () => {
                             <input
                               type="text" id="qualification" required placeholder="B.E. Computer Science"
                               value={formData.qualification} onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 outline-none rounded-2xl text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
                             />
                             {formData.qualification.trim().length > 2 && (
                               <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
@@ -920,7 +977,7 @@ const CoursePython = () => {
                       <div className="pt-4">
                         <button
                           type="submit"
-                          className="group relative flex items-center justify-center gap-3 px-8 py-5 bg-slate-900 hover:bg-indigo-600 text-white font-bold rounded-2xl shadow-xl shadow-slate-900/10 hover:shadow-indigo-500/20 hover:-translate-y-0.5 transition-all duration-300 w-full overflow-hidden"
+                          className="group relative flex items-center justify-center gap-3 px-8 py-5 bg-slate-900 hover:bg-indigo-600 text-white font-bold rounded-none shadow-xl shadow-slate-900/10 hover:shadow-indigo-500/20 hover:-translate-y-0.5 transition-all duration-300 w-full overflow-hidden"
                         >
                           <span className="relative z-10">Submit Application</span>
                           <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
@@ -956,7 +1013,7 @@ const CoursePython = () => {
             <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
               <FadeUp>
                 <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
-                  Alumni Experience
+                  Student Success & Reviews
                 </h2>
                 <p className="text-slate-500 text-lg md:text-xl font-medium leading-relaxed">
                   Discover how our intensive curriculum transformed careers and helped engineers land roles at top-tier companies.
@@ -975,7 +1032,7 @@ const CoursePython = () => {
                 {[...data.successStories, ...data.successStories].map((story, i) => (
                   <div 
                     key={i} 
-                    className="w-[280px] md:w-[320px] flex-shrink-0 bg-white border border-slate-200 shadow-sm hover:shadow-2xl p-7 md:p-8 rounded-[2rem] flex flex-col justify-between h-[280px] transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden"
+                    className="w-[280px] md:w-[320px] flex-shrink-0 bg-white border border-slate-200 shadow-sm hover:shadow-2xl p-7 md:p-8 rounded-none flex flex-col justify-between h-[280px] transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden"
                   >
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-slate-50 to-transparent rounded-bl-full -z-10" />
                     <div>

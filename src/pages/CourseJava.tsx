@@ -38,9 +38,8 @@ import Layout from "@/components/Layout";
 // Image assets
 import gicon from "@/assets/gicon.png";
 import classroomActionImg from "@/assets/Classroom action.jpg";
-import campusVisitImg from "@/assets/Campus visit.jpeg";
-import certificateDayImg from "@/assets/Certificate day.jpeg";
-import workshopDayImg from "@/assets/Workshop day.jpeg";
+import it2Img from "@/assets/it2.jpeg";
+import gleamatorClassImg from "@/assets/gleamatorclass.png";
 
 // --- Utility Components ---
 const FadeUp = ({ children, delay = 0, className = "", duration = 0.6 }) => (
@@ -57,58 +56,108 @@ const FadeUp = ({ children, delay = 0, className = "", duration = 0.6 }) => (
 
 // --- Custom High-End Visualizers ---
 
+const JavaIcon = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+    <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+    <line x1="6" y1="2" x2="6" y2="4" />
+    <line x1="10" y1="2" x2="10" y2="4" />
+    <line x1="14" y1="2" x2="14" y2="4" />
+  </svg>
+);
+
 // 1. Cloud & DevOps Tech Orbit (Hero visualizer)
 const CloudDevOpsOrbit = () => {
   return (
     <div className="relative w-full aspect-square max-w-[320px] md:max-w-[450px] mx-auto flex items-center justify-center scale-90 md:scale-100">
       {/* Glow Effects */}
-      <div className="absolute w-72 h-72 rounded-full bg-red-500/10 blur-[80px] pointer-events-none" />
-      <div className="absolute w-60 h-60 rounded-full bg-amber-500/10 blur-[60px] pointer-events-none" />
+      <div className="absolute w-72 h-72 rounded-full bg-red-500/5 blur-[80px] pointer-events-none" />
+      <div className="absolute w-60 h-60 rounded-full bg-amber-500/5 blur-[60px] pointer-events-none" />
 
-      {/* Center Core */}
+      {/* Pulsing Core Aura */}
+      <div className="absolute z-20 w-28 h-28 bg-red-500/5 rounded-full animate-ping pointer-events-none" />
+      <div className="absolute z-20 w-32 h-32 bg-red-500/5 rounded-full animate-pulse pointer-events-none" />
+
+      {/* Center Core - Constant (No rotation or scaling animations) */}
+      <div className="absolute z-30 w-24 h-24 bg-gradient-to-br from-white via-red-50/50 to-orange-50 rounded-full shadow-[0_8px_30px_rgba(239,68,68,0.12)] flex flex-col items-center justify-center border border-red-500/20">
+        <img src={gicon} alt="Gleamator Logo" className="w-10 h-10 object-contain drop-shadow-[0_2px_4px_rgba(239,68,68,0.2)] mb-1" />
+        <span className="text-[10px] font-black tracking-wider text-red-600">JAVA</span>
+      </div>
+
+      {/* Decorative Outer Ring */}
       <motion.div
-        animate={{ scale: [1, 1.06, 1], rotate: [0, -360] }}
-        transition={{ scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 35, repeat: Infinity, ease: "linear" } }}
-        className="absolute z-30 w-24 h-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 rounded-full shadow-[0_0_50px_rgba(239,68,68,0.35)] flex flex-col items-center justify-center border border-red-500/30"
-      >
-        <img src={gicon} alt="Gleamator Logo" className="w-10 h-10 object-contain drop-shadow-[0_2px_8px_rgba(239,68,68,0.5)] mb-1" />
-        <span className="text-[10px] font-black tracking-wider text-red-400">JAVA 21</span>
-      </motion.div>
+        animate={{ rotate: 360, scale: [1, 1.02, 1] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+        className="absolute z-0 w-[80%] h-[80%] border border-dashed border-red-500/20 rounded-full"
+      />
 
-      {/* Inner Orbit (Spring Boot & Cloud Core) */}
+      {/* Inner Orbit (Java & Spring Boot Core) */}
       <motion.div
         animate={{ rotate: 360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="absolute z-20 w-[64%] h-[64%] border border-red-500/20 border-dashed rounded-full"
       >
-        <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-slate-900 border border-red-500/30 shadow-xl rounded-2xl flex items-center justify-center text-red-500 hover:scale-110 transition-transform cursor-pointer group">
-          <Code2 size={20} />
-          <span className="absolute -top-8 bg-slate-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-red-500/20 whitespace-nowrap">Spring Boot</span>
-        </div>
-        <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-slate-900 border border-amber-500/30 shadow-xl rounded-2xl flex items-center justify-center text-amber-500 hover:scale-110 transition-transform cursor-pointer group">
-          <Cloud size={20} />
-          <span className="absolute -bottom-8 bg-slate-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-amber-500/20 whitespace-nowrap">AWS Cloud</span>
-        </div>
+        {/* Java Icon - Top */}
+        <motion.div
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-white border border-red-200/80 shadow-md rounded-2xl flex items-center justify-center text-red-500 hover:scale-110 transition-transform cursor-pointer group"
+        >
+          <JavaIcon className="w-5 h-5 text-red-500 drop-shadow-[0_0_4px_rgba(239,68,68,0.3)]" />
+          <span className="absolute -top-8 bg-slate-800 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-slate-700 whitespace-nowrap">Java SE</span>
+        </motion.div>
+
+        {/* Spring Boot - Bottom Right */}
+        <motion.div
+          animate={{ x: [0, 2, 0], y: [0, 2, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute bottom-1 -right-2 w-9 h-9 bg-white border border-green-200/80 shadow-md rounded-xl flex items-center justify-center text-green-600"
+        >
+          <Code2 size={18} />
+        </motion.div>
+
+        {/* AWS Cloud - Bottom Left */}
+        <motion.div
+          animate={{ x: [0, -2, 0], y: [0, 2, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-1 -left-2 w-9 h-9 bg-white border border-amber-200/80 shadow-md rounded-xl flex items-center justify-center text-amber-600"
+        >
+          <Cloud size={18} />
+        </motion.div>
       </motion.div>
 
       {/* Outer Orbit (DevOps & Databases) */}
       <motion.div
         animate={{ rotate: -360 }}
-        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-        className="absolute z-10 w-[96%] h-[96%] border border-slate-700/40 rounded-full"
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute z-10 w-[96%] h-[96%] border border-slate-200 rounded-full"
       >
-        <div className="absolute top-1/4 -left-5 w-11 h-11 bg-slate-900 border border-blue-500/30 shadow-xl rounded-2xl flex items-center justify-center text-blue-400 hover:scale-110 transition-transform cursor-pointer group">
+        <motion.div
+          animate={{ y: [0, -4, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 -left-5 w-11 h-11 bg-white border border-blue-200/80 shadow-md rounded-2xl flex items-center justify-center text-blue-600 hover:scale-110 transition-transform cursor-pointer group"
+        >
           <Database size={20} />
-          <span className="absolute -top-8 bg-slate-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-blue-500/20 whitespace-nowrap">PostgreSQL</span>
-        </div>
-        <div className="absolute top-1/4 -right-5 w-11 h-11 bg-slate-900 border border-orange-500/30 shadow-xl rounded-2xl flex items-center justify-center text-orange-500 hover:scale-110 transition-transform cursor-pointer group">
+          <span className="absolute -top-8 bg-slate-800 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-slate-700 whitespace-nowrap">PostgreSQL</span>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          className="absolute top-1/4 -right-5 w-11 h-11 bg-white border border-orange-200/80 shadow-md rounded-2xl flex items-center justify-center text-orange-650 hover:scale-110 transition-transform cursor-pointer group"
+        >
           <Layers size={20} />
-          <span className="absolute -top-8 bg-slate-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-orange-500/20 whitespace-nowrap">Docker</span>
-        </div>
-        <div className="absolute -bottom-2 left-1/4 w-11 h-11 bg-slate-900 border border-green-500/30 shadow-xl rounded-2xl flex items-center justify-center text-green-400 hover:scale-110 transition-transform cursor-pointer group">
+          <span className="absolute -top-8 bg-slate-800 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-slate-700 whitespace-nowrap">Docker</span>
+        </motion.div>
+
+        <motion.div
+          animate={{ x: [0, -3, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+          className="absolute -bottom-2 left-1/4 w-11 h-11 bg-white border border-sky-200/80 shadow-md rounded-2xl flex items-center justify-center text-sky-600 hover:scale-110 transition-transform cursor-pointer group"
+        >
           <Cpu size={20} />
-          <span className="absolute -bottom-8 bg-slate-900 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-green-500/20 whitespace-nowrap">Kubernetes</span>
-        </div>
+          <span className="absolute -bottom-8 bg-slate-800 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity border border-slate-700 whitespace-nowrap">Kubernetes</span>
+        </motion.div>
       </motion.div>
     </div>
   );
@@ -352,6 +401,10 @@ const CourseJava = () => {
   const [bgPosition, setBgPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const handleMouseMove = (e) => {
       setBgPosition({
         x: (e.clientX / window.innerWidth - 0.5) * 35,
@@ -374,38 +427,9 @@ const CourseJava = () => {
   };
 
   const mediaSlides = [
-    {
-      title: "Interactive Backend Labs",
-      subtitle: "Hands-on microservices container architecture sandbox.",
-      image: classroomActionImg,
-      tag: "Live Architecture",
-      stats: { primary: "80,000+", label: "STUDENTS", rating: "4.9/5", access: "Enterprise Prep" },
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
-    {
-      title: "DevOps & Deployment Drives",
-      subtitle: "Deploy live projects into staging environments using AWS Kubernetes cluster.",
-      image: campusVisitImg,
-      tag: "Infrastructure",
-      stats: { primary: "120+", label: "PARTNERS", rating: "94% Rate", access: "Cloud Deploy" },
-      videoUrl: "https://www.w3schools.com/html/movie.mp4"
-    },
-    {
-      title: "Industry Certification",
-      subtitle: "Earn verified credentials mapping directly to cloud backend engineer profiles.",
-      image: certificateDayImg,
-      tag: "Credentials",
-      stats: { primary: "Verifiable", label: "CREDLY", rating: "ISO Compliant", access: "Resume Ready" },
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
-    {
-      title: "Full Stack Hackathons",
-      subtitle: "Collaborative weekends building highly scaling Java databases and API frameworks.",
-      image: workshopDayImg,
-      tag: "Live Hackathons",
-      stats: { primary: "650+", label: "PIPELINES", rating: "Reviewed", access: "GitHub Verified" },
-      videoUrl: "https://www.w3schools.com/html/movie.mp4"
-    }
+    { image: classroomActionImg },
+    { image: it2Img },
+    { image: gleamatorClassImg }
   ];
 
   const syllabus = [
@@ -464,34 +488,12 @@ const CourseJava = () => {
   ];
 
   const toolsData = [
-    { name: "Java 21", icon: <Code2 />, color: "text-red-500", bg: "bg-red-50" },
-    { name: "Spring Boot", icon: <Layers />, color: "text-green-600", bg: "bg-green-50" },
-    { name: "Microservices", icon: <Server />, color: "text-indigo-500", bg: "bg-indigo-50" },
-    { name: "React.js", icon: <MonitorPlay />, color: "text-cyan-500", bg: "bg-cyan-50" },
-    { name: "PostgreSQL", icon: <Database />, color: "text-blue-500", bg: "bg-blue-50" },
-    { name: "Docker & AWS", icon: <TerminalSquare />, color: "text-orange-500", bg: "bg-orange-50" },
-  ];
-
-  const projectsData = [
-    {
-      title: "E-Commerce Microservices Engine",
-      description: "Enterprise multi-service retail backend handling distributed transaction boundaries (Saga Pattern), discovery nodes, and gateway authorization.",
-      tags: ["Spring Boot", "Kafka", "PostgreSQL"],
-      visualizer: <MicroservicesEngineVisualizer />
-    },
-    {
-      title: "Cloud DevOps CI/CD Pipeline",
-      description: "Automated GitOps pipeline deploying Spring Boot services into AWS Elastic Kubernetes Service (EKS) via GitHub Actions.",
-      tags: ["Docker", "Kubernetes", "AWS EKS"],
-      visualizer: <CloudDevOpsPipelineVisualizer />
-    }
-  ];
-
-  const placementsData = [
-    { name: "Rajesh K.", company: "Amazon", role: "SDE-1", package: "24 LPA", prev: "Service Based", ctcHike: "150%", initials: "RK", bg: "from-red-500 to-amber-500" },
-    { name: "Neha S.", company: "Goldman Sachs", role: "Analyst", package: "18 LPA", prev: "Fresher", ctcHike: "New", initials: "NS", bg: "from-amber-500 to-orange-500" },
-    { name: "Kevin P.", company: "Walmart", role: "Software Engineer", package: "21 LPA", prev: "Tier-3 College", ctcHike: "300%", initials: "KP", bg: "from-red-650 to-orange-500" },
-    { name: "Swati S.", company: "Paytm", role: "Backend Developer", package: "15 LPA", prev: "Non-CS Branch", ctcHike: "200%", initials: "SS", bg: "from-orange-500 to-red-500" }
+    { name: "Java 21", desc: "Virtual Threads & Core OOP", icon: <Code2 />, color: "text-red-500", bg: "bg-red-50", hoverBorder: "hover:border-red-300 hover:shadow-red-500/10 hover:bg-red-50/10" },
+    { name: "Spring Boot", desc: "Enterprise MVC & Security", icon: <Layers />, color: "text-green-600", bg: "bg-green-50", hoverBorder: "hover:border-green-300 hover:shadow-green-500/10 hover:bg-green-50/10" },
+    { name: "Microservices", desc: "Saga Pattern & API Gateways", icon: <Server />, color: "text-indigo-500", bg: "bg-indigo-50", hoverBorder: "hover:border-indigo-300 hover:shadow-indigo-500/10 hover:bg-indigo-50/10" },
+    { name: "React.js", desc: "Dynamic State & Modern SPA UI", icon: <MonitorPlay />, color: "text-cyan-500", bg: "bg-cyan-50", hoverBorder: "hover:border-cyan-300 hover:shadow-cyan-500/10 hover:bg-cyan-50/10" },
+    { name: "PostgreSQL", desc: "Relational Queries & Indexing", icon: <Database />, color: "text-blue-500", bg: "bg-blue-50", hoverBorder: "hover:border-blue-300 hover:shadow-blue-500/10 hover:bg-blue-50/10" },
+    { name: "Docker & AWS", desc: "Cloud Networks & CI/CD Pipelines", icon: <TerminalSquare />, color: "text-orange-500", bg: "bg-orange-50", hoverBorder: "hover:border-orange-300 hover:shadow-orange-500/10 hover:bg-orange-50/10" },
   ];
 
   return (
@@ -517,14 +519,7 @@ const CourseJava = () => {
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
 
               <div className="flex flex-col gap-6 relative z-20 order-2 lg:order-1">
-                <FadeUp delay={0.1}>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-white shadow-sm rounded-full w-max">
-                    <Trophy size={16} className="text-red-500" />
-                    <span className="text-xs font-bold tracking-widest uppercase text-slate-700">
-                      Highest Placement: 24 LPA
-                    </span>
-                  </div>
-                </FadeUp>
+
 
                 <FadeUp delay={0.2}>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
@@ -574,72 +569,50 @@ const CourseJava = () => {
         </section>
 
         {/* INDUSTRY TOOLS GRID */}
-        <section className="py-16 bg-white border-b border-slate-100">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <p className="text-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
-              Master the exact tools used by top tech companies
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {toolsData.map((tool, idx) => (
-                <div key={idx} className="flex flex-col items-center justify-center p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:shadow-md hover:border-slate-300 transition-all cursor-default">
-                  <div className={`w-14 h-14 rounded-xl ${tool.bg} ${tool.color} flex items-center justify-center mb-3 shadow-sm`}>
-                    {React.cloneElement(tool.icon, { size: 28 })}
-                  </div>
-                  <span className="font-bold text-slate-700 text-sm">{tool.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <section className="py-20 bg-gradient-to-b from-white to-[#FAF9F5] border-b border-slate-100 relative overflow-hidden">
+          <style>{`
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee-infinite {
+              display: flex;
+              width: max-content;
+              animation: marquee 30s linear infinite;
+            }
+            .animate-marquee-infinite:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
 
-        {/* PROJECTS & INTERACTIVE VISUALIZER */}
-        <section className="py-24 md:py-32 bg-slate-950 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-red-500/10 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
-
-          <div className="container mx-auto px-4 sm:px-6 relative z-10">
-            <FadeUp className="text-center max-w-2xl mx-auto mb-12 md:mb-20">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 shadow-sm rounded-full mb-6 backdrop-blur-md">
-                <Sparkles size={14} className="text-red-400" />
-                <span className="text-xs font-bold tracking-widest uppercase text-slate-300">
-                  Real-World Execution
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-white">
-                Live Production Engines
-              </h2>
-              <p className="text-slate-400 text-base md:text-xl font-medium leading-relaxed">
-                Interact with simulation environments showing microservice routes and continuous cloud pipeline builds.
+          <div className="container mx-auto px-4 max-w-7xl relative z-10">
+            <FadeUp className="text-center mb-12">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                Production-Ready Stack
               </p>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Master the Exact Tools Used by Top Tech Companies
+              </h2>
             </FadeUp>
+          </div>
 
-            {/* Showcase Grid */}
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {projectsData.map((project, idx) => (
-                <FadeUp key={idx} delay={idx * 0.1}>
-                  <div className="bg-slate-900 border border-slate-800 rounded-[2rem] overflow-hidden shadow-2xl hover:border-red-500/30 transition-colors duration-500 p-6 flex flex-col justify-between h-full group">
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-black text-white mb-2 tracking-tight group-hover:text-red-400 transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-slate-400 text-sm font-medium leading-relaxed mb-6 h-12 overflow-hidden line-clamp-2">
-                        {project.description}
-                      </p>
-                    </div>
-
-                    <div className="mb-6 w-full h-[220px]">
-                      {project.visualizer}
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.tags.map((tag, i) => (
-                        <span key={i} className="px-3 py-1 bg-red-950/40 border border-red-500/20 text-red-400 font-bold text-xs rounded-lg">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+          {/* Marquee Wrapper with fade effects on edges */}
+          <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-16 md:before:w-40 before:bg-gradient-to-r before:from-white before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-16 md:after:w-40 after:bg-gradient-to-l after:from-[#FAF9F5] after:to-transparent py-4">
+            <div className="animate-marquee-infinite gap-6 px-4">
+              {/* Render twice for seamless looping */}
+              {[...toolsData, ...toolsData].map((tool, idx) => (
+                <div
+                  key={idx}
+                  className={`flex items-center gap-4 p-5 bg-white border border-slate-200/80 rounded-2xl transition-all duration-300 ${tool.hoverBorder} shadow-sm hover:shadow-xl cursor-default group w-[280px] flex-shrink-0 hover:scale-105 transform`}
+                >
+                  <div className={`w-12 h-12 rounded-xl ${tool.bg} ${tool.color} flex items-center justify-center shadow-sm group-hover:rotate-12 transition-transform duration-300`}>
+                    {React.cloneElement(tool.icon, { size: 24 })}
                   </div>
-                </FadeUp>
+                  <div className="text-left">
+                    <h3 className="font-extrabold text-slate-800 text-sm group-hover:text-slate-950 transition-colors leading-tight mb-0.5">{tool.name}</h3>
+                    <p className="text-[10px] font-semibold text-slate-500 leading-snug">{tool.desc}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -861,39 +834,32 @@ const CourseJava = () => {
         </section>
 
         {/* PROJECTS & CAREER SLIDER SECTION */}
-        <section className="py-24 md:py-32 bg-slate-950 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-red-500/10 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
+        <section className="pt-16 pb-6 md:pt-20 md:pb-8 bg-[#F4F4F6] text-slate-900 relative overflow-hidden border-b border-slate-200">
+          <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4.5rem_4.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_75%,transparent_100%)] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-red-200/10 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
 
           <div className="container mx-auto px-4 sm:px-6 relative z-10">
-            <FadeUp className="text-center max-w-2xl mx-auto mb-12 md:mb-20">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 shadow-sm rounded-full mb-6 backdrop-blur-md">
-                <Sparkles size={14} className="text-red-400" />
-                <span className="text-xs font-bold tracking-widest uppercase text-slate-300">
-                  Real-World Execution
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-white">
-                Interactive Labs & Handoffs
+            <FadeUp className="text-center max-w-2xl mx-auto mb-8 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-slate-900">
+                Active Sandbox & Campus Labs
               </h2>
-              <p className="text-slate-400 text-base md:text-xl font-medium leading-relaxed">
-                Work through production setups and gain deployment exposure.
+              <p className="text-slate-500 text-base md:text-lg font-medium leading-relaxed">
+                Explore our state-of-the-art interactive lab environments configured for enterprise development.
               </p>
             </FadeUp>
 
             {/* Slider Container */}
-            <div className="relative flex items-center justify-center min-h-[400px] md:min-h-[550px] w-full overflow-hidden py-4 md:py-8">
+            <div className="relative flex items-center justify-center min-h-[300px] md:min-h-[480px] w-full overflow-hidden py-4">
               <button
                 onClick={() => {
                   setCurrentSlide((prev) => (prev === 0 ? mediaSlides.length - 1 : prev - 1));
-                  setIsVideoPlaying(false);
                 }}
-                className="absolute left-2 md:left-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/10 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 text-white flex items-center justify-center transition-all shadow-xl hover:scale-110"
+                className="absolute left-2 md:left-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-xl hover:scale-110"
               >
                 <ChevronLeft size={24} />
               </button>
 
-              <div className="relative flex items-center justify-center w-full max-w-[1000px] h-[360px] md:h-[480px]">
+              <div className="relative flex items-center justify-center w-full max-w-[1000px] h-[260px] md:h-[380px]">
                 <AnimatePresence mode="popLayout">
                   {mediaSlides.map((slide, index) => {
                     const isActive = index === currentSlide;
@@ -907,15 +873,15 @@ const CourseJava = () => {
                         key={index}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{
-                          scale: isActive ? 1 : 0.85,
-                          x: isActive ? 0 : isPrev ? "-90%" : "90%",
-                          opacity: isActive ? 1 : 0.4,
-                          zIndex: isActive ? 20 : 10,
-                          filter: isActive ? "blur(0px)" : "blur(8px)"
+                           scale: isActive ? 1 : 0.85,
+                           x: isActive ? 0 : isPrev ? "-90%" : "90%",
+                           opacity: isActive ? 1 : 0.4,
+                           zIndex: isActive ? 20 : 10,
+                           filter: isActive ? "blur(0px)" : "blur(4px)"
                         }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         transition={{ type: "spring", stiffness: 260, damping: 24 }}
-                        className="absolute w-[85vw] max-w-[320px] md:max-w-[640px] h-full rounded-[1.5rem] md:rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden bg-slate-900 flex flex-col cursor-grab active:cursor-grabbing"
+                        className="absolute w-[85vw] max-w-[320px] md:max-w-[640px] h-full rounded-[1.5rem] md:rounded-[2.5rem] border border-slate-250/80 shadow-2xl overflow-hidden bg-white cursor-grab active:cursor-grabbing group"
                         drag="x"
                         dragConstraints={{ left: 0, right: 0 }}
                         dragElastic={0.2}
@@ -923,63 +889,12 @@ const CourseJava = () => {
                           const swipe = offset.x;
                           if (swipe < -50) {
                             setCurrentSlide((prev) => (prev === mediaSlides.length - 1 ? 0 : prev + 1));
-                            setIsVideoPlaying(false);
                           } else if (swipe > 50) {
                             setCurrentSlide((prev) => (prev === 0 ? mediaSlides.length - 1 : prev - 1));
-                            setIsVideoPlaying(false);
                           }
                         }}
                       >
-                        {isActive && (
-                          <div className="absolute top-4 left-4 md:top-5 md:left-5 z-30 flex items-center gap-1.5 px-3 py-1 md:px-4 md:py-1.5 bg-red-500/90 text-white font-black text-[10px] md:text-xs tracking-wider uppercase rounded-full shadow-lg backdrop-blur-md">
-                            <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white animate-pulse" />
-                            {slide.tag}
-                          </div>
-                        )}
-
-                        <div className="relative flex-grow w-full overflow-hidden bg-slate-900 flex items-center justify-center">
-                          {isActive && isVideoPlaying ? (
-                            <video src={slide.videoUrl} className="absolute inset-0 w-full h-full object-cover" autoPlay controls muted loop />
-                          ) : (
-                            <>
-                              <img src={slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover" />
-                              {isActive && (
-                                <button
-                                  onClick={() => setIsVideoPlaying(true)}
-                                  className="absolute z-20 w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 hover:bg-red-650 hover:border-transparent text-white flex items-center justify-center shadow-2xl transition-all hover:scale-110"
-                                >
-                                  <Play size={24} className="ml-1" />
-                                </button>
-                              )}
-                            </>
-                          )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-90" />
-                        </div>
-
-                        <div className="relative z-10 bg-slate-950/95 border-t border-white/10 p-5 md:p-6 flex flex-col justify-between">
-                          <div>
-                            <h3 className="text-lg md:text-2xl font-extrabold text-white mb-1 md:mb-2 tracking-tight">
-                              {slide.title}
-                            </h3>
-                            <p className="text-slate-400 text-xs md:text-sm font-medium mb-4 leading-relaxed line-clamp-2">
-                              {slide.subtitle}
-                            </p>
-                          </div>
-                          <div className="grid grid-cols-3 gap-2 pt-3 md:pt-4 border-t border-white/5 text-center">
-                            <div className="flex flex-col">
-                              <span className="text-base md:text-xl font-black text-red-400">{slide.stats.primary}</span>
-                              <span className="text-[8px] md:text-[9px] font-black text-slate-500 tracking-wider">{slide.stats.label}</span>
-                            </div>
-                            <div className="flex flex-col border-x border-white/5">
-                              <span className="text-base md:text-xl font-black text-amber-400">{slide.stats.rating}</span>
-                              <span className="text-[8px] md:text-[9px] font-black text-slate-500 tracking-wider">RATING</span>
-                            </div>
-                            <div className="flex flex-col">
-                              <span className="text-base md:text-xl font-black text-emerald-400">{slide.stats.access}</span>
-                              <span className="text-[8px] md:text-[9px] font-black text-slate-500 tracking-wider">SUPPORT</span>
-                            </div>
-                          </div>
-                        </div>
+                        <img src={slide.image} alt="Interactive Labs" className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" />
                       </motion.div>
                     );
                   })}
@@ -989,279 +904,293 @@ const CourseJava = () => {
               <button
                 onClick={() => {
                   setCurrentSlide((prev) => (prev === mediaSlides.length - 1 ? 0 : prev + 1));
-                  setIsVideoPlaying(false);
                 }}
-                className="absolute right-2 md:right-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/10 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 text-white flex items-center justify-center transition-all shadow-xl hover:scale-110"
+                className="absolute right-2 md:right-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-xl hover:scale-110"
               >
                 <ChevronRight size={24} />
               </button>
             </div>
 
             {/* Dots */}
-            <div className="flex justify-center items-center gap-2 mt-6 md:mt-10">
+            <div className="flex justify-center items-center gap-2 mt-4 md:mt-6">
               {mediaSlides.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => { setCurrentSlide(i); setIsVideoPlaying(false); }}
-                  className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? "w-8 md:w-10 bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" : "w-2 md:w-2.5 bg-slate-700 hover:bg-slate-500"}`}
+                  onClick={() => { setCurrentSlide(i); }}
+                  className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? "w-8 md:w-10 bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.3)]" : "w-2 md:w-2.5 bg-slate-300 hover:bg-slate-400"}`}
                 />
               ))}
             </div>
+
+            {/* Info Button below the photo slider */}
+            <div className="flex justify-center mt-10">
+              <button
+                onClick={() => document.getElementById('enroll')?.scrollIntoView({ behavior: 'smooth' })}
+                className="relative group overflow-hidden flex items-center justify-between gap-6 px-8 py-4.5 bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white font-bold rounded-2xl shadow-[0_10px_30px_rgba(255,107,0,0.2)] hover:shadow-[0_15px_35px_rgba(255,107,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 border border-[#FF8533]/20"
+              >
+                <div className="text-left relative z-10">
+                  <h4 className="font-extrabold text-sm tracking-wide text-white">Enroll to Upcoming Batch</h4>
+                  <p className="text-orange-50 text-[11px] mt-0.5 font-semibold">Secure your seat in our next capped cohort review</p>
+                </div>
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/15 group-hover:bg-white/25 transition-colors duration-300 ml-2 relative z-10">
+                  <ArrowRight size={16} className="text-white group-hover:translate-x-0.5 transition-transform" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#E05E00] to-[#FF6B00] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </button>
+            </div>
           </div>
         </section>
-
-        {/* PLACEMENT SUCCESS WALL (Redesigned: High-End Alumni Wall of Fame Dashboard) */}
+        {/* COURSE INCLUSIONS / BENEFITS SECTION */}
         <section className="py-24 bg-[#FAFAF8] relative overflow-hidden border-b border-slate-200">
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="container mx-auto px-4 max-w-7xl relative z-10">
             <div className="text-center max-w-3xl mb-16 mx-auto">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-red-50 border border-red-100 rounded-full mb-4">
-                <Trophy size={14} className="text-red-600 animate-bounce" />
-                <span className="text-xs font-black tracking-wider uppercase text-red-700">Placement dashboard</span>
+                <Award size={14} className="text-red-600 animate-pulse" />
+                <span className="text-xs font-black tracking-wider uppercase text-red-700">Course Perks</span>
               </div>
               <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                Placement Success Wall
+                What You Get In This Course
               </h2>
               <p className="text-base md:text-lg text-slate-500 font-semibold max-w-2xl mx-auto leading-relaxed">
-                Our graduates are deploying enterprise backend systems in tier-1 product organizations globally.
+                Everything you need to successfully transition into a high-scale enterprise software architect role.
               </p>
             </div>
 
-            {/* Premium Interactive Wall Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {placementsData.map((alumni, idx) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Verifiable Certifications",
+                  desc: "Earn industry-recognized, shareable credentials. Secure your Java Full Stack Architect certificate alongside verified digital badges ready for LinkedIn & resumes.",
+                  icon: <Award size={24} />,
+                  color: "text-red-500",
+                  bg: "bg-red-50",
+                  border: "border-red-100",
+                  points: ["Verifiable Certificate IDs", "Credly Digital Badges", "ISO Compliant Accreditation"]
+                },
+                {
+                  title: "Top-Tier Placement Support",
+                  desc: "Get referred directly to 120+ hiring partner companies. Excel in coding rounds with simulated mock interviews led by MAANG architects.",
+                  icon: <Trophy size={24} />,
+                  color: "text-amber-600",
+                  bg: "bg-amber-50",
+                  border: "border-amber-100",
+                  points: ["100% Referral Support", "MAANG Mock Interviews", "Portfolio & Resume Building"]
+                },
+                {
+                  title: "24/7 Labs & Mentor Support",
+                  desc: "Learn by doing with direct cloud sandbox access. Overcome blockers quickly with dedicated code reviews and chat guidance from senior mentors.",
+                  icon: <TerminalSquare size={24} />,
+                  color: "text-blue-500",
+                  bg: "bg-blue-50",
+                  border: "border-blue-100",
+                  points: ["Cloud Sandbox Access", "Detailed Code Reviews", "24/7 Dedicated Support"]
+                }
+              ].map((perk, idx) => (
                 <motion.div
                   key={idx}
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="bg-white border border-slate-200/80 rounded-[2rem] p-6 shadow-sm hover:shadow-[0_20px_40px_rgba(239,68,68,0.06)] transition-all duration-300 relative overflow-hidden flex flex-col justify-between h-full group"
+                  className="bg-white border border-slate-200/80 rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group"
                 >
-                  {/* Subtle Background Glow on Hover */}
-                  <div className="absolute -right-10 -top-10 w-28 h-28 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-full blur-2xl group-hover:opacity-100 transition-opacity" />
-
-                  {/* Header Row */}
-                  <div className="flex justify-between items-start mb-6">
-                    {/* Avatar Initials Wrapper */}
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${alumni.bg} flex items-center justify-center text-white font-extrabold text-base shadow-sm border border-white/50 group-hover:scale-105 transition-transform duration-300`}>
-                      {alumni.initials}
+                  <div>
+                    <div className={`w-14 h-14 rounded-2xl ${perk.bg} ${perk.color} flex items-center justify-center mb-6 shadow-sm border ${perk.border} group-hover:scale-105 transition-transform duration-300`}>
+                      {perk.icon}
                     </div>
-
-                    {/* Salary Package Badge */}
-                    <div className="flex flex-col items-end">
-                      <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">Package</span>
-                      <span className="mt-1 bg-emerald-50 text-emerald-600 font-black text-xs md:text-sm px-2.5 py-1 rounded-xl border border-emerald-100 flex items-center gap-1">
-                        <TrendingUp size={12} />
-                        {alumni.package}
-                      </span>
-                    </div>
+                    <h3 className="text-xl font-extrabold text-slate-900 mb-3 tracking-tight group-hover:text-red-600 transition-colors duration-300">
+                      {perk.title}
+                    </h3>
+                    <p className="text-slate-500 text-sm font-semibold leading-relaxed mb-6">
+                      {perk.desc}
+                    </p>
                   </div>
-
-                  {/* Body Content */}
-                  <div className="mb-6">
-                    <h4 className="font-extrabold text-lg text-slate-900 tracking-tight group-hover:text-red-600 transition-colors duration-300">{alumni.name}</h4>
-                    
-                    {/* Company Info with Check Icon */}
-                    <div className="flex items-center gap-1.5 mt-1.5 text-sm font-bold text-slate-600">
-                      <Building2 size={14} className="text-red-500" />
-                      <span>{alumni.company}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 ml-1" />
-                      <span className="text-[10px] text-green-600 font-bold uppercase tracking-wider">Verified</span>
-                    </div>
-                  </div>
-
-                  {/* Footer Stats Grid */}
-                  <div className="pt-4 border-t border-slate-100 grid grid-cols-2 gap-4 text-xs">
-                    <div>
-                      <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-0.5">Role</span>
-                      <span className="font-bold text-slate-700">{alumni.role}</span>
-                    </div>
-                    <div>
-                      <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-0.5">Background</span>
-                      <span className="font-bold text-slate-700 truncate block">{alumni.prev}</span>
-                    </div>
-                  </div>
-
-                  {/* Salary Hike Flag */}
-                  <div className="absolute top-24 right-0 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-500">
-                    <div className="bg-red-500 text-white font-black text-[9px] px-3 py-1 rounded-l-full shadow-md uppercase tracking-wider">
-                      +{alumni.ctcHike} Hike
-                    </div>
-                  </div>
+                  <ul className="space-y-3 pt-6 border-t border-slate-100 mt-auto">
+                    {perk.points.map((point, i) => (
+                      <li key={i} className="flex items-center gap-2.5 text-xs font-bold text-slate-700">
+                        <CheckCircle2 size={14} className="text-green-500" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <p className="text-slate-500 font-semibold inline-flex items-center gap-2">
-                And 500+ more successful transitions. <a href="#enroll" className="text-red-650 font-bold hover:underline">Start your path today.</a>
-              </p>
             </div>
           </div>
         </section>
 
-        {/* ENROLLMENT / ADMISSION FORM (Revamped Premium Split Design) */}
-        <section id="enroll" className="py-24 bg-slate-950 relative overflow-hidden">
-          {/* Background Ambient Glows */}
-          <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-red-600/10 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-amber-600/10 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
-
+        {/* ENROLLMENT INQUIRY FORM */}
+        <section id="enroll" className="bg-white py-24 md:py-32 relative z-20 border-b border-slate-100">
           <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
-            <div className="bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] border border-slate-800 shadow-[0_20px_50px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col lg:flex-row">
+            <FadeUp className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-6 tracking-tight">
+                Admission & Inquiry
+              </h2>
+              <p className="text-slate-500 text-base md:text-lg font-medium leading-relaxed">
+                Submit your details below to schedule your qualification review and interview session.
+              </p>
+            </FadeUp>
 
-              {/* Left Column (Information Showcase) */}
-              <div className="w-full lg:w-[45%] bg-gradient-to-br from-red-600/90 via-red-700/80 to-amber-900/90 p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden">
-                <div className="absolute -top-32 -left-32 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-2xl" />
+            <FadeUp delay={0.2}>
+              <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-stretch">
 
-                <div className="relative z-10">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/10 backdrop-blur-md rounded-full mb-6">
-                    <Sparkles size={12} className="text-amber-300 animate-pulse" />
-                    <span className="text-[10px] font-black tracking-widest uppercase text-amber-100">Admission Process</span>
-                  </div>
+                {/* Left Column (Info Panel) */}
+                <div className="lg:col-span-2 flex flex-col justify-between p-8 md:p-12 bg-slate-950 text-white rounded-none shadow-2xl relative overflow-hidden border border-slate-800">
+                  <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
+                  <div className="absolute -top-32 -left-32 w-64 h-64 bg-gradient-to-tr from-red-500/30 to-amber-500/30 blur-[100px] rounded-full" />
 
-                  <h3 className="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight leading-tight">
-                    Secure Your Seat
-                  </h3>
-                  <p className="text-red-100/90 mb-10 leading-relaxed text-sm font-medium">
-                    Our Java Full Stack & DevOps cohorts are capped to maintain interactive class focus. Register below for a diagnostic counseling call with our instructors.
-                  </p>
-
-                  {/* Feature Cards Grid */}
-                  <div className="space-y-4">
-                    {[
-                      {
-                        title: "Cloud Lab Setup Credentials",
-                        desc: "Get sandbox access tokens to deploy container networks in staging systems.",
-                        icon: <Cloud size={16} />,
-                        color: "from-amber-400 to-orange-500"
-                      },
-                      {
-                        title: "Mock Interview Assessment",
-                        desc: "1:1 mock technical grilling with core enterprise architects.",
-                        icon: <Award size={16} />,
-                        color: "from-red-400 to-rose-500"
-                      },
-                      {
-                        title: "Corporate Placement Handoff",
-                        desc: "Direct referrals to hiring partners once pipelines are completed.",
-                        icon: <Workflow size={16} />,
-                        color: "from-emerald-400 to-teal-500"
-                      }
-                    ].map((feat, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-300">
-                        <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${feat.color} flex items-center justify-center text-white flex-shrink-0 shadow-md`}>
-                          {feat.icon}
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-sm text-white">{feat.title}</h4>
-                          <p className="text-red-100/70 text-xs mt-0.5 leading-relaxed">{feat.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-12 pt-6 border-t border-white/10 flex items-center gap-4 relative z-10">
-                  <img src={gicon} alt="Logo" className="w-10 h-10 object-contain brightness-0 invert drop-shadow" />
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <p className="font-bold text-sm text-white">Admissions Desk Active</p>
-                    </div>
-                    <p className="text-xs text-red-200/80">Diagnostic callbacks scheduled same-day</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column (Admission Form) */}
-              <div className="w-full lg:w-[55%] p-8 md:p-12 bg-slate-900/30 flex flex-col justify-center">
-                {formSubmitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center py-12 text-center"
-                  >
-                    <div className="w-20 h-20 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center border border-emerald-500/20 shadow-[0_0_30px_rgba(16,185,129,0.1)] mb-6 animate-bounce">
-                      <CheckCircle2 size={40} />
-                    </div>
-                    <h3 className="text-2xl font-black text-white mb-2">Application Received!</h3>
-                    <p className="text-slate-400 text-sm max-w-sm">
-                      Thank you. An academic counselor is preparing your dashboard parameters and will connect with you shortly.
+                  <div className="relative z-10">
+                    <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                      Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-400">Journey</span>
+                    </h3>
+                    <p className="text-slate-400 text-sm md:text-base font-medium leading-relaxed mb-10">
+                      Submit your application to align with the upcoming admission review cycle. Our review panel evaluates background and entry criteria.
                     </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleFormSubmit} className="space-y-6">
-                    <h4 className="text-xl font-bold text-white mb-2 tracking-tight">Request Callback Session</h4>
-                    <p className="text-xs text-slate-400 font-medium mb-6">Fields marked with <span className="text-red-500">*</span> are mandatory</p>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Name */}
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Full Name *</label>
-                        <div className="relative group">
-                          <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-red-500 transition-colors" />
-                          <input
-                            type="text" required placeholder="John Doe"
-                            value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full pl-12 pr-4 py-3 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-200 placeholder-slate-600 focus:border-red-500 focus:ring-4 focus:ring-red-500/5 outline-none font-medium text-sm transition-all"
-                          />
+                    <div className="space-y-6">
+                      {[
+                        { num: 1, title: "Review Profile", desc: "Admissions evaluates qualification details.", color: "red" },
+                        { num: 2, title: "Assessment Call", desc: "Schedule a 15-minute diagnostic callback.", color: "orange" },
+                        { num: 3, title: "Cohort Onboarding", desc: "Initialize repository and workspace setup.", color: "emerald" }
+                      ].map((step) => (
+                        <div key={step.num} className="flex items-start gap-4 group cursor-default">
+                          <div className={`w-10 h-10 rounded-none bg-${step.color === "orange" ? "amber" : step.color}-500/20 border border-${step.color === "orange" ? "amber" : step.color}-500/30 flex items-center justify-center text-${step.color === "orange" ? "amber" : step.color}-400 font-bold text-sm group-hover:scale-110 transition-transform`}>
+                            {step.num}
+                          </div>
+                          <div className="mt-1">
+                            <h4 className="font-bold text-sm text-white">{step.title}</h4>
+                            <p className="text-xs text-slate-400 mt-1 leading-relaxed">{step.desc}</p>
+                          </div>
                         </div>
-                      </div>
-
-                      {/* Email */}
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Email Address *</label>
-                        <div className="relative group">
-                          <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-red-500 transition-colors" />
-                          <input
-                            type="email" required placeholder="john@example.com"
-                            value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full pl-12 pr-4 py-3 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-200 placeholder-slate-600 focus:border-red-500 focus:ring-4 focus:ring-red-500/5 outline-none font-medium text-sm transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Mobile */}
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Mobile Number *</label>
-                        <div className="relative group">
-                          <Phone size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-red-500 transition-colors" />
-                          <input
-                            type="tel" required placeholder="+91 98765 43210"
-                            value={formData.mobile} onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                            className="w-full pl-12 pr-4 py-3 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-200 placeholder-slate-600 focus:border-red-500 focus:ring-4 focus:ring-red-500/5 outline-none font-medium text-sm transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Qualification */}
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Highest Qualification *</label>
-                        <div className="relative group">
-                          <GraduationCap size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-red-500 transition-colors" />
-                          <input
-                            type="text" required placeholder="e.g., B.E. Computer Science 2023"
-                            value={formData.qualification} onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                            className="w-full pl-12 pr-4 py-3 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-200 placeholder-slate-600 focus:border-red-500 focus:ring-4 focus:ring-red-500/5 outline-none font-medium text-sm transition-all"
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
+                  </div>
 
-                    <button
-                      type="submit"
-                      className="w-full mt-6 py-4 bg-slate-955 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-550 hover:to-orange-550 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-900/10 hover:shadow-red-650/30 flex items-center justify-center gap-2 hover:-translate-y-0.5"
+                  <div className="relative z-10 pt-8 border-t border-white/10 mt-10 flex items-center gap-4">
+                    <img src={gicon} alt="Gleamator Logo" className="w-10 h-10 object-contain drop-shadow-md brightness-0 invert" />
+                    <div className="flex flex-col">
+                      <span className="text-sm font-bold text-white">Admissions Desk</span>
+                      <span className="text-xs font-medium text-slate-400 mt-0.5">Response within 24 hours</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column (Form Box) */}
+                <div className="lg:col-span-3 bg-white border border-slate-200 p-8 md:p-12 rounded-none shadow-[0_20px_50px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(239,68,68,0.05)] transition-all duration-500 flex flex-col justify-center relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-red-50/30 rounded-full blur-[80px] -z-10" />
+
+                  {formSubmitted ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="flex flex-col items-center justify-center py-12 text-center"
                     >
-                      <span>Submit Admission Application</span>
-                      <ArrowRight size={18} />
-                    </button>
-                  </form>
-                )}
-              </div>
+                      <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-none flex items-center justify-center border border-emerald-100 shadow-lg mb-6 animate-bounce">
+                        <CheckCircle2 size={40} />
+                      </div>
+                      <h3 className="text-3xl font-extrabold text-slate-900 mb-3 tracking-tight">Application Received!</h3>
+                      <p className="text-slate-500 max-w-md font-medium text-base leading-relaxed">
+                        Thank you for your interest. A Gleamator admissions counselor will review your application and contact you shortly.
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleFormSubmit} className="space-y-6 md:space-y-8 relative z-10">
+                      {/* Small Gleamator Branding Header */}
+                      <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-2">
+                        <img src={gicon} alt="Gleamator Icon" className="w-6 h-6 object-contain" />
+                        <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Gleamator Admissions Center</span>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-6 md:gap-8">
 
-            </div>
+                        {/* Name */}
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            Full Name <span className="text-rose-500">*</span>
+                          </label>
+                          <div className="relative group/input">
+                            <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="text" id="name" required placeholder="John Doe"
+                              value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                            />
+                            {formData.name.trim().length > 2 && (
+                              <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Email */}
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            Email Address <span className="text-rose-500">*</span>
+                          </label>
+                          <div className="relative group/input">
+                            <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="email" id="email" required placeholder="john@example.com"
+                              value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                            />
+                            {/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && (
+                              <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Mobile */}
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="mobile" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            Mobile Number <span className="text-rose-500">*</span>
+                          </label>
+                          <div className="relative group/input">
+                            <Phone size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="tel" id="mobile" required placeholder="+91 98765 43210"
+                              value={formData.mobile} onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                            />
+                            {formData.mobile.trim().length >= 10 && (
+                              <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Qualification */}
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="qualification" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            Highest Qualification *
+                          </label>
+                          <div className="relative group/input">
+                            <GraduationCap size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="text" id="qualification" required placeholder="e.g., B.E. Computer Science 2023"
+                              value={formData.qualification} onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                            />
+                            {formData.qualification.trim().length > 2 && (
+                              <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            )}
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div className="pt-4">
+                        <button
+                          type="submit"
+                          className="group relative flex items-center justify-center gap-3 px-8 py-5 bg-slate-900 hover:bg-red-650 text-white font-bold rounded-none shadow-xl shadow-slate-900/10 hover:shadow-red-500/20 hover:-translate-y-0.5 transition-all duration-300 w-full overflow-hidden"
+                        >
+                          <span className="relative z-10">Submit Application</span>
+                          <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
+                        </button>
+                      </div>
+                    </form>
+                  )}
+                </div>
+
+              </div>
+            </FadeUp>
           </div>
         </section>
 
