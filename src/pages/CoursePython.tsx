@@ -35,7 +35,7 @@ import gicon from "@/assets/gicon.png";
 import classroomActionImg from "@/assets/Classroom action.jpg";
 import it2Img from "@/assets/it2.jpeg";
 import gleamatorClassImg from "@/assets/gleamatorclass.png";
-import videoProject3 from "@/assets/Video Project 3.mp4";
+const videoProject3 = "https://www.w3schools.com/html/mov_bbb.mp4";
 
 // --- Utility Components ---
 
