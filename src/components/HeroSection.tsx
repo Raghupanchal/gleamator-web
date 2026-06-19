@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import dashboardBg from "@/assets/Dashboard.jpg";
+import FlowingBackground from "./FlowingBackground";
 
 const stats = [
   { value: "15,000", label: "Youth Skilled Across India" },
@@ -43,10 +44,11 @@ const HeroSection = () => {
     <section className="relative min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <img src={dashboardBg} alt="Dashboard background" className="w-full h-full object-cover" width={1920} height={1080} />
-        <div className="absolute inset-0 bg-navy/70" />
+        <div className="absolute inset-0 bg-navy/45" />
+        <FlowingBackground />
       </div>
 
-      <div className="relative container mx-auto px-4 py-20">
+      <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="max-w-2xl">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}

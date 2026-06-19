@@ -1,5 +1,6 @@
 import { Award, Layers, Settings, Target } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import whyChooseImg from "@/assets/whychooseglemator.png";
 
 const reasons = [
   { icon: Award, title: "Practical Experience", description: "We focus on real-world skills that are useful in today's jobs." },
@@ -10,12 +11,26 @@ const reasons = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-20 bg-secondary">
-      <div className="container mx-auto px-4">
+    <section className="relative py-20 bg-secondary overflow-hidden">
+      {/* Background Image with Light Fade */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <img
+          src={whyChooseImg}
+          alt="Why Choose Us Background"
+          className="w-full h-full object-cover opacity-85"
+        />
+        {/* Soft border gradients to blend the image edges into the background */}
+        <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-secondary opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-secondary via-transparent to-secondary opacity-40" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4">
         <AnimatedSection>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Why Choose Us</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-primary text-center mb-20 md:mb-32">
+            Why Choose Us
+          </h2>
         </AnimatedSection>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 md:mt-20">
           {reasons.map((reason, i) => {
             const Icon = reason.icon;
             return (
