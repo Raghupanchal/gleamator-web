@@ -165,13 +165,19 @@ const SleekNeuralCoreLight = () => {
 
       {/* Center Core: Brand Logo */}
       <motion.div
-        animate={{ scale: [1, 1.05, 0.98, 1] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute z-30 w-32 h-32 rounded-[2.5rem] flex flex-col items-center justify-center bg-white shadow-[0_15px_45px_rgba(249,115,22,0.15)] border border-orange-100/80 cursor-pointer"
-        whileHover={{ scale: 1.08, rotate: [0, 5, -5, 0] }}
+        animate={{ scale: [1, 1.03, 0.98, 1] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute z-30 w-20 h-20 md:w-32 md:h-32 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center justify-center bg-white shadow-[0_15px_45px_rgba(249,115,22,0.15)] border border-orange-100/80 cursor-pointer"
+        whileHover={{ scale: 1.08 }}
       >
-        <img src={gicon} alt="Gleamator Logo" className="w-14 h-14 object-contain logo-shadow mb-1" />
-        <span className="text-[10px] font-extrabold tracking-widest text-slate-800 uppercase bg-slate-50 px-2 py-0.5 rounded-full border border-slate-100 shadow-inner">
+        <motion.img 
+          src={gicon} 
+          alt="Gleamator Logo" 
+          className="w-8 h-8 md:w-14 md:h-14 object-contain logo-shadow mb-1"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+        <span className="text-[8px] md:text-[10px] font-extrabold tracking-widest text-slate-800 uppercase bg-slate-50 px-1.5 md:px-2 py-0.5 rounded-full border border-slate-100 shadow-inner">
           AIML
         </span>
       </motion.div>
@@ -552,9 +558,9 @@ const CourseAIML = () => {
 
                 <FadeUp delay={0.2}>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] text-slate-900 text-left">
-                    <span className="block">Artificial Intelligence</span>
-                    <span className="flex items-center justify-start my-3 text-brand-gradient text-3xl md:text-5xl lg:text-6xl">&</span>
-                    <span className="text-brand-gradient block">
+                    <span className="inline md:block">Artificial Intelligence </span>
+                    <span className="text-brand-gradient inline-flex items-center justify-start my-1 md:my-3 text-3xl md:text-5xl lg:text-6xl font-extrabold">& </span>
+                    <span className="text-brand-gradient inline md:block">
                       Machine Learning.
                     </span>
                   </h1>
