@@ -9,6 +9,7 @@ const reasons = [
   { icon: Target, title: "Results That Matter", description: "We help people and businesses achieve clear, measurable outcomes." },
 ];
 
+
 const WhyChooseUs = () => {
   return (
     <section className="relative py-20 bg-secondary overflow-hidden">
