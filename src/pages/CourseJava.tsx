@@ -198,9 +198,8 @@ const MicroservicesEngineVisualizer = () => {
           <button
             onClick={() => triggerSimulation("order")}
             disabled={isSimulating}
-            className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all ${
-              isSimulating ? "bg-slate-900 border-slate-800 text-slate-500" : "bg-red-500/10 border-red-500/30 text-red-500 hover:bg-red-500 hover:text-white"
-            }`}
+            className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all ${isSimulating ? "bg-slate-900 border-slate-800 text-slate-500" : "bg-red-500/10 border-red-500/30 text-red-500 hover:bg-red-500 hover:text-white"
+              }`}
           >
             <User size={18} />
           </button>
@@ -283,7 +282,7 @@ const CloudDevOpsPipelineVisualizer = () => {
     setLogs([]);
     setPipelineState("git");
     addLog("Git Commit detected: 'feat: add resilient retry policy in spring boot'", 200);
-    
+
     setTimeout(() => {
       setPipelineState("build");
       addLog("Maven lifecycle started. Compiling src/main/java...", 500);
@@ -326,11 +325,10 @@ const CloudDevOpsPipelineVisualizer = () => {
           <GitBranch size={12} className="text-amber-500 animate-pulse" />
           DevOps Pipeline Status
         </span>
-        <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded ${
-          pipelineState === "success" ? "bg-green-500/20 text-green-400 border border-green-500/30" :
-          pipelineState !== "idle" ? "bg-amber-500/20 text-amber-400 border border-amber-500/30 animate-pulse" :
-          "bg-slate-800 text-slate-500"
-        }`}>
+        <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded ${pipelineState === "success" ? "bg-green-500/20 text-green-400 border border-green-500/30" :
+            pipelineState !== "idle" ? "bg-amber-500/20 text-amber-400 border border-amber-500/30 animate-pulse" :
+              "bg-slate-800 text-slate-500"
+          }`}>
           {pipelineState}
         </span>
       </div>
@@ -347,11 +345,10 @@ const CloudDevOpsPipelineVisualizer = () => {
           const isCurrent = pipelineState === stage.key;
           return (
             <div key={stage.key} className="flex flex-col items-center">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border text-[10px] font-black transition-all duration-300 ${
-                isDone ? "bg-green-500/20 border-green-500 text-green-400" :
-                isCurrent ? "bg-amber-500/20 border-amber-500 text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.3)] animate-pulse" :
-                "bg-slate-900 border-slate-800 text-slate-600"
-              }`}>
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border text-[10px] font-black transition-all duration-300 ${isDone ? "bg-green-500/20 border-green-500 text-green-400" :
+                  isCurrent ? "bg-amber-500/20 border-amber-500 text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.3)] animate-pulse" :
+                    "bg-slate-900 border-slate-800 text-slate-600"
+                }`}>
                 {i + 1}
               </div>
               <span className="text-[8px] font-black text-slate-500 mt-1 uppercase tracking-wider">{stage.label}</span>
@@ -685,8 +682,8 @@ const CourseJava = () => {
                       <GraduationCap size={16} />
                     </div>
                   </foreignObject>
-                  <animateMotion 
-                    dur="10s" 
+                  <animateMotion
+                    dur="10s"
                     repeatCount="indefinite"
                   >
                     <mpath href="#timeline-path" />
@@ -768,8 +765,8 @@ const CourseJava = () => {
                         <GraduationCap size={12} />
                       </div>
                     </foreignObject>
-                    <animateMotion 
-                      dur="10s" 
+                    <animateMotion
+                      dur="10s"
                       repeatCount="indefinite"
                     >
                       <mpath href="#timeline-path-mobile" />
@@ -873,11 +870,11 @@ const CourseJava = () => {
                         key={index}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{
-                           scale: isActive ? 1 : 0.85,
-                           x: isActive ? 0 : isPrev ? "-90%" : "90%",
-                           opacity: isActive ? 1 : 0.4,
-                           zIndex: isActive ? 20 : 10,
-                           filter: isActive ? "blur(0px)" : "blur(4px)"
+                          scale: isActive ? 1 : 0.85,
+                          x: isActive ? 0 : isPrev ? "-90%" : "90%",
+                          opacity: isActive ? 1 : 0.4,
+                          zIndex: isActive ? 20 : 10,
+                          filter: isActive ? "blur(0px)" : "blur(4px)"
                         }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         transition={{ type: "spring", stiffness: 260, damping: 24 }}

@@ -78,7 +78,7 @@ const ColorfulTechOrbit = () => {
         <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-11 h-11 bg-white border border-indigo-200 shadow-[0_0_20px_rgba(99,102,241,0.2)] rounded-full flex items-center justify-center p-2 hover:scale-110 transition-transform">
           <PythonIcon className="w-6 h-6" />
         </div>
-        
+
         {/* Code Icon - Bottom Right */}
         <div className="absolute bottom-2 -right-2 w-9 h-9 bg-gradient-to-br from-indigo-500 to-indigo-600 border border-indigo-400 shadow-lg rounded-full flex items-center justify-center text-white">
           <Code2 size={16} />
@@ -503,7 +503,7 @@ const CoursePython = () => {
 
                 {/* Animated course-specific Python icon moving along the path */}
                 <foreignObject width="40" height="40" className="overflow-visible">
-                  <div 
+                  <div
                     style={{ transform: 'translate(-20px, -20px)' }}
                     className="w-10 h-10 rounded-full bg-white border-2 border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.7)] flex items-center justify-center p-1.5 animate-pulse"
                   >
@@ -780,7 +780,7 @@ const CoursePython = () => {
                           />
                           {/* Dark bottom gradient overlay for title contrast */}
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-90" />
-                          
+
                           {/* Floating Title / Overview at the bottom of the photo */}
                           <div className="absolute bottom-6 left-6 right-6 z-10 text-white text-left">
                             <h3 className="text-xl md:text-2xl font-extrabold tracking-tight drop-shadow-md">
@@ -1030,8 +1030,8 @@ const CoursePython = () => {
               <div className="flex gap-6 animate-marquee-loop">
                 {/* Double the list for infinite looping */}
                 {[...data.successStories, ...data.successStories].map((story, i) => (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     className="w-[280px] md:w-[320px] flex-shrink-0 bg-white border border-slate-200 shadow-sm hover:shadow-2xl p-7 md:p-8 rounded-none flex flex-col justify-between h-[280px] transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden"
                   >
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-slate-50 to-transparent rounded-bl-full -z-10" />

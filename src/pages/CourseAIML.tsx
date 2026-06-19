@@ -30,6 +30,10 @@ import {
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import gicon from "@/assets/gicon.png";
+import leader1 from "@/assets/leader-1.webp";
+import leader2 from "@/assets/leader-2.webp";
+import leader3 from "@/assets/leader-3.png";
+import director2 from "@/assets/director-2.webp";
 
 // --- Global Styles & Brand Accent Themes ---
 const globalStyles = `
@@ -243,6 +247,7 @@ const SleekNeuralCoreLight = () => {
     </div>
   );
 };
+
 // --- 2. Interactive AI Project Visualizers (Premium Light Theme) ---
 const RAGPipelineVisualizer = () => {
   const [activeNode, setActiveNode] = useState(0);
@@ -300,11 +305,10 @@ const RAGPipelineVisualizer = () => {
               <motion.div
                 animate={isActive ? { scale: [1, 1.1, 1] } : { scale: 1 }}
                 transition={{ duration: 1.5, repeat: isActive ? Infinity : 0, ease: "easeInOut" }}
-                className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-300 ${
-                  isActive
-                    ? "bg-white border-[#7C3AED] shadow-[0_8px_20px_-4px_rgba(124,58,237,0.3),_inset_0_2px_4px_rgba(255,255,255,0.9)] text-[#7C3AED] scale-105"
-                    : "bg-white border-slate-200/80 text-slate-400 shadow-sm"
-                }`}
+                className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-300 ${isActive
+                  ? "bg-white border-[#7C3AED] shadow-[0_8px_20px_-4px_rgba(124,58,237,0.3),_inset_0_2px_4px_rgba(255,255,255,0.9)] text-[#7C3AED] scale-105"
+                  : "bg-white border-slate-200/80 text-slate-400 shadow-sm"
+                  }`}
               >
                 {node.icon}
               </motion.div>
@@ -523,10 +527,10 @@ const CourseAIML = () => {
   ];
 
   const placementsData = [
-    { name: "Aditya Varma", company: "NeuralTech", role: "ML Engineer", package: "14 LPA", prev: "Data Analyst", hike: "+120%", grad: "from-cyan-500 to-blue-500" },
-    { name: "Priya Nair", company: "InsightAnalytics", role: "Data Scientist", package: "11.5 LPA", prev: "Fresher", hike: "New", grad: "from-orange-500 to-rose-500" },
-    { name: "Arjun Das", company: "AI Solutions", role: "Applied Scientist", package: "13 LPA", prev: "Backend Dev", hike: "+180%", grad: "from-emerald-400 to-teal-500" },
-    { name: "Tanvi Shah", company: "AutoScale", role: "MLOps Specialist", package: "12 LPA", prev: "System Eng", hike: "+140%", grad: "from-indigo-500 to-purple-500" }
+    { name: "Aditya Varma", company: "NeuralTech", role: "ML Engineer", package: "14 LPA", prev: "Data Analyst", hike: "+120%", grad: "from-[#22d3ee] to-[#0284c7]", photo: leader1 },
+    { name: "Priya Nair", company: "InsightAnalytics", role: "Data Scientist", package: "11.5 LPA", prev: "Fresher", hike: "New", grad: "from-[#f97316] to-[#db2777]", photo: director2 },
+    { name: "Arjun Das", company: "AI Solutions", role: "Applied Scientist", package: "13 LPA", prev: "Backend Dev", hike: "+180%", grad: "from-[#34d399] to-[#059669]", photo: leader2 },
+    { name: "Tanvi Shah", company: "AutoScale", role: "MLOps Specialist", package: "12 LPA", prev: "System Eng", hike: "+140%", grad: "from-[#818cf8] to-[#4f46e5]", photo: leader3 }
   ];
 
   return (
@@ -557,7 +561,7 @@ const CourseAIML = () => {
                 </FadeUp>
 
                 <FadeUp delay={0.3}>
-                 
+
                   <p className="text-lg md:text-xl text-slate-500 font-normal max-w-xl leading-relaxed">
                     Transition from theoretical statistical models to production-ready scalable machine learning architecture. Master PyTorch, HuggingFace, LLMs, and real-time MLOps.
                   </p>
@@ -861,98 +865,103 @@ const CourseAIML = () => {
           </div>
         </section>
 
-        {/* --- 4. PLACEMENTS SUCCESS WALL (Premium SaaS Redesign) --- */}
-        <section className="py-16 md:py-24 bg-[#FAFBFF] relative overflow-hidden border-y border-slate-100">
-          {/* Subtle Color Splash Backdrops */}
-          <div className="absolute top-12 left-1/4 w-[350px] h-[350px] bg-gradient-to-tr from-violet-500/5 via-blue-500/5 to-cyan-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
-          <div className="absolute bottom-12 right-1/4 w-[400px] h-[400px] bg-gradient-to-tr from-cyan-500/5 via-indigo-500/5 to-purple-500/5 rounded-full blur-[140px] pointer-events-none animate-pulse" style={{ animationDuration: '12s' }} />
-          <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none" />
+        {/* --- 4. PLACEMENTS SUCCESS WALL (Premium Redesign) --- */}
+        <section className="py-20 md:py-28 bg-[#FAFAFC] relative overflow-hidden border-y border-slate-100">
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes placementsMarquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(calc(-50% - 8px)); }
+            }
+            .animate-placements-marquee {
+              display: flex;
+              width: max-content;
+              animation: placementsMarquee 25s linear infinite;
+            }
+            .animate-placements-marquee:hover {
+              animation-play-state: paused;
+            }
+          ` }} />
+          {/* Aesthetic Background Elements: Soft mesh glow & subtle dot pattern */}
+          <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.2] pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-indigo-50/50 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
           <div className="container mx-auto px-6 max-w-7xl relative z-10">
-            <FadeUp className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-              <div className="max-w-2xl text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-violet-50 border border-violet-100 rounded-full mb-4 shadow-sm">
-                  <Award size={14} className="text-[#7C3AED] animate-pulse" />
-                  <span className="text-[10px] font-black tracking-wider uppercase text-[#7C3AED]">Student Success Wall</span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+              
+              {/* Left Column - Centered Clean Header */}
+              <div className="lg:col-span-3 flex flex-col items-start text-left space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 shadow-sm rounded-full cursor-default">
+                  <Sparkles size={12} className="text-rose-500" />
+                  <span className="text-[9px] font-black tracking-widest uppercase text-slate-500">Real Success Stories</span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-slate-900">Career Transformations.</h2>
-                <p className="text-sm md:text-base text-slate-500 font-medium leading-relaxed">Our graduates transition to key engineering units globally.</p>
+                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                  Celebrating Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-indigo-600">Placed Students</span>
+                </h2>
+                {/* Emerald Wave Line */}
+                <svg className="w-28 h-2 text-emerald-500 mt-1" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+                <p className="text-slate-500 font-medium text-sm leading-relaxed pt-2">
+                  From intensive training to successful careers — see how our students secured placements at key engineering units globally.
+                </p>
               </div>
-              <div className="bg-white border border-slate-200/80 shadow-sm px-6 py-3 rounded-full flex items-center gap-3">
-                <TrendingUp size={18} className="text-emerald-500" />
-                <span className="text-xs font-bold tracking-wider text-slate-700 uppercase">Avg. Hike 120%</span>
-              </div>
-            </FadeUp>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
-              {placementsData.map((alumni, idx) => {
-                return (
-                  <FadeUp key={idx} delay={idx * 0.1}>
-                    <motion.div
-                      whileHover={{
-                        scale: 1.03,
-                        y: -6,
-                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.08)"
-                      }}
-                      transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                      className="bg-white border border-slate-200/60 rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.015)] transition-all duration-300 relative overflow-hidden flex flex-col justify-between h-full group cursor-pointer"
-                    >
-                      {/* Premium Top Accent Gradient Border */}
-                      <div className="absolute top-0 inset-x-0 h-[4px] bg-gradient-to-r from-[#7C3AED] via-[#2563EB] to-[#06B6D4]" />
+              {/* Right Column - Premium Success Cards (Auto Scroll Marquee) */}
+              <div className="lg:col-span-9 overflow-hidden relative select-none">
+                {/* Gradient Masks */}
+                <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
 
-                      {/* Header Row */}
-                      <div className="flex justify-between items-start mb-6 pt-2">
-                        {/* Avatar Initials Wrapper */}
-                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${alumni.grad} flex items-center justify-center text-white font-extrabold text-base shadow-sm border border-white/40 group-hover:scale-105 transition-transform duration-300`}>
-                          {alumni.name.charAt(0)}
-                        </div>
+                <div className="animate-placements-marquee gap-4 py-2">
+                  {[...placementsData, ...placementsData].map((alumni, idx) => (
+                    <div key={idx} className="shrink-0">
+                      <motion.div
+                        whileHover={{ y: -4, scale: 1.01 }}
+                        transition={{ type: "spring", stiffness: 350, damping: 18 }}
+                        className={`relative w-[240px] h-[210px] rounded-[1.5rem] bg-gradient-to-b ${alumni.grad} p-5 flex flex-col justify-between overflow-hidden shadow-md border border-white/10 group`}
+                      >
+                        {/* Organic Background Pattern Overlay */}
+                        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1.5px,transparent_1.5px)] [background-size:16px_16px] pointer-events-none" />
+                        <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-white/10 blur-xl pointer-events-none" />
 
-                        {/* Salary Package Badge */}
-                        <div className="flex flex-col items-end">
-                          <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">Package</span>
-                          <span className="mt-1 bg-emerald-50/80 text-emerald-600 font-extrabold text-xs px-3 py-1 rounded-xl border border-emerald-100/80 flex items-center gap-1">
-                            <TrendingUp size={12} />
-                            {alumni.package}
+                        {/* Top: Header details */}
+                        <div className="relative z-10 text-left flex flex-col items-start">
+                          <h4 className="font-extrabold text-sm text-white tracking-wide uppercase leading-tight">
+                            {alumni.name}
+                          </h4>
+                          <span className="text-[8px] font-black text-white/70 uppercase tracking-widest mt-0.5">
+                            {alumni.role}
                           </span>
-                        </div>
-                      </div>
 
-                      {/* Body Content */}
-                      <div className="mb-4 text-left">
-                        <h4 className="font-extrabold text-lg text-slate-900 tracking-tight group-hover:text-[#7C3AED] transition-colors duration-300">{alumni.name}</h4>
+                          {/* Styled handwritten 'from' badge */}
+                          <div className="flex items-center gap-1.5 mt-2 bg-black/15 px-2 py-0.5 rounded-full border border-white/5">
+                            <span className="text-[9px] italic font-serif text-white/80 leading-none">from</span>
+                            <span className="text-[7px] font-black uppercase tracking-wider text-white bg-white/10 px-1.5 py-0.5 rounded-full leading-none">
+                              {alumni.prev}
+                            </span>
+                          </div>
+                        </div>
 
-                        {/* Company Info with Check Icon */}
-                        <div className="flex items-center gap-1.5 mt-1.5 text-xs font-bold text-slate-505">
-                          <Building2 size={13} className="text-[#2563EB]" />
-                          <span className="text-slate-700">{alumni.company}</span>
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 ml-1" />
-                          <span className="text-[9px] text-green-600 font-extrabold uppercase tracking-wider">Verified</span>
-                        </div>
-                      </div>
+                        {/* Bottom Info: Logo & Salary Package */}
+                        <div className="relative z-10 flex items-end justify-between mt-auto">
+                          {/* Logo Pill on bottom-left */}
+                          <div className="bg-white border border-slate-100/50 px-2.5 py-1 rounded-lg text-slate-950 text-[9px] font-black shadow-sm uppercase tracking-tight">
+                            {alumni.company}
+                          </div>
 
-                      {/* Transformation Path Widget */}
-                      <div className="bg-slate-50/50 border border-slate-100 rounded-2xl p-3 mb-2 flex items-center justify-between text-[11px] relative z-10 shadow-inner">
-                        <div className="flex flex-col text-left">
-                          <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Previous</span>
-                          <span className="font-bold text-slate-600 truncate max-w-[85px] leading-none">{alumni.prev}</span>
+                          {/* Package Detail */}
+                          <div className="bg-white/95 backdrop-blur-sm shadow-sm rounded-lg px-2.5 py-1 flex flex-col items-center border border-slate-100/50">
+                            <span className="text-[5px] font-black text-slate-400 uppercase tracking-widest leading-none">Package</span>
+                            <span className="text-[10px] font-black text-slate-900 mt-0.5 leading-none">{alumni.package}</span>
+                          </div>
                         </div>
-                        <ArrowRight size={14} className="text-[#7C3AED] mx-2 animate-pulse" />
-                        <div className="flex flex-col text-right">
-                          <span className="text-[8px] font-black text-[#7C3AED] uppercase tracking-widest leading-none mb-1">Placed As</span>
-                          <span className="font-extrabold text-slate-900 truncate max-w-[90px] leading-none">{alumni.role}</span>
-                        </div>
-                      </div>
 
-                      {/* Salary Hike Flag */}
-                      <div className="absolute top-20 right-0 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-500 z-10">
-                        <div className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-black text-[9px] px-3 py-1 rounded-l-full shadow-md uppercase tracking-wider">
-                          {alumni.hike} Hike
-                        </div>
-                      </div>
-                    </motion.div>
-</FadeUp>
-                );
-              })}
+                      </motion.div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
@@ -1029,74 +1038,95 @@ const CourseAIML = () => {
                 ) : (
                   <form onSubmit={handleFormSubmit} className="space-y-8">
                     <div className="grid md:grid-cols-2 gap-8">
+
                       {/* Name */}
                       <div className="flex flex-col gap-2.5 group/input">
-                        <label htmlFor="name" className="text-xs font-extrabold uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors pl-1">
-                          Full Name *
-                        </label>
-                        <div className="relative">
-                          <User size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-orange-500 transition-colors" />
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="name" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            Full Name
+                          </label>
+                          <span className="text-[10px] font-bold text-orange-500/80 uppercase">Required</span>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <User size={20} />
+                          </div>
                           <input
                             type="text" id="name" required placeholder="John Doe"
                             value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full pl-14 pr-12 py-4.5 bg-slate-50 border border-slate-200/80 rounded-2xl text-slate-950 focus:bg-white focus:border-orange-500 focus:ring-4 focus:ring-orange-500/5 outline-none font-semibold text-base transition-all placeholder:text-slate-400 placeholder:font-normal"
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
                           />
                           {formData.name.trim().length > 2 && (
-                            <CheckCircle2 size={18} className="absolute right-5 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
                           )}
                         </div>
                       </div>
 
                       {/* Email */}
                       <div className="flex flex-col gap-2.5 group/input">
-                        <label htmlFor="email" className="text-xs font-extrabold uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors pl-1">
-                          Email Address *
-                        </label>
-                        <div className="relative">
-                          <Mail size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-orange-500 transition-colors" />
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            Email Address
+                          </label>
+                          <span className="text-[10px] font-bold text-orange-500/80 uppercase">Required</span>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <Mail size={20} />
+                          </div>
                           <input
                             type="email" id="email" required placeholder="john@example.com"
                             value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full pl-14 pr-12 py-4.5 bg-slate-50 border border-slate-200/80 rounded-2xl text-slate-950 focus:bg-white focus:border-orange-500 focus:ring-4 focus:ring-orange-500/5 outline-none font-semibold text-base transition-all placeholder:text-slate-400 placeholder:font-normal"
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
                           />
                           {formData.email.includes("@") && formData.email.includes(".") && (
-                            <CheckCircle2 size={18} className="absolute right-5 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
                           )}
                         </div>
                       </div>
 
                       {/* Mobile */}
                       <div className="flex flex-col gap-2.5 group/input">
-                        <label htmlFor="mobile" className="text-xs font-extrabold uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors pl-1">
-                          Mobile Number *
-                        </label>
-                        <div className="relative">
-                          <Phone size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-orange-500 transition-colors" />
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="mobile" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            Mobile Number
+                          </label>
+                          <span className="text-[10px] font-bold text-orange-500/80 uppercase">Required</span>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <Phone size={20} />
+                          </div>
                           <input
                             type="tel" id="mobile" required placeholder="9876543210"
                             value={formData.mobile} onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                            className="w-full pl-14 pr-12 py-4.5 bg-slate-50 border border-slate-200/80 rounded-2xl text-slate-950 focus:bg-white focus:border-orange-500 focus:ring-4 focus:ring-orange-500/5 outline-none font-semibold text-base transition-all placeholder:text-slate-400 placeholder:font-normal"
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
                           />
                           {formData.mobile.trim().length >= 10 && (
-                            <CheckCircle2 size={18} className="absolute right-5 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
                           )}
                         </div>
                       </div>
 
                       {/* Qualification */}
                       <div className="flex flex-col gap-2.5 group/input">
-                        <label htmlFor="qualification" className="text-xs font-extrabold uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors pl-1">
-                          Highest Qualification *
-                        </label>
-                        <div className="relative">
-                          <GraduationCap size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-orange-500 transition-colors" />
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="qualification" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            Highest Qualification
+                          </label>
+                          <span className="text-[10px] font-bold text-orange-500/80 uppercase">Required</span>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <GraduationCap size={20} />
+                          </div>
                           <input
                             type="text" id="qualification" required placeholder="B.Tech / M.Tech / MCA"
                             value={formData.qualification} onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                            className="w-full pl-14 pr-12 py-4.5 bg-slate-50 border border-slate-200/80 rounded-2xl text-slate-950 focus:bg-white focus:border-orange-500 focus:ring-4 focus:ring-orange-500/5 outline-none font-semibold text-base transition-all placeholder:text-slate-400 placeholder:font-normal"
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
                           />
                           {formData.qualification.trim().length > 1 && (
-                            <CheckCircle2 size={18} className="absolute right-5 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
                           )}
                         </div>
                       </div>
@@ -1104,7 +1134,7 @@ const CourseAIML = () => {
 
                     <button
                       type="submit"
-                      className="w-full mt-4 py-4 bg-slate-950 text-white font-extrabold text-xs tracking-wider uppercase rounded-2xl hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3"
+                      className="w-full mt-4 py-4 bg-slate-950 text-white font-extrabold text-sm tracking-wider uppercase rounded-2xl hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-350 flex items-center justify-center gap-3"
                     >
                       Initialize Application <ArrowRight size={16} />
                     </button>
