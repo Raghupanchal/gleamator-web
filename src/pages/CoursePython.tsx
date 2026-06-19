@@ -33,9 +33,9 @@ import {
 import Layout from "@/components/Layout";
 import gicon from "@/assets/gicon.png";
 import classroomActionImg from "@/assets/Classroom action.jpg";
-import campusVisitImg from "@/assets/Campus visit.jpeg";
-import certificateDayImg from "@/assets/Certificate day.jpeg";
-import workshopDayImg from "@/assets/Workshop day.jpeg";
+import it2Img from "@/assets/it2.jpeg";
+import gleamatorClassImg from "@/assets/gleamatorclass.png";
+import videoProject3 from "@/assets/Video Project 3.mp4";
 
 // --- Utility Components ---
 
@@ -191,7 +191,6 @@ const RAGVisualizer = () => (
 const CoursePython = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -211,6 +210,14 @@ const CoursePython = () => {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // Auto-play logic for Execution & Career Track slideshow (4s interval)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % 3);
+    }, 4000);
+    return () => clearInterval(timer);
   }, []);
 
   const handleFormSubmit = (e) => {
@@ -234,28 +241,20 @@ const CoursePython = () => {
       videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
     },
     {
-      title: "Placement Drives & Interviews",
-      subtitle: "Weekly interview scheduling and direct placement referrals.",
-      image: campusVisitImg,
-      tag: "Placement",
-      stats: { primary: "100+", label: "PARTNERS", rating: "92% Rate", access: "Referrals" },
+      title: "IT Labs & Infrastructure",
+      subtitle: "State-of-the-art coding setups configured for enterprise development stacks.",
+      image: it2Img,
+      tag: "Infrastructure",
+      stats: { primary: "100%", label: "PRACTICAL", rating: "Modern Labs", access: "High Speed" },
       videoUrl: "https://www.w3schools.com/html/movie.mp4"
-    },
-    {
-      title: "Certification Ceremonies",
-      subtitle: "Industry-recognized credentials by corporate partners.",
-      image: certificateDayImg,
-      tag: "Verification",
-      stats: { primary: "Verifiable", label: "LINKEDIN", rating: "QA Valid", access: "ISO Cert" },
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
     },
     {
       title: "Advanced Tech Workshops",
-      subtitle: "Collaborative building days focusing on AI integration.",
-      image: workshopDayImg,
+      subtitle: "Interactive building days and collaborative coding bootcamps focusing on project execution.",
+      image: gleamatorClassImg,
       tag: "Hackathons",
-      stats: { primary: "500+", label: "PROJECTS", rating: "Reviewed", access: "Git Verified" },
-      videoUrl: "https://www.w3schools.com/html/movie.mp4"
+      stats: { primary: "500+", label: "PROJECTS", rating: "Interactive", access: "Industry Ready" },
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
     }
   ];
 
@@ -392,23 +391,23 @@ const CoursePython = () => {
                 </FadeUp>
 
                 <FadeUp delay={0.2}>
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.15] tracking-tight">
                     {data.title} <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-rose-500">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f97316] via-[#4f46e5] to-[#06b6d4]">
                       {data.highlightTitle}
                     </span>
                   </h1>
                 </FadeUp>
 
                 <FadeUp delay={0.3}>
-                  <p className="text-lg md:text-xl text-slate-600 font-medium max-w-lg leading-relaxed">
+                  <p className="text-lg md:text-xl text-slate-500 font-normal max-w-xl leading-relaxed">
                     {data.subtitle}
                   </p>
                 </FadeUp>
 
                 <FadeUp delay={0.4} className="flex flex-col sm:flex-row gap-4 mt-2">
                   <button
-                    onClick={() => navigate('/enroll', { state: { course: data.title } })}
+                    onClick={() => document.getElementById('admission-form')?.scrollIntoView({ behavior: 'smooth' })}
                     className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-slate-900 text-white font-bold rounded-2xl shadow-xl shadow-slate-900/20 transition-all hover:-translate-y-1 hover:shadow-2xl hover:bg-indigo-600 w-full sm:w-auto"
                   >
                     <span>Apply Now</span>
@@ -446,40 +445,60 @@ const CoursePython = () => {
 
 
         {/* PROJECTS & CAREER SLIDER SECTION */}
-        <section className="py-24 md:py-32 bg-slate-950 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-indigo-500/10 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
+        <section className="pt-16 pb-6 md:pt-20 md:pb-8 bg-[#F4F4F6] text-slate-900 relative overflow-hidden border-b border-slate-200">
+          <div className="absolute inset-0 opacity-[0.4] bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4.5rem_4.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_75%,transparent_100%)] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-indigo-200/20 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
 
           <div className="container mx-auto px-4 sm:px-6 relative z-10">
             <FadeUp className="text-center max-w-2xl mx-auto mb-12 md:mb-20">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 shadow-sm rounded-full mb-6 backdrop-blur-md">
-                <Sparkles size={14} className="text-indigo-400" />
-                <span className="text-xs font-bold tracking-widest uppercase text-slate-300">
-                  Real-World Execution
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-white">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-slate-900">
                 Execution & Career Track
               </h2>
-              <p className="text-slate-400 text-base md:text-xl font-medium leading-relaxed">
+              <p className="text-slate-500 text-base md:text-xl font-medium leading-relaxed">
                 Build production-grade systems and unlock placement assistance with top-tier hiring partners.
               </p>
             </FadeUp>
 
+            {/* Featured Video Player Showcase */}
+            <div className="max-w-4xl mx-auto mb-16">
+              <FadeUp delay={0.1}>
+                <div className="bg-white border border-slate-200/80 rounded-none shadow-2xl overflow-hidden p-3 md:p-5 group hover:shadow-indigo-100/30 transition-all duration-500">
+                  <div className="relative aspect-video rounded-none overflow-hidden bg-slate-950 shadow-inner group/video">
+                    <video
+                      src={videoProject3}
+                      controls
+                      playsInline
+                      className="w-full h-full object-cover"
+                      poster={classroomActionImg}
+                    />
+                  </div>
+                  <div className="pt-5 md:pt-6 px-2 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">
+                        Student Reviews & Feedback
+                      </h3>
+                    </div>
+                    <p className="text-slate-500 text-sm font-medium max-w-md leading-relaxed">
+                      Hear directly from our graduates and students as they share their honest feedback, learning journeys, and project experiences at Gleamator Technologies.
+                    </p>
+                  </div>
+                </div>
+              </FadeUp>
+            </div>
+
             {/* Slider Container - Improved for Mobile */}
-            <div className="relative flex items-center justify-center min-h-[400px] md:min-h-[550px] w-full overflow-hidden py-4 md:py-8">
+            <div className="relative flex items-center justify-center min-h-[350px] md:min-h-[460px] w-full overflow-hidden py-2 md:py-4">
 
               <button
                 onClick={() => {
                   setCurrentSlide((prev) => (prev === 0 ? mediaSlides.length - 1 : prev - 1));
-                  setIsVideoPlaying(false);
                 }}
-                className="absolute left-2 md:left-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/10 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 text-white flex items-center justify-center transition-all shadow-xl hover:scale-110"
+                className="absolute left-2 md:left-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-none border border-slate-200 bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-lg hover:scale-110"
               >
                 <ChevronLeft size={24} />
               </button>
 
-              <div className="relative flex items-center justify-center w-full max-w-[1000px] h-[360px] md:h-[480px]">
+              <div className="relative flex items-center justify-center w-full max-w-[1000px] h-[320px] md:h-[400px]">
                 <AnimatePresence mode="popLayout">
                   {mediaSlides.map((slide, index) => {
                     const isActive = index === currentSlide;
@@ -501,7 +520,7 @@ const CoursePython = () => {
                         }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         transition={{ type: "spring", stiffness: 260, damping: 24 }}
-                        className="absolute w-[85vw] max-w-[320px] md:max-w-[640px] h-full rounded-[1.5rem] md:rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden bg-slate-900 flex flex-col cursor-grab active:cursor-grabbing"
+                        className="absolute w-[85vw] max-w-[320px] md:max-w-[640px] h-full rounded-none border border-slate-200/80 shadow-2xl overflow-hidden bg-white flex flex-col cursor-grab active:cursor-grabbing group"
                         drag="x"
                         dragConstraints={{ left: 0, right: 0 }}
                         dragElastic={0.2}
@@ -509,61 +528,26 @@ const CoursePython = () => {
                           const swipe = offset.x;
                           if (swipe < -50) {
                             setCurrentSlide((prev) => (prev === mediaSlides.length - 1 ? 0 : prev + 1));
-                            setIsVideoPlaying(false);
                           } else if (swipe > 50) {
                             setCurrentSlide((prev) => (prev === 0 ? mediaSlides.length - 1 : prev - 1));
-                            setIsVideoPlaying(false);
                           }
                         }}
                       >
-                        {isActive && (
-                          <div className="absolute top-4 left-4 md:top-5 md:left-5 z-30 flex items-center gap-1.5 px-3 py-1 md:px-4 md:py-1.5 bg-sky-500/90 text-white font-black text-[10px] md:text-xs tracking-wider uppercase rounded-full shadow-lg backdrop-blur-md">
-                            <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white animate-pulse" />
-                            {slide.tag}
-                          </div>
-                        )}
 
-                        <div className="relative flex-grow w-full overflow-hidden bg-slate-900 flex items-center justify-center">
-                          {isActive && isVideoPlaying ? (
-                            <video src={slide.videoUrl} className="absolute inset-0 w-full h-full object-cover" autoPlay controls muted loop />
-                          ) : (
-                            <>
-                              <img src={slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                              {isActive && (
-                                <button
-                                  onClick={() => setIsVideoPlaying(true)}
-                                  className="absolute z-20 w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 hover:bg-indigo-600/90 hover:border-transparent text-white flex items-center justify-center shadow-2xl transition-all hover:scale-110"
-                                >
-                                  <Play size={24} className="ml-1" />
-                                </button>
-                              )}
-                            </>
-                          )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-90" />
-                        </div>
-
-                        <div className="relative z-10 bg-slate-950/95 border-t border-white/10 p-5 md:p-6 flex flex-col justify-between">
-                          <div>
-                            <h3 className="text-lg md:text-2xl font-extrabold text-white mb-1 md:mb-2 tracking-tight">
+                        <div className="relative w-full h-full overflow-hidden bg-slate-100 flex items-center justify-center">
+                          <img
+                            src={slide.image}
+                            alt={slide.title}
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                          />
+                          {/* Dark bottom gradient overlay for title contrast */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-90" />
+                          
+                          {/* Floating Title / Overview at the bottom of the photo */}
+                          <div className="absolute bottom-6 left-6 right-6 z-10 text-white text-left">
+                            <h3 className="text-xl md:text-2xl font-extrabold tracking-tight drop-shadow-md">
                               {slide.title}
                             </h3>
-                            <p className="text-slate-400 text-xs md:text-sm font-medium mb-4 leading-relaxed line-clamp-2 md:line-clamp-none">
-                              {slide.subtitle}
-                            </p>
-                          </div>
-                          <div className="grid grid-cols-3 gap-2 pt-3 md:pt-4 border-t border-white/5 text-center">
-                            <div className="flex flex-col">
-                              <span className="text-base md:text-xl font-black text-sky-400">{slide.stats.primary}</span>
-                              <span className="text-[8px] md:text-[9px] font-black text-slate-500 tracking-wider">{slide.stats.label}</span>
-                            </div>
-                            <div className="flex flex-col border-x border-white/5">
-                              <span className="text-base md:text-xl font-black text-indigo-400">{slide.stats.rating}</span>
-                              <span className="text-[8px] md:text-[9px] font-black text-slate-500 tracking-wider">RATING</span>
-                            </div>
-                            <div className="flex flex-col">
-                              <span className="text-base md:text-xl font-black text-emerald-400">{slide.stats.access}</span>
-                              <span className="text-[8px] md:text-[9px] font-black text-slate-500 tracking-wider">SUPPORT</span>
-                            </div>
                           </div>
                         </div>
                       </motion.div>
@@ -575,9 +559,8 @@ const CoursePython = () => {
               <button
                 onClick={() => {
                   setCurrentSlide((prev) => (prev === mediaSlides.length - 1 ? 0 : prev + 1));
-                  setIsVideoPlaying(false);
                 }}
-                className="absolute right-2 md:right-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/10 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 text-white flex items-center justify-center transition-all shadow-xl hover:scale-110"
+                className="absolute right-2 md:right-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-none border border-slate-200 bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-lg hover:scale-110"
               >
                 <ChevronRight size={24} />
               </button>
@@ -588,8 +571,8 @@ const CoursePython = () => {
               {mediaSlides.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => { setCurrentSlide(i); setIsVideoPlaying(false); }}
-                  className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? "w-8 md:w-10 bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]" : "w-2 md:w-2.5 bg-slate-700 hover:bg-slate-500"}`}
+                  onClick={() => { setCurrentSlide(i); }}
+                  className={`h-2 md:h-2.5 rounded-none transition-all duration-300 ${i === currentSlide ? "w-8 md:w-10 bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]" : "w-2 md:w-2.5 bg-slate-300 hover:bg-slate-400"}`}
                 />
               ))}
             </div>
@@ -597,7 +580,7 @@ const CoursePython = () => {
         </section>
 
         {/* HIGH-END ALTERNATING ROADMAP */}
-        <section id="roadmap" className="py-24 md:py-32 bg-[#FAFAFC] relative overflow-hidden border-b border-slate-200">
+        <section id="roadmap" className="pt-10 pb-20 md:pt-12 md:pb-24 bg-[#FAFAFC] relative overflow-hidden border-b border-slate-200">
           <style>{`
             @keyframes roadFlowAnimation {
               to { stroke-dashoffset: -28; }
@@ -627,37 +610,37 @@ const CoursePython = () => {
             </FadeUp>
 
             {/* DESKTOP WINDING ROAD TIMELINE */}
-            <div className="relative w-[800px] h-[980px] mx-auto hidden md:block">
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 800 980" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 400,0 C 400,90 160,90 160,200 C 160,310 640,310 640,420 C 640,530 160,530 160,640 C 160,750 640,750 640,860 C 640,920 500,930 400,980" stroke="#f8fafc" strokeWidth="82" strokeLinecap="round" />
-                <path d="M 400,0 C 400,90 160,90 160,200 C 160,310 640,310 640,420 C 640,530 160,530 160,640 C 160,750 640,750 640,860 C 640,920 500,930 400,980" stroke="#0f172a" strokeWidth="72" strokeLinecap="round" />
-                <path d="M 400,0 C 400,90 160,90 160,200 C 160,310 640,310 640,420 C 640,530 160,530 160,640 C 160,750 640,750 640,860 C 640,920 500,930 400,980" stroke="#ffffff" strokeWidth="3" strokeDasharray="14 14" strokeLinecap="round" opacity="0.9" className="animate-road-flow" />
+            <div className="relative w-[1000px] h-[980px] mx-auto hidden md:block">
+              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 1000 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#f8fafc" strokeWidth="82" strokeLinecap="round" />
+                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#0f172a" strokeWidth="72" strokeLinecap="round" />
+                <path d="M 500,0 C 500,90 180,90 180,200 C 180,310 820,310 820,420 C 820,530 180,530 180,640 C 180,750 820,750 820,860 C 820,920 620,930 500,980" stroke="#ffffff" strokeWidth="3" strokeDasharray="14 14" strokeLinecap="round" opacity="0.9" className="animate-road-flow" />
 
-                <line x1="160" y1="200" x2="420" y2="200" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="160" cy="200" r="8" fill="#f43f5e" className="animate-pulse" />
-                <circle cx="420" cy="200" r="4" fill="#f43f5e" />
+                <line x1="180" y1="200" x2="640" y2="200" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4 4" />
+                <circle cx="180" cy="200" r="8" fill="#f43f5e" className="animate-pulse" />
+                <circle cx="640" cy="200" r="4" fill="#f43f5e" />
 
-                <line x1="640" y1="420" x2="380" y2="420" stroke="#6366f1" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="640" cy="420" r="8" fill="#6366f1" className="animate-pulse" />
-                <circle cx="380" cy="420" r="4" fill="#6366f1" />
+                <line x1="820" y1="420" x2="360" y2="420" stroke="#6366f1" strokeWidth="2" strokeDasharray="4 4" />
+                <circle cx="820" cy="420" r="8" fill="#6366f1" className="animate-pulse" />
+                <circle cx="360" cy="420" r="4" fill="#6366f1" />
 
-                <line x1="160" y1="640" x2="420" y2="640" stroke="#0891b2" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="160" cy="640" r="8" fill="#0891b2" className="animate-pulse" />
-                <circle cx="420" cy="640" r="4" fill="#0891b2" />
+                <line x1="180" y1="640" x2="640" y2="640" stroke="#0891b2" strokeWidth="2" strokeDasharray="4 4" />
+                <circle cx="180" cy="640" r="8" fill="#0891b2" className="animate-pulse" />
+                <circle cx="640" cy="640" r="4" fill="#0891b2" />
 
-                <line x1="640" y1="860" x2="380" y2="860" stroke="#f59e0b" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="640" cy="860" r="8" fill="#f59e0b" className="animate-pulse" />
-                <circle cx="380" cy="860" r="4" fill="#f59e0b" />
+                <line x1="820" y1="860" x2="360" y2="860" stroke="#f59e0b" strokeWidth="2" strokeDasharray="4 4" />
+                <circle cx="820" cy="860" r="8" fill="#f59e0b" className="animate-pulse" />
+                <circle cx="360" cy="860" r="4" fill="#f59e0b" />
               </svg>
 
               <div className="absolute inset-0 z-10 pointer-events-none">
                 {data.syllabus.map((step, index) => {
                   const phaseNumber = `0${index + 1}`;
                   const positions = [
-                    { left: "420px", top: "110px", width: "350px" },
-                    { left: "30px", top: "330px", width: "350px" },
-                    { left: "420px", top: "550px", width: "350px" },
-                    { left: "30px", top: "770px", width: "350px" }
+                    { left: "640px", top: "110px", width: "360px" },
+                    { left: "0px", top: "330px", width: "360px" },
+                    { left: "640px", top: "550px", width: "360px" },
+                    { left: "0px", top: "770px", width: "360px" }
                   ];
 
                   return (
@@ -773,7 +756,7 @@ const CoursePython = () => {
         </section>
 
         {/* ENROLLMENT INQUIRY FORM */}
-        <section className="bg-white py-24 md:py-32 relative z-20 border-b border-slate-100">
+        <section id="admission-form" className="bg-white py-24 md:py-32 relative z-20 border-b border-slate-100">
           <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
             <FadeUp className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-slate-50 border border-slate-200 shadow-sm rounded-full mb-6">

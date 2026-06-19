@@ -11,25 +11,25 @@ const courses = [
     title: "Artificial Intelligence & Machine Learning", 
     description: "Transition from theoretical statistical models to production-ready scalable machine learning architecture. Master PyTorch, HuggingFace, LLMs, and real-time MLOps.",
     badge: "100% Job Guarantee",
-    duration: "12 Months | Offline",
+    duration: "4 Months | Offline",
     slug: "aiml",
     accentColor: "bg-yellow-400"
   },
   { 
     lottieSrc: "https://lottie.host/06033814-2006-429c-8b0c-577c9b1909bd/my12XuGEfT.lottie",
-    title: "Java Fullstack & AIML (Hybrid)", 
-    description: "A 12-month Recruit → Train → Deploy program with 100% job guarantee through Google consortium partners. Java backend, modern frontend, and applied AI/ML modules.",
+    title: "Java Fullstack & Cloud Development", 
+    description: "Transform from a programmer to an enterprise software architect. Master Java microservices, Docker clusters, AWS cloud networks, and automated CI/CD pipelines.",
     badge: "Internship Opportunity",
-    duration: "12 Months | Hybrid",
+    duration: "4 Months | Offline",
     slug: "java-fullstack-aiml",
     accentColor: "bg-yellow-400 text-slate-900"
   },
   { 
     lottieSrc: "https://lottie.host/26eb5c2a-9772-4a83-85f7-22f8d61d8ca4/gfSgdQCJX4.lottie", 
     title: "Python Fullstack Development", 
-    description: "Frontend: HTML, CSS, JS, React | Backend: Python, Django/Flask | Database: MySQL/PostgreSQL",
-    badge: "Internship",
-    duration: "3 Months | Offline",
+    description: "Build production-grade applications from scratch. Master React frontends, scalable Django backends, PostgreSQL databases, and Retrieval-Augmented Generation (RAG) AI integrations.",
+    badge: "Job Placement Support",
+    duration: "4 Months | Offline",
     slug: "python-fullstack",
     accentColor: "bg-yellow-400 text-slate-900"
   },

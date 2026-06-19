@@ -13,6 +13,10 @@ import op12 from '../assets/op12.png';
 import op13 from '../assets/op13.png';
 import vrif from '../assets/vrif.png';
 import VTU_Logo from '../assets/VTU-Logo.webp';
+import davangereLogo from '../assets/davangereunivercityimag.jpg';
+import ltsuLogo from '../assets/LTsu-nn-150x150.png';
+import jyothyLogo from '../assets/jyothy-150x150.png';
+import eastWestLogo from '../assets/east-west-150x150.png';
 
 const partnerLogos = [
   { name: "Goushiya", logo: op2 },
@@ -21,8 +25,10 @@ const partnerLogos = [
   { name: "Mysuru Royal", logo: op5 },
   { name: "Veerappa", logo: op6 },
   { name: "Vivekananda", logo: op7 },
-  { name: "JNTU Hyderabad", logo: op10},
   { name: "NPSS", logo: op11 },
+  { name: "LTSU", logo: ltsuLogo },
+  { name: "Jyothy Institute", logo: jyothyLogo },
+  { name: "East West Group", logo: eastWestLogo },
 ];
 
 const officialPartners = [
@@ -31,45 +37,50 @@ const officialPartners = [
   { name: 'VRIF', logo: vrif },
   { name: 'L&T', logo: op1 },
   { name: "VTU", logo: VTU_Logo },
+  { name: 'Davangere University', logo: davangereLogo },
 ];
 
 const PartnersSection = () => {
   return (
-    <section className="py-16 bg-secondary overflow-hidden">
-      <div className="container mx-auto px-4 mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary text-center"> MOE Partners</h2>
+    <section className="py-20 bg-[#F4F4F6] border-t border-b border-gray-200/60 overflow-hidden">
+      {/* Our Clients Section */}
+      <div className="container mx-auto px-4 mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center tracking-tight"> Our Clients </h2>
+        <div className="w-12 h-1 bg-[#FF6B00] mx-auto mt-3"></div>
       </div>
-      <div className="relative">
-        <div className="flex flex-wrap justify-center gap-6">
+      <div className="relative max-w-7xl mx-auto px-4 mb-20">
+        <div className="flex flex-wrap justify-center gap-4">
           {officialPartners.map((partner) => (
             <div
               key={partner.name}
-              className="w-28 h-28 bg-card rounded-lg shadow-sm flex items-center justify-center p-3 transition-transform duration-500 ease-out hover:-translate-y-1 hover:shadow-xl"
+              className="w-24 h-24 md:w-28 md:h-28 bg-white border border-gray-200/65 rounded-full shadow-sm flex items-center justify-center p-3.5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md hover:border-gray-300 overflow-hidden"
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain scale-[1.25] transition-all duration-300"
               />
             </div>
           ))}
         </div>
       </div>
 
-      <div className="container mx-auto px-4 mt-16 mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary text-center">Academic Partners</h2>
+      {/* Academic Partners Section */}
+      <div className="container mx-auto px-4 mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center tracking-tight">Academic Partners</h2>
+        <div className="w-12 h-1 bg-[#FF6B00] mx-auto mt-3"></div>
       </div>
       <div className="relative">
         <div className="flex animate-scroll">
           {[...partnerLogos, ...partnerLogos].map((partner, i) => (
             <div
               key={`academic-${partner.name}-${i}`}
-              className="flex-shrink-0 mx-4 w-28 h-28 bg-card rounded-lg shadow-sm flex items-center justify-center p-3"
+              className="flex-shrink-0 mx-3 w-24 h-24 md:w-28 md:h-28 bg-white border border-gray-200/65 rounded-full shadow-sm flex items-center justify-center p-3.5 transition-all duration-300 hover:border-gray-350 overflow-hidden"
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain scale-[1.25] transition-all duration-300"
               />
             </div>
           ))}

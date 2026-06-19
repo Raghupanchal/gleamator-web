@@ -1,26 +1,32 @@
-import { MonitorSmartphone, DollarSign, Briefcase, ArrowRight } from "lucide-react";
+import React from "react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import AnimatedSection from "./AnimatedSection";
+import skillTrainingImg from "@/assets/skill training.jpg";
+import itServicesImg from "@/assets/19947.jpg";
+import hrServicesImg from "@/assets/hr services.jpg";
 
 const services = [
   {
-    icon: MonitorSmartphone,
-    title: "Skill Development & Training",
-    description: "We train individuals and teams with the practical, industry-ready skills needed to perform, adapt, and excel in today's fast-evolving workplace.",
+    title: "Skill Development & Training.",
+    description: "We offer hands-on internships that turn learning into real-world skills and career readiness.",
     path: "/services/skill-development",
+    image: skillTrainingImg,
+    fit: "contain"
   },
   {
-    icon: DollarSign,
-    title: "IT Services",
+    title: "IT Services architecture.",
     description: "We design, implement, and maintain the technology your business runs on—from networks to software to day-to-day support.",
     path: "/services/it-services",
+    image: itServicesImg,
+    fit: "cover"
   },
   {
-    icon: Briefcase,
-    title: "HR Services",
+    title: "HR Services.",
     description: "We help you find the right people, streamline HR processes, and build aligned, motivated teams that drive performance and long-term growth.",
     path: "/services/hr-services",
-  },
+    image: hrServicesImg,
+    fit: "cover"
+  }
 ];
 
 const ServicesSection = () => {
@@ -31,54 +37,62 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="py-20 bg-[#F8FAFC]">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="services-wrapper -mt-24 relative z-10 max-w-7xl mx-auto">
-          <style>{`
-            @media (max-width: 640px) {
-              .services-wrapper { padding: 1.5rem 0 2.5rem; }
-              .services-bubble { display: block; }
-            }
-          `}</style>
+    <section id="services" className="bg-[#F4F4F6] py-24 min-h-screen flex flex-col justify-center">
+      <div className="container mx-auto px-4 max-w-[1400px]">
 
-          <span className="services-bubble small" aria-hidden />
-          <span className="services-bubble med" aria-hidden />
-          <span className="services-bubble large" aria-hidden />
+        {/* Section Header - Gap Fixed here (reduced padding and margins) */}
+        <div className="mb-10 border-b border-gray-300 pb-4 flex items-end justify-between">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+            Our Services
+          </h2>
+          <span className="hidden md:block text-gray-500 font-bold text-xs uppercase tracking-[0.15em]">
+            Select a pathway
+          </span>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-10 relative">
-            {services.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <AnimatedSection key={s.title} delay={i * 0.15}>
-                  <div
-                    onClick={() => handleServiceClick(s.path)}
-                    role="button"
-                    tabIndex={0}
-                    className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-6 sm:p-8 lg:p-10 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 group h-full flex flex-col cursor-pointer border border-[#E2E8F0] hover:-translate-y-2 relative overflow-hidden active:scale-95"
-                  >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFF7ED] rounded-bl-full -z-10 group-hover:scale-125 transition-transform duration-700 opacity-0 group-hover:opacity-100" />
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {services.map((s, i) => {
 
-                    <div className="w-20 h-20 lg:w-24 lg:h-24 mx-auto mb-8 rounded-[1.25rem] bg-[#F8FAFC] flex items-center justify-center group-hover:bg-[#FFF7ED] transition-colors duration-500 shadow-sm border border-[#E2E8F0] group-hover:border-[#FDBA74]">
-                      <Icon className="w-10 h-10 lg:w-12 lg:h-12 text-[#334155] group-hover:text-[#EA580C] transition-colors duration-500 stroke-[1.5]" />
-                    </div>
+            return (
+              <div
+                key={s.title}
+                onClick={() => handleServiceClick(s.path)}
+                role="button"
+                tabIndex={0}
+                className="group flex flex-col bg-white rounded-none border border-gray-200/50 shadow-sm hover:shadow-2xl hover:shadow-orange-500/5 hover:border-[#FF6B00]/30 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden cursor-pointer"
+              >
+                {/* Top Image Banner */}
+                <div className="relative w-full h-[240px] overflow-hidden bg-white rounded-none">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className={`w-full h-full ${s.fit === "contain" ? "object-contain" : "object-cover"} object-center transition-transform duration-1000 ease-out group-hover:scale-110`}
+                  />
+                </div>
 
-                    <h3 className="text-xl lg:text-2xl font-extrabold text-[#0F172A] mb-4 leading-tight">
+                {/* Bottom Content Area */}
+                <div className="p-6 lg:p-8 flex flex-col flex-grow justify-between min-h-[220px]">
+                  <div className="mb-6">
+                    <h3 className="text-xl lg:text-2xl font-extrabold tracking-tight text-gray-900 mb-3 group-hover:text-[#FF6B00] transition-colors duration-300">
                       {s.title}
                     </h3>
-                    <p className="text-[#475569] text-sm lg:text-base leading-relaxed flex-grow mb-8">
+                    <p className="text-xs lg:text-sm leading-relaxed text-gray-600 font-medium">
                       {s.description}
                     </p>
-
-                    <div className="mt-auto w-full">
-                      <button className="w-full py-4 px-6 rounded-xl bg-[#F8FAFC] text-[#0F172A] font-bold text-sm uppercase tracking-wider border border-[#E2E8F0] flex items-center justify-center gap-3 transition-all duration-300 group-hover:border-[#EA580C] group-hover:text-[#EA580C] group-hover:bg-[#FFF7ED] shadow-sm">
-                        Explore Service
-                      </button>
-                    </div>
                   </div>
-                </AnimatedSection>
-              );
-            })}
-          </div>
+
+                  {/* Action Link (Beautiful Premium Learn More Button) */}
+                  <div className="pt-4 border-t border-gray-100">
+                    <span className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#FF6B00] text-white text-sm font-bold rounded-none shadow-sm transition-all duration-300 group-hover:bg-[#E05E00] group-hover:shadow-[0_4px_20px_rgba(255,107,0,0.35)]">
+                      Learn More
+                      <ArrowRight className="w-4 h-4 transition-transform duration-500 ease-out group-hover:translate-x-2" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
