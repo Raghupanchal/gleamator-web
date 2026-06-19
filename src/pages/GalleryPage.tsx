@@ -21,6 +21,7 @@ import image7 from "@/assets/image-7.jpeg";
 import gleamatoropening from "@/assets/gleamatoropening.jpeg";
 import imgDash from "@/assets/img--.jpeg";
 import img000 from "@/assets/img-000.jpeg";
+import deepikaaImg from "@/assets/deepikaa..jpeg";
 
 const galleryImages = [
   { id: 1, src: campusVisit, caption: "Campus visit" },
@@ -44,6 +45,7 @@ const galleryImages = [
   { id: 18, src: image7, caption: "Gleamator and University Partnership" },
   { id: 19, src: gleamatoropening, caption: "Gleamator Opening Ceremony" },
   { id: 22, src: img000, caption: "Media Coverage of University Partnership" },
+  { id: 23, src: deepikaaImg, caption: "Trusted & Futuristic Skill Development & IT Consultancy Firm of the Year 2025 - Great Indian Startup Awards" },
 ];
 
 const GalleryPage = () => {
