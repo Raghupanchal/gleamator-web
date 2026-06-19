@@ -514,9 +514,9 @@ const CourseJava = () => {
           </div>
 
           <div className="container mx-auto px-4 sm:px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
 
-              <div className="flex flex-col gap-6 relative z-20">
+              <div className="flex flex-col gap-6 relative z-20 order-2 lg:order-1">
                 <FadeUp delay={0.1}>
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-white shadow-sm rounded-full w-max">
                     <Trophy size={16} className="text-red-500" />
@@ -565,7 +565,7 @@ const CourseJava = () => {
               </div>
 
               {/* Right Side Orbit Visualizer */}
-              <FadeUp delay={0.2} className="relative w-full flex justify-center mt-12 lg:mt-0">
+              <FadeUp delay={0.2} className="relative w-full flex justify-center mt-12 lg:mt-0 order-1 lg:order-2">
                 <CloudDevOpsOrbit />
               </FadeUp>
 

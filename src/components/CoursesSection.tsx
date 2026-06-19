@@ -7,17 +7,16 @@ import AnimatedSection from "./AnimatedSection";
 
 const courses = [
   { 
-    image: course1, 
-    title: "Recruit-Train & Deploy Program", 
-    description: "A 12-month industry-driven Recruit, Train & Deploy program that offers 100% job guarantee with Google and its consortium companies.",
+    lottieSrc: "https://lottie.host/1f9264f9-c360-4e24-8131-23524eb199d7/fClNZgQC1i.lottie",
+    title: "Artificial Intelligence & Machine Learning", 
+    description: "Transition from theoretical statistical models to production-ready scalable machine learning architecture. Master PyTorch, HuggingFace, LLMs, and real-time MLOps.",
     badge: "100% Job Guarantee",
     duration: "12 Months | Offline",
-    slug: "recruit-train-deploy",
+    slug: "aiml",
     accentColor: "bg-yellow-400"
   },
   { 
-    // Updated: Java Fullstack + AIML program (replaced Applied AI card)
-    lottieSrc: "https://lottie.host/1f9264f9-c360-4e24-8131-23524eb199d7/fClNZgQC1i.lottie",
+    lottieSrc: "https://lottie.host/06033814-2006-429c-8b0c-577c9b1909bd/my12XuGEfT.lottie",
     title: "Java Fullstack & AIML (Hybrid)", 
     description: "A 12-month Recruit → Train → Deploy program with 100% job guarantee through Google consortium partners. Java backend, modern frontend, and applied AI/ML modules.",
     badge: "Internship Opportunity",
@@ -67,7 +66,7 @@ const CoursesSection = () => {
               {/* Card Container */}
               <div 
                 className="bg-[#fefdf9] dark:bg-slate-800/80 rounded-xl flex flex-col overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200/60 dark:border-slate-700 transition-all duration-300 group h-full transform hover:-translate-y-2 cursor-pointer"
-                onClick={() => handleApplyNow(course.title)}
+                onClick={() => handleApplyNow(course.slug || course.title)}
               >
                 
                 {/* Media Container */}

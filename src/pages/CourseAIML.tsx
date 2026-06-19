@@ -439,10 +439,10 @@ const CourseAIML = () => {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4.5rem_4.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_75%,transparent_100%)] pointer-events-none" />
 
           <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-            <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
               {/* Text Side */}
-              <div className="lg:col-span-7 flex flex-col gap-8 relative z-20">
+              <div className="lg:col-span-7 flex flex-col gap-8 relative z-20 order-2 lg:order-1">
 
 
                 <FadeUp delay={0.2}>
@@ -478,7 +478,7 @@ const CourseAIML = () => {
               </div>
 
               {/* Visualization Side */}
-              <FadeUp delay={0.3} className="lg:col-span-5 relative w-full flex justify-center mt-12 lg:mt-0">
+              <FadeUp delay={0.3} className="lg:col-span-5 relative w-full flex justify-center mt-12 lg:mt-0 order-1 lg:order-2">
                 <motion.div
                   animate={{ x: mousePos.x, y: mousePos.y }}
                   transition={{ type: "spring", stiffness: 45, damping: 25 }}
