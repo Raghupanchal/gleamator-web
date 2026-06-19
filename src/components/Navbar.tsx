@@ -56,33 +56,43 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-background border-t px-4 py-4 space-y-3">
-          <Link to="/" className="block text-sm font-medium text-accent" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link to="/about" className="block text-sm font-medium text-foreground" onClick={() => setIsOpen(false)}>About Us</Link>
-          <button onClick={() => setServicesOpen(!servicesOpen)} className="flex items-center gap-1 text-sm font-medium text-foreground">
-            Services <ChevronDown className="w-4 h-4" />
-          </button>
-          {servicesOpen && (
-            <div className="pl-4 space-y-2">
-              <Link to="/services/skill-development" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>Skill Development</Link>
-              <Link to="/services/it-services" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>IT Services</Link>
-              <Link to="/services/hr-services" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>HR Services</Link>
-            </div>
-          )}
+        <div className="md:hidden bg-background border-t px-4 py-5 space-y-4 shadow-inner">
+          <Link to="/" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${isActive("/") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Home</Link>
+          <Link to="/about" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${isActive("/about") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>About Us</Link>
+          
+          <div>
+            <button onClick={() => setServicesOpen(!servicesOpen)} className="w-full flex items-center justify-between py-2 px-3 rounded-lg text-base font-semibold text-foreground hover:bg-muted/50 transition-colors outline-none">
+              <span>Services</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${servicesOpen ? "rotate-180 text-accent" : ""}`} />
+            </button>
+            {servicesOpen && (
+              <div className="pl-6 pr-2 py-2 border-l border-accent/20 my-1 space-y-2">
+                <Link to="/services/skill-development" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>Skill Development</Link>
+                <Link to="/services/it-services" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>IT Services</Link>
+                <Link to="/services/hr-services" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>HR Services</Link>
+              </div>
+            )}
+          </div>
 
-          <button onClick={() => setCoursesOpen(!coursesOpen)} className="flex items-center gap-1 text-sm font-medium text-foreground">
-            Courses <ChevronDown className="w-4 h-4" />
-          </button>
-          {coursesOpen && (
-            <div className="pl-4 space-y-2">
-              <Link to="/courses/python-fullstack" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>Python Fullstack</Link>
-              <Link to="/courses/java-fullstack-aiml" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>Java Fullstack & AIML</Link>
-              <Link to="/courses/aiml" className="block text-sm text-muted-foreground" onClick={() => setIsOpen(false)}>AIML</Link>
-            </div>
-          )}
-          <Link to="/gallery" className="block text-sm font-medium text-foreground" onClick={() => setIsOpen(false)}>Gallery</Link>
-          <Link to="/contact" className="block text-sm font-medium text-foreground" onClick={() => setIsOpen(false)}>Contact Us</Link>
-          <Link to="/internships" className="inline-block bg-accent text-accent-foreground px-6 py-2 rounded text-sm font-semibold" onClick={() => setIsOpen(false)}>APPLY NOW</Link>
+          <div>
+            <button onClick={() => setCoursesOpen(!coursesOpen)} className="w-full flex items-center justify-between py-2 px-3 rounded-lg text-base font-semibold text-foreground hover:bg-muted/50 transition-colors outline-none">
+              <span>Courses</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${coursesOpen ? "rotate-180 text-accent" : ""}`} />
+            </button>
+            {coursesOpen && (
+              <div className="pl-6 pr-2 py-2 border-l border-accent/20 my-1 space-y-2">
+                <Link to="/courses/python-fullstack" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>Python Fullstack</Link>
+                <Link to="/courses/java-fullstack-aiml" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>Java Fullstack & AIML</Link>
+                <Link to="/courses/aiml" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>AIML</Link>
+              </div>
+            )}
+          </div>
+          
+          <Link to="/gallery" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${isActive("/gallery") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Gallery</Link>
+          <Link to="/contact" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${isActive("/contact") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Contact Us</Link>
+          <div className="pt-2">
+            <Link to="/internships" className="block text-center bg-accent text-accent-foreground py-3 rounded-lg text-base font-bold shadow-md hover:bg-orange/90 transition-colors" onClick={() => setIsOpen(false)}>APPLY NOW</Link>
+          </div>
         </div>
       )}
     </nav>

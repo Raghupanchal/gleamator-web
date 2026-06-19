@@ -553,7 +553,7 @@ const CourseAIML = () => {
                 <FadeUp delay={0.2}>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] text-slate-900 text-left">
                     <span className="block">Artificial Intelligence</span>
-                    <span className="flex items-center justify-center my-3 text-brand-gradient text-3xl md:text-5xl lg:text-6xl">&</span>
+                    <span className="flex items-center justify-start my-3 text-brand-gradient text-3xl md:text-5xl lg:text-6xl">&</span>
                     <span className="text-brand-gradient block">
                       Machine Learning.
                     </span>
@@ -642,8 +642,8 @@ const CourseAIML = () => {
               </p>
             </div>
 
-            {/* --- Unified Serpentine Wavy Path (Scrollable on Mobile, Grid on Desktop) --- */}
-            <div className="w-full overflow-x-auto scrollbar-none pb-4">
+            {/* --- Unified Serpentine Wavy Path (Hidden on Mobile, Grid on Desktop) --- */}
+            <div className="hidden md:block w-full overflow-x-auto scrollbar-none pb-4">
               <div className="relative py-8 md:py-12 min-w-[980px] lg:min-w-0 lg:w-full">
 
                 {/* Dynamic Curved Connection Lines */}
@@ -732,6 +732,43 @@ const CourseAIML = () => {
                 </div>
 
               </div>
+            </div>
+
+            {/* Mobile Vertical Timeline Layout */}
+            <div className="md:hidden space-y-6 mt-8">
+              {syllabus.map((step, index) => {
+                const phaseNumber = step.phase;
+                return (
+                  <FadeUp key={index} delay={index * 0.1} className="w-full">
+                    <div className={`relative bg-white border ${step.border} p-6 rounded-3xl shadow-md overflow-hidden group`}>
+                      <div className={`absolute top-0 inset-x-0 h-1.5 ${step.color.replace('text-', 'bg-')}`} />
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider ${step.bg} ${step.color} border ${step.border} uppercase`}>
+                          {step.duration}
+                        </span>
+                        <span className="text-xl font-black text-slate-200 select-none">
+                          {phaseNumber}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-slate-900 leading-tight mb-3">
+                        {step.title}
+                      </h3>
+                      <ul className="space-y-2.5">
+                        {step.items.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2.5">
+                            <div className="mt-1 shrink-0 w-4 h-4 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200">
+                              <CheckCircle2 size={10} className="text-slate-400" />
+                            </div>
+                            <span className="text-slate-600 text-xs font-medium leading-relaxed">
+                              {item}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </FadeUp>
+                );
+              })}
             </div>
 
           </div>
