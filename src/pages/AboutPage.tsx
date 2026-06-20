@@ -213,13 +213,39 @@ const AboutPage = () => {
           </AnimatedSection>
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <AnimatedSection direction="left"> 
-              <div className="overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 ease-out hover:scale-105 hover:shadow-xl">
-                <img src={awardTrophy} alt="The Great Indian Startup Awards trophy" className="w-full h-full object-cover min-h-96" loading="lazy" width={640} height={800} />
+              <div className="group bg-white border-[10px] border-white p-3 rounded-[2rem] shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_25px_60px_rgba(255,107,0,0.18)] transition-all duration-500 hover:-translate-y-2 flex flex-col items-center">
+                {/* Mount Frame container */}
+                <div className="w-full aspect-[4/5] rounded-2xl border border-slate-100 bg-[#FAF9F5] flex items-center justify-center p-4 overflow-hidden relative shadow-inner">
+                  <img 
+                    src={awardTrophy} 
+                    alt="The Great Indian Startup Awards trophy" 
+                    className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105" 
+                    loading="lazy" 
+                    width={640} 
+                    height={800} 
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none rounded-2xl" />
+                </div>
+                <p className="mt-4 text-xs font-bold uppercase tracking-wider text-slate-400">Great Indian Startup Awards</p>
+                <p className="mt-1 text-sm font-semibold text-slate-800 text-center">Award Trophy - GREAT INDIAN STARTUP AWARDS 2025</p>
               </div>
             </AnimatedSection>
             <AnimatedSection direction="right" delay={0.15}>
-              <div className="overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 ease-out hover:scale-105 hover:shadow-xl">
-                <img src={awardCertificate} alt="Certificate of Recognition" className="w-full h-full object-cover min-h-96" loading="lazy" width={640} height={800} />
+              <div className="group bg-white border-[10px] border-white p-3 rounded-[2rem] shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_25px_60px_rgba(255,107,0,0.18)] transition-all duration-500 hover:-translate-y-2 flex flex-col items-center">
+                {/* Mount Frame container */}
+                <div className="w-full aspect-[4/5] rounded-2xl border border-slate-100 bg-[#FAF9F5] flex items-center justify-center p-4 overflow-hidden relative shadow-inner">
+                  <img 
+                    src={awardCertificate} 
+                    alt="Certificate of Recognition" 
+                    className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105" 
+                    loading="lazy" 
+                    width={640} 
+                    height={800} 
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none rounded-2xl" />
+                </div>
+                <p className="mt-4 text-xs font-bold uppercase tracking-wider text-slate-400">Gleamator Technologies Recognition</p>
+                <p className="mt-1 text-sm font-semibold text-slate-800 text-center">Certificate of Excellence - ग्रेट इंडियन स्टार्टअप अवार्ड्स</p>
               </div>
             </AnimatedSection>
           </div>
