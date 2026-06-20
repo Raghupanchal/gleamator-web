@@ -35,6 +35,11 @@ import gicon from "@/assets/gicon.png";
 import classroomActionImg from "@/assets/Classroom action.jpg";
 import it2Img from "@/assets/it2.jpeg";
 import gleamatorClassImg from "@/assets/gleamatorclass.png";
+import plc1 from "@/assets/plc1.png";
+import plc2 from "@/assets/plc2.png";
+import plc3 from "@/assets/plc3.png";
+import plc4 from "@/assets/plc4.png";
+import plc5 from "@/assets/plc5.png";
 const videoProject3 = "https://www.w3schools.com/html/mov_bbb.mp4";
 
 // --- Utility Components ---
@@ -276,6 +281,14 @@ const CoursePython = () => {
       stats: { primary: "500+", label: "PROJECTS", rating: "Interactive", access: "Industry Ready" },
       videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
     }
+  ];
+
+  const placementsData = [
+    { name: "Khasab Adhil Ahamed", photo: plc1, quote: "The mentorship and enterprise codebase training helped me crack my software engineering role at Acuver." },
+    { name: "Vinay Kumar G R", photo: plc2, quote: "Gleamator's hands-on project reviews were key to getting placed at both Infanion and TCS." },
+    { name: "Danie M", photo: plc3, quote: "I gained real-world development experience that made me confident during my interview loops at Acuver." },
+    { name: "Hemanth S", photo: plc4, quote: "Securing a Software Engineer role at Accenture with 6.28 LPA was possible due to the mock interview cycles." },
+    { name: "Vikram Raj", photo: plc5, quote: "Learning AI and Data Science from scratch at Gleamator completely transformed my career trajectory." }
   ];
 
   const data = {
@@ -992,72 +1005,68 @@ const CoursePython = () => {
           </div>
         </section>
 
-        {/* ALUMNI REVIEWS */}
-        <section className="py-24 md:py-32 bg-[#FAFAFC] relative overflow-hidden border-t border-slate-100">
-          <style>{`
-            @keyframes marqueeScroll {
+        {/* --- PLACEMENTS SUCCESS MARQUEE --- */}
+        <section className="py-20 md:py-28 bg-[#FAFAFC] relative overflow-hidden border-y border-slate-100">
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes placementsMarquee {
               0% { transform: translateX(0); }
-              100% { transform: translateX(calc(-50% - 12px)); }
+              100% { transform: translateX(calc(-50% - 8px)); }
             }
-            .animate-marquee-loop {
+            .animate-placements-marquee {
               display: flex;
               width: max-content;
-              animation: marqueeScroll 30s linear infinite;
+              animation: placementsMarquee 25s linear infinite;
             }
-            .animate-marquee-loop:hover {
+            .animate-placements-marquee:hover {
               animation-play-state: paused;
             }
-          `}</style>
+          ` }} />
+          {/* Aesthetic Background Elements */}
+          <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.2] pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-indigo-50/50 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
-          <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
-            <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-              <FadeUp>
-                <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
-                  Student Success & Reviews
-                </h2>
-                <p className="text-slate-500 text-lg md:text-xl font-medium leading-relaxed">
-                  Discover how our intensive curriculum transformed careers and helped engineers land roles at top-tier companies.
-                </p>
-              </FadeUp>
+          <div className="container mx-auto px-6 max-w-7xl relative z-10">
+            {/* Top Column - Centered Clean Header */}
+            <div className="max-w-3xl mx-auto text-center flex flex-col items-center space-y-4 mb-14">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                Student Success <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">& Reviews</span>
+              </h2>
+              {/* Indigo Wave Line */}
+              <svg className="w-28 h-2 text-indigo-500 mt-1" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              </svg>
+              <p className="text-slate-500 font-medium text-base leading-relaxed pt-2">
+                Discover how our intensive curriculum transformed careers and helped engineers land roles at top-tier companies.
+              </p>
             </div>
 
-            {/* Horizontal Infinite Marquee Wrapper */}
-            <div className="relative w-full overflow-hidden py-4 select-none">
-              {/* Fade masks */}
+            {/* Bottom Column - Full Width Premium Success Cards (Auto Scroll Marquee) */}
+            <div className="w-full overflow-hidden relative select-none">
+              {/* Gradient Masks */}
               <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
               <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
 
-              <div className="flex gap-6 animate-marquee-loop">
-                {/* Double the list for infinite looping */}
-                {[...data.successStories, ...data.successStories].map((story, i) => (
-                  <div
-                    key={i}
-                    className="w-[280px] md:w-[320px] flex-shrink-0 bg-white border border-slate-200 shadow-sm hover:shadow-2xl p-7 md:p-8 rounded-none flex flex-col justify-between h-[280px] transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden"
-                  >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-slate-50 to-transparent rounded-bl-full -z-10" />
-                    <div>
-                      <div className="flex justify-between items-start mb-6">
-                        <div className="flex gap-1.5">
-                          {[...Array(5)].map((_, idx) => (
-                            <Star key={idx} size={14} className="fill-amber-400 text-amber-400" />
-                          ))}
-                        </div>
-                        <Quote size={24} className="text-slate-100 group-hover:text-indigo-100 transition-colors duration-500" />
+              <div className="animate-placements-marquee gap-6 py-2">
+                {[...placementsData, ...placementsData, ...placementsData].map((alumni, idx) => (
+                  <div key={idx} className="shrink-0 group">
+                    <motion.div
+                      whileHover={{ y: -8, scale: 1.03 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                      className="relative w-[270px] h-[320px] rounded-[1.5rem] overflow-hidden shadow-lg border border-slate-200/50 bg-white cursor-pointer"
+                    >
+                      <img
+                        src={alumni.photo}
+                        alt={alumni.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      {/* Hover Overlay displaying a quote review */}
+                      <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-6 text-center">
+                        <Quote className="w-8 h-8 text-indigo-500/80 mx-auto mb-3" />
+                        <p className="text-white text-xs font-semibold italic leading-relaxed">
+                          "{alumni.quote}"
+                        </p>
                       </div>
-                      <p className="text-slate-600 font-medium leading-relaxed mb-4 italic text-sm line-clamp-4">
-                        "{story.quote}"
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-4 pt-5 border-t border-slate-100 mt-auto">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${story.bg} flex items-center justify-center text-white font-extrabold text-sm shadow-md`}>
-                        {story.initials}
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="font-bold text-slate-900 text-base">{story.name}</span>
-                        <span className="text-xs font-semibold text-slate-500 tracking-wide mt-0.5">{story.role}</span>
-                      </div>
-                    </div>
+                    </motion.div>
                   </div>
                 ))}
               </div>

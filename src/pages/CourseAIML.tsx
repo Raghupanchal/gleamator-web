@@ -26,14 +26,16 @@ import {
   User,
   Mail,
   Phone,
-  GraduationCap
+  GraduationCap,
+  Quote
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import gicon from "@/assets/gicon.png";
-import leader1 from "@/assets/leader-1.webp";
-import leader2 from "@/assets/leader-2.webp";
-import leader3 from "@/assets/leader-3.png";
-import director2 from "@/assets/director-2.webp";
+import plc1 from "@/assets/plc1.png";
+import plc2 from "@/assets/plc2.png";
+import plc3 from "@/assets/plc3.png";
+import plc4 from "@/assets/plc4.png";
+import plc5 from "@/assets/plc5.png";
 
 // --- Global Styles & Brand Accent Themes ---
 const globalStyles = `
@@ -533,10 +535,11 @@ const CourseAIML = () => {
   ];
 
   const placementsData = [
-    { name: "Aditya Varma", company: "NeuralTech", role: "ML Engineer", package: "14 LPA", prev: "Data Analyst", hike: "+120%", grad: "from-[#22d3ee] to-[#0284c7]", photo: leader1 },
-    { name: "Priya Nair", company: "InsightAnalytics", role: "Data Scientist", package: "11.5 LPA", prev: "Fresher", hike: "New", grad: "from-[#f97316] to-[#db2777]", photo: director2 },
-    { name: "Arjun Das", company: "AI Solutions", role: "Applied Scientist", package: "13 LPA", prev: "Backend Dev", hike: "+180%", grad: "from-[#34d399] to-[#059669]", photo: leader2 },
-    { name: "Tanvi Shah", company: "AutoScale", role: "MLOps Specialist", package: "12 LPA", prev: "System Eng", hike: "+140%", grad: "from-[#818cf8] to-[#4f46e5]", photo: leader3 }
+    { name: "Khasab Adhil Ahamed", photo: plc1, quote: "The mentorship and enterprise codebase training helped me crack my software engineering role at Acuver." },
+    { name: "Vinay Kumar G R", photo: plc2, quote: "Gleamator's hands-on project reviews were key to getting placed at both Infanion and TCS." },
+    { name: "Danie M", photo: plc3, quote: "I gained real-world development experience that made me confident during my interview loops at Acuver." },
+    { name: "Hemanth S", photo: plc4, quote: "Securing a Software Engineer role at Accenture with 6.28 LPA was possible due to the mock interview cycles." },
+    { name: "Vikram Raj", photo: plc5, quote: "Learning AI and Data Science from scratch at Gleamator completely transformed my career trajectory." }
   ];
 
   return (
@@ -929,82 +932,50 @@ const CourseAIML = () => {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-indigo-50/50 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
           <div className="container mx-auto px-6 max-w-7xl relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-              
-              {/* Left Column - Centered Clean Header */}
-              <div className="lg:col-span-3 flex flex-col items-start text-left space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 shadow-sm rounded-full cursor-default">
-                  <Sparkles size={12} className="text-rose-500" />
-                  <span className="text-[9px] font-black tracking-widest uppercase text-slate-500">Real Success Stories</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
-                  Celebrating Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-indigo-600">Placed Students</span>
-                </h2>
-                {/* Emerald Wave Line */}
-                <svg className="w-28 h-2 text-emerald-500 mt-1" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-                </svg>
-                <p className="text-slate-500 font-medium text-sm leading-relaxed pt-2">
-                  From intensive training to successful careers — see how our students secured placements at key engineering units globally.
-                </p>
+            {/* Top Column - Centered Clean Header */}
+            <div className="max-w-3xl mx-auto text-center flex flex-col items-center space-y-4 mb-14">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                Student Success <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-indigo-600">& Reviews</span>
+              </h2>
+              {/* Emerald Wave Line */}
+              <svg className="w-28 h-2 text-emerald-500 mt-1" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              </svg>
+              <p className="text-slate-500 font-medium text-base leading-relaxed pt-2">
+                Discover how our intensive curriculum transformed careers and helped engineers land roles at top-tier companies.
+              </p>
+            </div>
+
+            {/* Bottom Column - Full Width Premium Success Cards (Auto Scroll Marquee) */}
+            <div className="w-full overflow-hidden relative select-none">
+              {/* Gradient Masks */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
+
+              <div className="animate-placements-marquee gap-6 py-2">
+                {[...placementsData, ...placementsData, ...placementsData].map((alumni, idx) => (
+                  <div key={idx} className="shrink-0 group">
+                    <motion.div
+                      whileHover={{ y: -8, scale: 1.03 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                      className="relative w-[270px] h-[320px] rounded-[1.5rem] overflow-hidden shadow-lg border border-slate-200/50 bg-white cursor-pointer"
+                    >
+                      <img
+                        src={alumni.photo}
+                        alt={alumni.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      {/* Hover Overlay displaying a quote review */}
+                      <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-6 text-center">
+                        <Quote className="w-8 h-8 text-[#FF6B00]/80 mx-auto mb-3" />
+                        <p className="text-white text-xs font-semibold italic leading-relaxed">
+                          "{alumni.quote}"
+                        </p>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
               </div>
-
-              {/* Right Column - Premium Success Cards (Auto Scroll Marquee) */}
-              <div className="lg:col-span-9 overflow-hidden relative select-none">
-                {/* Gradient Masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
-
-                <div className="animate-placements-marquee gap-4 py-2">
-                  {[...placementsData, ...placementsData].map((alumni, idx) => (
-                    <div key={idx} className="shrink-0">
-                      <motion.div
-                        whileHover={{ y: -4, scale: 1.01 }}
-                        transition={{ type: "spring", stiffness: 350, damping: 18 }}
-                        className={`relative w-[240px] h-[210px] rounded-[1.5rem] bg-gradient-to-b ${alumni.grad} p-5 flex flex-col justify-between overflow-hidden shadow-md border border-white/10 group`}
-                      >
-                        {/* Organic Background Pattern Overlay */}
-                        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1.5px,transparent_1.5px)] [background-size:16px_16px] pointer-events-none" />
-                        <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-white/10 blur-xl pointer-events-none" />
-
-                        {/* Top: Header details */}
-                        <div className="relative z-10 text-left flex flex-col items-start">
-                          <h4 className="font-extrabold text-sm text-white tracking-wide uppercase leading-tight">
-                            {alumni.name}
-                          </h4>
-                          <span className="text-[8px] font-black text-white/70 uppercase tracking-widest mt-0.5">
-                            {alumni.role}
-                          </span>
-
-                          {/* Styled handwritten 'from' badge */}
-                          <div className="flex items-center gap-1.5 mt-2 bg-black/15 px-2 py-0.5 rounded-full border border-white/5">
-                            <span className="text-[9px] italic font-serif text-white/80 leading-none">from</span>
-                            <span className="text-[7px] font-black uppercase tracking-wider text-white bg-white/10 px-1.5 py-0.5 rounded-full leading-none">
-                              {alumni.prev}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Bottom Info: Logo & Salary Package */}
-                        <div className="relative z-10 flex items-end justify-between mt-auto">
-                          {/* Logo Pill on bottom-left */}
-                          <div className="bg-white border border-slate-100/50 px-2.5 py-1 rounded-lg text-slate-950 text-[9px] font-black shadow-sm uppercase tracking-tight">
-                            {alumni.company}
-                          </div>
-
-                          {/* Package Detail */}
-                          <div className="bg-white/95 backdrop-blur-sm shadow-sm rounded-lg px-2.5 py-1 flex flex-col items-center border border-slate-100/50">
-                            <span className="text-[5px] font-black text-slate-400 uppercase tracking-widest leading-none">Package</span>
-                            <span className="text-[10px] font-black text-slate-900 mt-0.5 leading-none">{alumni.package}</span>
-                          </div>
-                        </div>
-
-                      </motion.div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
             </div>
           </div>
         </section>

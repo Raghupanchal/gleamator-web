@@ -40,6 +40,11 @@ import gicon from "@/assets/gicon.png";
 import classroomActionImg from "@/assets/Classroom action.jpg";
 import it2Img from "@/assets/it2.jpeg";
 import gleamatorClassImg from "@/assets/gleamatorclass.png";
+import plc1 from "@/assets/plc1.png";
+import plc2 from "@/assets/plc2.png";
+import plc3 from "@/assets/plc3.png";
+import plc4 from "@/assets/plc4.png";
+import plc5 from "@/assets/plc5.png";
 
 // --- Utility Components ---
 const FadeUp = ({ children, delay = 0, className = "", duration = 0.6 }) => (
@@ -491,6 +496,14 @@ const CourseJava = () => {
     { name: "React.js", desc: "Dynamic State & Modern SPA UI", icon: <MonitorPlay />, color: "text-cyan-500", bg: "bg-cyan-50", hoverBorder: "hover:border-cyan-300 hover:shadow-cyan-500/10 hover:bg-cyan-50/10" },
     { name: "PostgreSQL", desc: "Relational Queries & Indexing", icon: <Database />, color: "text-blue-500", bg: "bg-blue-50", hoverBorder: "hover:border-blue-300 hover:shadow-blue-500/10 hover:bg-blue-50/10" },
     { name: "Docker & AWS", desc: "Cloud Networks & CI/CD Pipelines", icon: <TerminalSquare />, color: "text-orange-500", bg: "bg-orange-50", hoverBorder: "hover:border-orange-300 hover:shadow-orange-500/10 hover:bg-orange-50/10" },
+  ];
+
+  const placementsData = [
+    { name: "Khasab Adhil Ahamed", photo: plc1, quote: "The mentorship and enterprise codebase training helped me crack my software engineering role at Acuver." },
+    { name: "Vinay Kumar G R", photo: plc2, quote: "Gleamator's hands-on project reviews were key to getting placed at both Infanion and TCS." },
+    { name: "Danie M", photo: plc3, quote: "I gained real-world development experience that made me confident during my interview loops at Acuver." },
+    { name: "Hemanth S", photo: plc4, quote: "Securing a Software Engineer role at Accenture with 6.28 LPA was possible due to the mock interview cycles." },
+    { name: "Vikram Raj", photo: plc5, quote: "Learning AI and Data Science from scratch at Gleamator completely transformed my career trajectory." }
   ];
 
   return (
@@ -1012,6 +1025,75 @@ const CourseJava = () => {
                   </ul>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- PLACEMENTS SUCCESS MARQUEE --- */}
+        <section className="py-20 md:py-28 bg-[#FAFAFC] relative overflow-hidden border-y border-slate-100">
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes placementsMarquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(calc(-50% - 8px)); }
+            }
+            .animate-placements-marquee {
+              display: flex;
+              width: max-content;
+              animation: placementsMarquee 25s linear infinite;
+            }
+            .animate-placements-marquee:hover {
+              animation-play-state: paused;
+            }
+          ` }} />
+          {/* Aesthetic Background Elements */}
+          <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.2] pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-indigo-50/50 to-transparent rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="container mx-auto px-6 max-w-7xl relative z-10">
+            {/* Top Column - Centered Clean Header */}
+            <div className="max-w-3xl mx-auto text-center flex flex-col items-center space-y-4 mb-14">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                Student Success <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-600">& Reviews</span>
+              </h2>
+              {/* Emerald Wave Line */}
+              <svg className="w-28 h-2 text-emerald-500 mt-1" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              </svg>
+              <p className="text-slate-500 font-medium text-base leading-relaxed pt-2">
+                Discover how our intensive curriculum transformed careers and helped engineers land roles at top-tier companies.
+              </p>
+            </div>
+
+            {/* Bottom Column - Full Width Premium Success Cards (Auto Scroll Marquee) */}
+            <div className="w-full overflow-hidden relative select-none">
+              {/* Gradient Masks */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
+
+              <div className="animate-placements-marquee gap-6 py-2">
+                {[...placementsData, ...placementsData, ...placementsData].map((alumni, idx) => (
+                  <div key={idx} className="shrink-0 group">
+                    <motion.div
+                      whileHover={{ y: -8, scale: 1.03 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                      className="relative w-[270px] h-[320px] rounded-[1.5rem] overflow-hidden shadow-lg border border-slate-200/50 bg-white cursor-pointer"
+                    >
+                      <img
+                        src={alumni.photo}
+                        alt={alumni.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      {/* Hover Overlay displaying a quote review */}
+                      <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-6 text-center">
+                        <Quote className="w-8 h-8 text-red-500/80 mx-auto mb-3" />
+                        <p className="text-white text-xs font-semibold italic leading-relaxed">
+                          "{alumni.quote}"
+                        </p>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
