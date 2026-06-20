@@ -40,7 +40,7 @@ import plc2 from "@/assets/plc2.png";
 import plc3 from "@/assets/plc3.png";
 import plc4 from "@/assets/plc4.png";
 import plc5 from "@/assets/plc5.png";
-const videoProject3 = "https://www.w3schools.com/html/mov_bbb.mp4";
+import videoProject3 from "@/assets/Video Project 3.mp4";
 
 // --- Utility Components ---
 
@@ -713,8 +713,8 @@ const CoursePython = () => {
             {/* Featured Video Player Showcase */}
             <div className="max-w-4xl mx-auto mb-16">
               <FadeUp delay={0.1}>
-                <div className="bg-white border border-slate-200/80 rounded-none shadow-2xl overflow-hidden p-3 md:p-5 group hover:shadow-indigo-100/30 transition-all duration-500">
-                  <div className="relative aspect-video rounded-none overflow-hidden bg-slate-950 shadow-inner group/video">
+                <div className="bg-white border border-slate-200/80 rounded-[2rem] shadow-2xl overflow-hidden p-3 md:p-5 group hover:shadow-indigo-100/30 transition-all duration-500">
+                  <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-inner group/video">
                     <video
                       src={videoProject3}
                       controls
@@ -744,7 +744,7 @@ const CoursePython = () => {
                 onClick={() => {
                   setCurrentSlide((prev) => (prev === 0 ? mediaSlides.length - 1 : prev - 1));
                 }}
-                className="absolute left-2 md:left-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-none border border-slate-200 bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-lg hover:scale-110"
+                className="absolute left-2 md:left-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-lg hover:scale-110"
               >
                 <ChevronLeft size={24} />
               </button>
@@ -771,7 +771,7 @@ const CoursePython = () => {
                         }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         transition={{ type: "spring", stiffness: 260, damping: 24 }}
-                        className="absolute w-[85vw] max-w-[320px] md:max-w-[640px] h-full rounded-none border border-slate-200/80 shadow-2xl overflow-hidden bg-white flex flex-col cursor-grab active:cursor-grabbing group"
+                        className="absolute w-[85vw] max-w-[320px] md:max-w-[640px] h-full rounded-3xl border border-slate-200/80 shadow-2xl overflow-hidden bg-white flex flex-col cursor-grab active:cursor-grabbing group"
                         drag="x"
                         dragConstraints={{ left: 0, right: 0 }}
                         dragElastic={0.2}
@@ -811,7 +811,7 @@ const CoursePython = () => {
                 onClick={() => {
                   setCurrentSlide((prev) => (prev === mediaSlides.length - 1 ? 0 : prev + 1));
                 }}
-                className="absolute right-2 md:right-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-none border border-slate-200 bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-lg hover:scale-110"
+                className="absolute right-2 md:right-8 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-lg hover:scale-110"
               >
                 <ChevronRight size={24} />
               </button>
@@ -823,7 +823,7 @@ const CoursePython = () => {
                 <button
                   key={i}
                   onClick={() => { setCurrentSlide(i); }}
-                  className={`h-2 md:h-2.5 rounded-none transition-all duration-300 ${i === currentSlide ? "w-8 md:w-10 bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]" : "w-2 md:w-2.5 bg-slate-300 hover:bg-slate-400"}`}
+                  className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? "w-8 md:w-10 bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]" : "w-2 md:w-2.5 bg-slate-300 hover:bg-slate-400"}`}
                 />
               ))}
             </div>

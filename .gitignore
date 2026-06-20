@@ -29,3 +29,6 @@ dist-ssr
 *.sw?
 # Ignore local clone directory
 gleamator-clone-main/
+
+# Ignore large video assets
+src/assets/Video Project 3.mp4
