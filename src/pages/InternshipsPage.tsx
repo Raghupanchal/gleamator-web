@@ -51,7 +51,7 @@ const InternshipsPage = () => {
           dob: formData.dob,
           aadhar: formData.aadhar,
           year_of_passing: formData.yearOfPassing,
-          looking_for: formData.lookingFor,
+          looking_for: selectedCourse ? `${formData.lookingFor} (${selectedCourse})` : formData.lookingFor,
         },
       ]);
 

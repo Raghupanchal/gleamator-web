@@ -34,6 +34,8 @@ import {
   TrendingUp
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 // Image assets
 import gicon from "@/assets/gicon.png";
@@ -417,14 +419,31 @@ const CourseJava = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (formData.name && formData.email && formData.mobile && formData.qualification) {
-      setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
-        setFormData({ name: "", email: "", mobile: "", qualification: "" });
-      }, 4000);
+      const { error } = await supabase
+        .from("applications")
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.mobile,
+            qualification: formData.qualification,
+            looking_for: "Java Full Stack with Cloud & DevOps",
+          },
+        ]);
+
+      if (error) {
+        toast.error("Failed to submit application: " + error.message);
+      } else {
+        toast.success("Application submitted successfully!");
+        setFormSubmitted(true);
+        setTimeout(() => {
+          setFormSubmitted(false);
+          setFormData({ name: "", email: "", mobile: "", qualification: "" });
+        }, 4000);
+      }
     }
   };
 

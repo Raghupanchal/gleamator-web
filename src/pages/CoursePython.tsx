@@ -31,6 +31,8 @@ import {
   Server
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 import gicon from "@/assets/gicon.png";
 import classroomActionImg from "@/assets/Classroom action.jpg";
 import it2Img from "@/assets/it2.jpeg";
@@ -244,15 +246,31 @@ const CoursePython = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (formData.name && formData.email && formData.mobile && formData.qualification) {
-      // Form payload is ready with formData.course included to differentiate Python leads
-      setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
-        setFormData({ name: "", email: "", mobile: "", qualification: "", course: "Python Fullstack Engineering" });
-      }, 4000);
+      const { error } = await supabase
+        .from("applications")
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.mobile,
+            qualification: formData.qualification,
+            looking_for: formData.course,
+          },
+        ]);
+
+      if (error) {
+        toast.error("Failed to submit application: " + error.message);
+      } else {
+        toast.success("Application submitted successfully!");
+        setFormSubmitted(true);
+        setTimeout(() => {
+          setFormSubmitted(false);
+          setFormData({ name: "", email: "", mobile: "", qualification: "", course: "Python Fullstack Engineering" });
+        }, 4000);
+      }
     }
   };
 

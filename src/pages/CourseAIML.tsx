@@ -30,6 +30,8 @@ import {
   Quote
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 import gicon from "@/assets/gicon.png";
 import plc1 from "@/assets/plc1.png";
 import plc2 from "@/assets/plc2.png";
@@ -501,14 +503,31 @@ const CourseAIML = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.mobile) {
-      setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
-        setFormData({ name: "", email: "", mobile: "", qualification: "" });
-      }, 4000);
+    if (formData.name && formData.email && formData.mobile && formData.qualification) {
+      const { error } = await supabase
+        .from("applications")
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.mobile,
+            qualification: formData.qualification,
+            looking_for: "Artificial Intelligence & Machine Learning",
+          },
+        ]);
+
+      if (error) {
+        toast.error("Failed to submit application: " + error.message);
+      } else {
+        toast.success("Application submitted successfully!");
+        setFormSubmitted(true);
+        setTimeout(() => {
+          setFormSubmitted(false);
+          setFormData({ name: "", email: "", mobile: "", qualification: "" });
+        }, 4000);
+      }
     }
   };
 
