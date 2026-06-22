@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { ArrowRight, Users, School, Briefcase, Award, Lightbulb, BookOpen, Rocket, Shield } from "lucide-react";
+import { ArrowRight, Users, School, Briefcase, Award, Lightbulb, BookOpen, Rocket, Shield, TrendingUp, ShieldCheck } from "lucide-react";
 import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import landingImage from "@/assets/landing.png";
 import mobLandingImage from "@/assets/mob_landing.png";
@@ -330,103 +330,112 @@ const HeroSection = () => {
           </div>
 
           {/* Stats Segment (Centered Panel, 3-column row, side by side with dividers) */}
-          <div className="w-full max-w-md sm:max-w-2xl md:max-w-3xl mx-auto bg-white/70 backdrop-blur-md rounded-2xl border border-blue-50/50 shadow-md p-4 sm:p-5 mt-6 mb-2">
+          <div className="w-full max-w-md sm:max-w-2xl md:max-w-3xl mx-auto bg-white/95 backdrop-blur-md rounded-2xl border border-slate-100 shadow-lg shadow-slate-100/30 p-4 sm:p-5 mt-6 mb-6">
             <div className="grid grid-cols-3 divide-x divide-slate-100">
               {/* Stat 1 */}
               <div className="flex flex-col items-center text-center px-1">
-                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mb-1.5 shadow-sm">
-                  <Users className="w-4 h-4 text-blue-500" />
+                <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center mb-2 shadow-sm border border-blue-100/50">
+                  <Users className="w-5 h-5 text-blue-600" />
                 </div>
-                <p className="font-display text-sm sm:text-base font-extrabold text-slate-900 leading-none">
+                <p className="font-display text-sm sm:text-base font-black text-slate-900 leading-none">
                   <AnimatedCounter valueText="15,000+" delay={0.1} />
                 </p>
-                <p className="font-display text-slate-500 text-[8px] sm:text-[9px] font-semibold tracking-normal mt-1 leading-tight">
-                  Youth Skilled Across India
+                <p className="font-display text-slate-500 text-[9px] sm:text-xs font-semibold tracking-normal mt-1 leading-tight">
+                  <span className="xs:hidden">Youth Skilled</span>
+                  <span className="hidden xs:inline">Youth Skilled Across India</span>
                 </p>
               </div>
 
               {/* Stat 2 */}
               <div className="flex flex-col items-center text-center px-1">
-                <div className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center mb-1.5 shadow-sm">
-                  <School className="w-4 h-4 text-[#FF6B00]" />
+                <div className="w-9 h-9 rounded-full bg-orange-50 flex items-center justify-center mb-2 shadow-sm border border-orange-100/50">
+                  <School className="w-5 h-5 text-[#FF6B00]" />
                 </div>
-                <p className="font-display text-sm sm:text-base font-extrabold text-slate-900 leading-none">
+                <p className="font-display text-sm sm:text-base font-black text-slate-900 leading-none">
                   <AnimatedCounter valueText="100+" delay={0.2} />
                 </p>
-                <p className="font-display text-slate-500 text-[8px] sm:text-[9px] font-semibold tracking-normal mt-1 leading-tight">
-                  Training Centers
+                <p className="font-display text-slate-500 text-[9px] sm:text-xs font-semibold tracking-normal mt-1 leading-tight">
+                  <span className="xs:hidden">Centers</span>
+                  <span className="hidden xs:inline">Training Centers</span>
                 </p>
               </div>
 
               {/* Stat 3 */}
               <div className="flex flex-col items-center text-center px-1">
-                <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center mb-1.5 shadow-sm">
-                  <Briefcase className="w-4 h-4 text-purple-500" />
+                <div className="w-9 h-9 rounded-full bg-purple-50 flex items-center justify-center mb-2 shadow-sm border border-purple-100/50">
+                  <Briefcase className="w-5 h-5 text-purple-500" />
                 </div>
-                <p className="font-display text-sm sm:text-base font-extrabold text-slate-900 leading-none">
+                <p className="font-display text-sm sm:text-base font-black text-slate-900 leading-none">
                   <AnimatedCounter valueText="50+" delay={0.3} />
                 </p>
-                <p className="font-display text-slate-500 text-[8px] sm:text-[9px] font-semibold tracking-normal mt-1 leading-tight">
-                  Hiring Companies
+                <p className="font-display text-slate-500 text-[9px] sm:text-xs font-semibold tracking-normal mt-1 leading-tight">
+                  <span className="xs:hidden">Companies</span>
+                  <span className="hidden xs:inline">Hiring Companies</span>
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Row 2 Features (2x2 grid on mobile, 4 columns in a row on tablet) */}
-          <div className="w-full max-w-md sm:max-w-2xl md:max-w-3xl mx-auto bg-white/70 backdrop-blur-md rounded-2xl border border-blue-50/50 shadow-md p-4 mb-4 mt-2">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 divide-y-0 sm:divide-x divide-slate-100/50">
-              {/* Feature 1 */}
-              <div className="flex flex-col items-center text-center">
-                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mb-1.5 shadow-sm text-blue-600">
-                  <Lightbulb className="w-4 h-4" />
-                </div>
-                <p className="font-display text-xs font-bold text-blue-600 leading-snug">
-                  Practical Learning
-                </p>
-                <p className="font-display text-[9px] text-slate-500 font-medium leading-tight mt-0.5 px-1">
-                  Learn by doing real industry projects
-                </p>
-              </div>
+          {/* Core Values Heading */}
+          <div className="text-center mt-6 mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight relative inline-block">
+              Our Core Values
+              <span className="block w-12 h-1 bg-[#FF6B00] mx-auto mt-2.5 rounded-full" />
+            </h2>
+          </div>
 
-              {/* Feature 2 */}
-              <div className="flex flex-col items-center text-center sm:pl-2">
-                <div className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center mb-1.5 shadow-sm text-[#FF6B00]">
-                  <BookOpen className="w-4 h-4" />
-                </div>
-                <p className="font-display text-xs font-bold text-[#FF6B00] leading-snug">
-                  Expert Mentorship
-                </p>
-                <p className="font-display text-[9px] text-slate-500 font-medium leading-tight mt-0.5 px-1">
-                  Personal guidance from industry experts
-                </p>
+          {/* Row 2 Features (Separate premium cards, 2 columns on mobile, 4 columns on tablet) */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-md sm:max-w-2xl md:max-w-3xl mx-auto w-full mb-4">
+            {/* Feature 1: Practical Learning */}
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-4 sm:p-5 flex flex-col items-start text-left transition-all hover:shadow-lg">
+              <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 mb-3 shadow-sm border border-blue-100/50">
+                <Lightbulb className="w-5 h-5" />
               </div>
+              <h3 className="font-display font-extrabold text-[#0F172A] text-xs sm:text-sm mb-1">
+                Practical Learning
+              </h3>
+              <p className="font-display text-slate-500 text-[10px] leading-normal font-medium">
+                Learn by doing real industry projects.
+              </p>
+            </div>
 
-              {/* Feature 3 */}
-              <div className="flex flex-col items-center text-center sm:pl-2">
-                <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center mb-1.5 shadow-sm text-purple-600">
-                  <Rocket className="w-4 h-4" />
-                </div>
-                <p className="font-display text-xs font-bold text-purple-600 leading-snug">
-                  Career Growth
-                </p>
-                <p className="font-display text-[9px] text-slate-500 font-medium leading-tight mt-0.5 px-1">
-                  Placements, internships & opportunities
-                </p>
+            {/* Feature 2: Expert Mentorship */}
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-4 sm:p-5 flex flex-col items-start text-left transition-all hover:shadow-lg">
+              <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center text-[#FF6B00] mb-3 shadow-sm border border-orange-100/50">
+                <BookOpen className="w-5 h-5" />
               </div>
+              <h3 className="font-display font-extrabold text-[#0F172A] text-xs sm:text-sm mb-1">
+                Expert Mentorship
+              </h3>
+              <p className="font-display text-slate-500 text-[10px] leading-normal font-medium">
+                Personal guidance from industry experts.
+              </p>
+            </div>
 
-              {/* Feature 4 */}
-              <div className="flex flex-col items-center text-center sm:pl-2">
-                <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center mb-1.5 shadow-sm text-green-600">
-                  <Shield className="w-4 h-4" />
-                </div>
-                <p className="font-display text-xs font-bold text-green-600 leading-snug">
-                  Future Ready Skills
-                </p>
-                <p className="font-display text-[9px] text-slate-500 font-medium leading-tight mt-0.5 px-1">
-                  Industry-focused training for tomorrow's jobs
-                </p>
+            {/* Feature 3: Career Growth */}
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-4 sm:p-5 flex flex-col items-start text-left transition-all hover:shadow-lg">
+              <div className="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 mb-3 shadow-sm border border-purple-100/50">
+                <TrendingUp className="w-5 h-5" />
               </div>
+              <h3 className="font-display font-extrabold text-[#0F172A] text-xs sm:text-sm mb-1">
+                Career Growth
+              </h3>
+              <p className="font-display text-slate-500 text-[10px] leading-normal font-medium">
+                Placements and internship support.
+              </p>
+            </div>
+
+            {/* Feature 4: Future Ready Skills */}
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-4 sm:p-5 flex flex-col items-start text-left transition-all hover:shadow-lg">
+              <div className="w-9 h-9 rounded-xl bg-green-50 flex items-center justify-center text-green-600 mb-3 shadow-sm border border-green-100/50">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="font-display font-extrabold text-[#0F172A] text-xs sm:text-sm mb-1">
+                Future Ready Skills
+              </h3>
+              <p className="font-display text-slate-500 text-[10px] leading-normal font-medium">
+                Industry-focused training for tomorrow.
+              </p>
             </div>
           </div>
         </div>
