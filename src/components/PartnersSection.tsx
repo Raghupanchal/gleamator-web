@@ -134,7 +134,7 @@ const PartnersSection = () => {
         </p>
       </div>
 
-      <div className="relative overflow-hidden w-full select-none py-6">
+      <div className="relative overflow-hidden w-full select-none py-8">
         {/* Premium Edge Fade Masks */}
         <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#F4F4F6] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#F4F4F6] to-transparent z-10 pointer-events-none" />
@@ -143,12 +143,12 @@ const PartnersSection = () => {
           {[...placements, ...placements, ...placements, ...placements].map((student, i) => (
             <div
               key={`placed-${i}`}
-              className="flex-shrink-0 mx-3 w-[120px] h-[142px] sm:w-[140px] sm:h-[166px] bg-white border border-gray-200/80 rounded-[1.25rem] shadow-[0_6px_16px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_35px_rgba(255,107,0,0.15)] hover:scale-[1.05]"
+              className="flex-shrink-0 mx-4 w-[180px] h-[215px] sm:w-[240px] sm:h-[285px] bg-white border border-gray-200/80 rounded-[1.5rem] shadow-[0_8px_20px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 hover:-translate-y-2.5 hover:shadow-[0_25px_45px_rgba(255,107,0,0.18)] hover:scale-[1.04]"
             >
               <img
                 src={student.photo}
                 alt={student.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           ))}
