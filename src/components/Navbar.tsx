@@ -2,6 +2,43 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "@/assets/gleamator-logo.png";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Framer motion variants for mobile menu
+const menuContainerVariants = {
+  hidden: { opacity: 0, height: 0 },
+  show: {
+    opacity: 1,
+    height: "auto",
+    transition: {
+      height: { duration: 0.35, ease: "easeOut" },
+      opacity: { duration: 0.25 },
+      staggerChildren: 0.05,
+      delayChildren: 0.05
+    }
+  },
+  exit: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      height: { duration: 0.28, ease: "easeIn" },
+      opacity: { duration: 0.18 }
+    }
+  }
+};
+
+const menuItemVariants = {
+  hidden: { opacity: 0, x: -16 },
+  show: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { 
+      type: "spring", 
+      stiffness: 140, 
+      damping: 14 
+    } 
+  }
+};
 
 // Custom Python original SVG logo
 const PythonIcon = ({ idPrefix = "py" }: { idPrefix?: string }) => (
@@ -99,66 +136,115 @@ const Navbar = () => {
           APPLY NOW
         </Link>
 
-        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <motion.button 
+          whileTap={{ scale: 0.92 }} 
+          className="md:hidden p-2 rounded-lg text-foreground hover:bg-muted focus:outline-none transition-colors"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={isOpen ? "close" : "menu"}
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isOpen ? <X className="w-6 h-6 text-accent" /> : <Menu className="w-6 h-6" />}
+            </motion.div>
+          </AnimatePresence>
+        </motion.button>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-background border-t px-4 py-5 space-y-4 shadow-inner">
-          <Link to="/" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${isActive("/") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Home</Link>
-          <Link to="/about" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${isActive("/about") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>About Us</Link>
-          
-          <div>
-            <button onClick={() => setServicesOpen(!servicesOpen)} className="w-full flex items-center justify-between py-2 px-3 rounded-lg text-base font-semibold text-foreground hover:bg-muted/50 transition-colors outline-none">
-              <span>Services</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${servicesOpen ? "rotate-180 text-accent" : ""}`} />
-            </button>
-            {servicesOpen && (
-              <div className="pl-6 pr-2 py-2 border-l border-accent/20 my-1 space-y-2">
-                <Link to="/services/skill-development" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>Skill Development</Link>
-                <Link to="/services/it-services" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>IT Services</Link>
-                <Link to="/services/hr-services" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>HR Services</Link>
-              </div>
-            )}
-          </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={menuContainerVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="md:hidden bg-background border-t px-4 py-5 space-y-4 shadow-inner overflow-hidden"
+          >
+            <motion.div variants={menuItemVariants}>
+              <Link to="/" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-all active:scale-[0.98] ${isActive("/") ? "bg-accent/10 text-accent font-bold" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Home</Link>
+            </motion.div>
+            
+            <motion.div variants={menuItemVariants}>
+              <Link to="/about" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-all active:scale-[0.98] ${isActive("/about") ? "bg-accent/10 text-accent font-bold" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>About Us</Link>
+            </motion.div>
+            
+            <motion.div variants={menuItemVariants}>
+              <button onClick={() => setServicesOpen(!servicesOpen)} className="w-full flex items-center justify-between py-2 px-3 rounded-lg text-base font-semibold text-foreground hover:bg-muted/50 transition-colors outline-none">
+                <span>Services</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${servicesOpen ? "rotate-180 text-accent" : ""}`} />
+              </button>
+              <AnimatePresence>
+                {servicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.22, ease: "easeInOut" }}
+                    className="pl-6 pr-2 py-1.5 border-l border-accent/20 my-1 space-y-2 overflow-hidden"
+                  >
+                    <Link to="/services/skill-development" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-all" onClick={() => setIsOpen(false)}>Skill Development</Link>
+                    <Link to="/services/it-services" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-all" onClick={() => setIsOpen(false)}>IT Services</Link>
+                    <Link to="/services/hr-services" className="block text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-all" onClick={() => setIsOpen(false)}>HR Services</Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
 
-          <div>
-            <button onClick={() => setCoursesOpen(!coursesOpen)} className="w-full flex items-center justify-between py-2 px-3 rounded-lg text-base font-semibold text-foreground hover:bg-muted/50 transition-colors outline-none">
-              <span>Courses</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${coursesOpen ? "rotate-180 text-accent" : ""}`} />
-            </button>
-            {coursesOpen && (
-              <div className="pl-6 pr-2 py-2 border-l border-accent/20 my-1 space-y-2">
-                <Link to="/courses/python-fullstack" className="flex items-center gap-3 text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>
-                  <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-200/60 flex items-center justify-center p-1.5 flex-shrink-0">
-                    <PythonIcon idPrefix="py-mobile" />
-                  </div>
-                  <span>Python Fullstack</span>
-                </Link>
-                <Link to="/courses/java-fullstack-aiml" className="flex items-center gap-3 text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>
-                  <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-200/60 flex items-center justify-center p-1.5 flex-shrink-0">
-                    <JavaIcon />
-                  </div>
-                  <span>Java Fullstack & AIML</span>
-                </Link>
-                <Link to="/courses/aiml" className="flex items-center gap-3 text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>
-                  <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-200/60 flex items-center justify-center p-1.5 flex-shrink-0">
-                    <AimlIcon />
-                  </div>
-                  <span>AIML</span>
-                </Link>
-              </div>
-            )}
-          </div>
-          
-          <Link to="/gallery" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${isActive("/gallery") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Gallery</Link>
-          <Link to="/contact" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-colors ${isActive("/contact") ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Contact Us</Link>
-          <div className="pt-2">
-            <Link to="/internships" className="block text-center bg-accent text-accent-foreground py-3 rounded-lg text-base font-bold shadow-md hover:bg-orange/90 transition-colors" onClick={() => setIsOpen(false)}>APPLY NOW</Link>
-          </div>
-        </div>
-      )}
+            <motion.div variants={menuItemVariants}>
+              <button onClick={() => setCoursesOpen(!coursesOpen)} className="w-full flex items-center justify-between py-2 px-3 rounded-lg text-base font-semibold text-foreground hover:bg-muted/50 transition-colors outline-none">
+                <span>Courses</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${coursesOpen ? "rotate-180 text-accent" : ""}`} />
+              </button>
+              <AnimatePresence>
+                {coursesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.22, ease: "easeInOut" }}
+                    className="pl-6 pr-2 py-1.5 border-l border-accent/20 my-1 space-y-2 overflow-hidden"
+                  >
+                    <Link to="/courses/python-fullstack" className="flex items-center gap-3 text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-all" onClick={() => setIsOpen(false)}>
+                      <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-200/60 flex items-center justify-center p-1.5 flex-shrink-0">
+                        <PythonIcon idPrefix="py-mobile" />
+                      </div>
+                      <span>Python Fullstack</span>
+                    </Link>
+                    <Link to="/courses/java-fullstack-aiml" className="flex items-center gap-3 text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-all" onClick={() => setIsOpen(false)}>
+                      <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-200/60 flex items-center justify-center p-1.5 flex-shrink-0">
+                        <JavaIcon />
+                      </div>
+                      <span>Java Fullstack & AIML</span>
+                    </Link>
+                    <Link to="/courses/aiml" className="flex items-center gap-3 text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-all" onClick={() => setIsOpen(false)}>
+                      <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-200/60 flex items-center justify-center p-1.5 flex-shrink-0">
+                        <AimlIcon />
+                      </div>
+                      <span>AIML</span>
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+            
+            <motion.div variants={menuItemVariants}>
+              <Link to="/gallery" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-all active:scale-[0.98] ${isActive("/gallery") ? "bg-accent/10 text-accent font-bold" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Gallery</Link>
+            </motion.div>
+            
+            <motion.div variants={menuItemVariants}>
+              <Link to="/contact" className={`block text-base font-semibold py-2 px-3 rounded-lg transition-all active:scale-[0.98] ${isActive("/contact") ? "bg-accent/10 text-accent font-bold" : "text-foreground hover:bg-muted/50"}`} onClick={() => setIsOpen(false)}>Contact Us</Link>
+            </motion.div>
+            
+            <motion.div variants={menuItemVariants} className="pt-2">
+              <Link to="/internships" className="block text-center bg-accent text-accent-foreground py-3 rounded-lg text-base font-bold shadow-md hover:bg-orange/90 active:scale-[0.98] transition-all" onClick={() => setIsOpen(false)}>APPLY NOW</Link>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
