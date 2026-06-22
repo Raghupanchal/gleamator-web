@@ -150,15 +150,19 @@ const AboutPage = () => {
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Leadership</h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {leadership.map((person, i) => (
               <AnimatedSection key={person.name} delay={i * 0.15}>
-                <div className="text-center bg-card rounded-2xl shadow-md p-8 transition-transform duration-500 ease-out hover:-translate-y-2 hover:shadow-2xl">
-                  <div className="w-52 h-52 mx-auto mb-6 rounded-full border-4 border-accent/30 overflow-hidden shadow-lg transition-transform duration-500 ease-out hover:scale-105">
-                    <img src={person.image} alt={person.name} className="w-full h-full object-cover" loading="lazy" width={512} height={512} />
+                <div className="group relative bg-[#F9F9FB] rounded-[24px] border border-slate-200/40 p-3 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 overflow-hidden flex flex-col justify-start">
+                  {/* Image Wrapper */}
+                  <div className="relative w-full aspect-[4/5] rounded-[18px] overflow-hidden bg-[#FAF6F2] flex items-center justify-center">
+                    <img src={person.image} alt={person.name} className="w-full h-full object-cover object-center scale-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.10]" loading="lazy" width={512} height={512} />
                   </div>
-                  <h3 className="font-bold text-accent text-xl mb-2">{person.name}</h3>
-                  <p className="text-muted-foreground text-sm font-medium">{person.role}</p>
+                  {/* Floating Text Badge overlapping bottom of image */}
+                  <div className="relative z-10 -mt-10 mx-2 bg-white rounded-[16px] border border-slate-100 shadow-md p-4 text-center">
+                    <h3 className="font-display font-extrabold text-[#0F172A] text-lg tracking-tight mb-1">{person.name}</h3>
+                    <p className="font-display text-slate-500 text-xs font-semibold tracking-wide">{person.role}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}
@@ -172,23 +176,22 @@ const AboutPage = () => {
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Directors</h2>
           </AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {directors.map((person, i) => {
-              const isRaghavendra = person.name === "Raghavendra";
-              return (
-                <AnimatedSection key={person.name} delay={i * 0.1}>
-                  <div className="text-center bg-card rounded-2xl shadow-md p-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl">
-                    <div className={`w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden shadow-lg transition-transform duration-500 ease-out hover:scale-110 flex items-center justify-center ${
-                      isRaghavendra ? "border border-blue-400 p-0.5 bg-white" : "border-3 border-accent/30"
-                    }`}>
-                      <img src={person.image} alt={person.name} className={`w-full h-full object-cover ${isRaghavendra ? "rounded-full" : ""}`} loading="lazy" width={512} height={512} />
-                    </div>
-                    <h3 className="font-bold text-accent text-base mb-1">{person.name}</h3>
-                    <p className="text-muted-foreground text-sm font-medium">{person.role}</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {directors.map((person, i) => (
+              <AnimatedSection key={person.name} delay={i * 0.1}>
+                <div className="group relative bg-[#F9F9FB] rounded-[24px] border border-slate-200/40 p-3 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 overflow-hidden flex flex-col justify-start">
+                  {/* Image Wrapper */}
+                  <div className="relative w-full aspect-[4/5] rounded-[18px] overflow-hidden bg-[#FAF6F2] flex items-center justify-center">
+                    <img src={person.image} alt={person.name} className="w-full h-full object-cover object-center scale-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.10]" loading="lazy" width={512} height={512} />
                   </div>
-                </AnimatedSection>
-              );
-            })}
+                  {/* Floating Text Badge overlapping bottom of image */}
+                  <div className="relative z-10 -mt-10 mx-2 bg-white rounded-[16px] border border-slate-100 shadow-md p-4 text-center">
+                    <h3 className="font-display font-extrabold text-[#0F172A] text-sm md:text-base tracking-tight mb-1">{person.name}</h3>
+                    <p className="font-display text-slate-500 text-[10px] md:text-xs font-semibold tracking-wide">{person.role}</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
