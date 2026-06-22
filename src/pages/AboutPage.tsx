@@ -13,7 +13,9 @@ import teamPhoto from "@/assets/team-photo.jpg";
 import collaborativeLearning from "@/assets/collaborative_learning.png";
 import awardTrophy from "@/assets/award-trophy.jpg";
 import awardCertificate from "@/assets/awards-certificate.jpg";
-import { Eye, Target, Layers, Globe, Settings, Users, Lightbulb, Heart, Linkedin, Mail } from "lucide-react";
+import { Eye, Target, Layers, Globe, Settings, Users, Lightbulb, Heart, Linkedin, Mail, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const values = [
   { icon: Layers, title: "Comprehensive Service Offerings", description: "We offer a wide range of services, including IT solutions, skill development, corporate training, and HR services. With everything under one roof, we simplify your organizational needs and eliminate the need for multiple service providers." },
@@ -72,6 +74,42 @@ const directors = [
 ];
 
 const AboutPage = () => {
+  const [activeLeader, setActiveLeader] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  // Auto-scroll effect: advances leader every 4 seconds, resets on activeLeader change to prevent abrupt changes during manual navigation.
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveLeader((prev) => (prev + 1) % leadership.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [activeLeader]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const currentTouch = e.targetTouches[0].clientX;
+    const diff = touchStart - currentTouch;
+
+    // Minimum distance to trigger swipe (50px)
+    if (diff > 50) {
+      // Swiped left, show next leader
+      setActiveLeader((prev) => (prev + 1) % leadership.length);
+      setTouchStart(null);
+    } else if (diff < -50) {
+      // Swiped right, show previous leader
+      setActiveLeader((prev) => (prev - 1 + leadership.length) % leadership.length);
+      setTouchStart(null);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStart(null);
+  };
+
   return (
     <Layout showPartners showCTA>
       <PageBanner subtitle="About Company" title="Gleamator Technologies" />
@@ -216,7 +254,7 @@ const AboutPage = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
-            <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-4xl md:text-6xl font-bold text-[#4aa5d9] mb-4 tracking-tight">
                 Our Team
               </h2>
@@ -226,7 +264,8 @@ const AboutPage = () => {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Desktop Grid Layout */}
+          <div className="hidden md:grid grid-cols-3 gap-8 max-w-6xl mx-auto">
             {leadership.map((person, i) => (
               <AnimatedSection key={person.name} delay={i * 0.15}>
                 <div className="group relative bg-[#FAF9F5] rounded-[2.2rem] border border-slate-100/80 shadow-[0_12px_35px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.07)] transition-all duration-500 hover:-translate-y-1.5 flex flex-col items-center text-center p-7 h-full overflow-hidden">
@@ -262,13 +301,172 @@ const AboutPage = () => {
                       {person.role}
                     </p>
 
-                    <p className="text-slate-500 text-[12.5px] leading-relaxed whitespace-pre-line text-left italic font-normal px-1 text-slate-500/90">
+                    <p className="text-slate-500 text-[12.5px] leading-relaxed whitespace-pre-line text-left italic font-normal px-1 text-slate-500/90 mb-6">
                       {person.description}
                     </p>
+                  </div>
+
+                  {/* Leadership Social Links */}
+                  <div className="relative z-10 flex gap-3.5 mt-auto justify-center">
+                    <a
+                      href={person.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${person.name} LinkedIn`}
+                      className="w-9 h-9 rounded-full bg-[#183059]/5 border border-[#183059]/10 hover:bg-[#183059] hover:text-white hover:scale-110 text-[#183059] flex items-center justify-center transition-all duration-300 shadow-sm"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={person.email}
+                      aria-label={`Email ${person.name}`}
+                      className="w-9 h-9 rounded-full bg-[#183059]/5 border border-[#183059]/10 hover:bg-[#183059] hover:text-white hover:scale-110 text-[#183059] flex items-center justify-center transition-all duration-300 shadow-sm"
+                    >
+                      <Mail className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </AnimatedSection>
             ))}
+          </div>
+
+          {/* Mobile Interactive Layout (With animations and swipe support) */}
+          <div className="block md:hidden max-w-sm mx-auto px-1">
+            {/* Quick Avatar Tab Selector */}
+            <div className="flex justify-center items-center gap-6 mb-8">
+              {leadership.map((person, idx) => (
+                <button
+                  key={person.name}
+                  onClick={() => setActiveLeader(idx)}
+                  className={`relative transition-all duration-500 rounded-full p-0.5 ${
+                    activeLeader === idx
+                      ? "ring-4 ring-offset-2 ring-offset-background ring-blue-400 scale-110"
+                      : "opacity-60 scale-90 hover:opacity-100"
+                  }`}
+                >
+                  <div className="w-12 h-12 rounded-full overflow-hidden border border-slate-200">
+                    <img
+                      src={person.image}
+                      alt={person.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {activeLeader === idx && (
+                    <motion.div
+                      layoutId="activeDot"
+                      className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-500 shadow-sm"
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Carousel Container with Arrows & Swipe Gestures */}
+            <div className="relative flex items-center justify-center w-full">
+              {/* Left Arrow */}
+              <button
+                onClick={() => setActiveLeader((prev) => (prev - 1 + leadership.length) % leadership.length)}
+                className="absolute left-[-16px] z-20 w-8 h-8 rounded-full bg-white border border-slate-100 flex items-center justify-center shadow-md text-slate-600 hover:text-blue-500 active:scale-95 transition-transform"
+                aria-label="Previous Team Member"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Card Container */}
+              <div 
+                className="w-full min-h-[460px]"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeLeader}
+                    initial={{ opacity: 0, x: 30, scale: 0.98 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -30, scale: 0.98 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="relative bg-[#FAF9F5] rounded-[2.2rem] border border-slate-100/90 shadow-[0_20px_50px_rgba(0,0,0,0.06)] flex flex-col items-center text-center p-6 h-full overflow-hidden"
+                  >
+                    {/* Decorative background shape in top right */}
+                    <div className="absolute top-0 right-0 w-36 h-36 bg-[#e3eef7] rounded-bl-[80px] pointer-events-none z-0" />
+
+                    {/* Leaf-shaped Image Container */}
+                    <div className="relative w-32 h-32 bg-white border-[5px] border-[#3f434c] rounded-[32px_0_32px_0] p-0.5 flex items-center justify-center shadow-sm z-10 mb-4">
+                      <img
+                        src={leadership[activeLeader].image}
+                        alt={leadership[activeLeader].name}
+                        className="w-full h-full object-cover rounded-[27px_0_27px_0]"
+                      />
+                    </div>
+
+                    {/* Divider line with dot */}
+                    <div className="flex items-center gap-3 w-full justify-center mb-3.5 z-10">
+                      <div className="h-[1px] w-8 bg-slate-200"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300"></div>
+                      <div className="h-[1px] w-8 bg-slate-200"></div>
+                    </div>
+
+                    {/* Details */}
+                    <div className="flex flex-col flex-grow items-center z-10 w-full mb-4">
+                      <h3 className="font-display font-bold text-[#3a3f47] text-lg tracking-tight mb-0.5">
+                        {leadership[activeLeader].name}
+                      </h3>
+                      <p className="text-[10px] uppercase tracking-[0.15em] text-[#5d6776] font-bold mb-3">
+                        {leadership[activeLeader].role}
+                      </p>
+
+                      <p className="text-slate-500 text-[12.5px] leading-relaxed whitespace-pre-line text-left italic font-normal px-1 text-slate-500/90">
+                        {leadership[activeLeader].description}
+                      </p>
+                    </div>
+
+                    {/* Socials */}
+                    <div className="relative z-10 flex gap-3.5 justify-center mt-auto">
+                      <a
+                        href={leadership[activeLeader].linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${leadership[activeLeader].name} LinkedIn`}
+                        className="w-9 h-9 rounded-full bg-[#183059]/5 border border-[#183059]/10 text-[#183059] flex items-center justify-center transition-all duration-300"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </a>
+                      <a
+                        href={leadership[activeLeader].email}
+                        aria-label={`Email ${leadership[activeLeader].name}`}
+                        className="w-9 h-9 rounded-full bg-[#183059]/5 border border-[#183059]/10 text-[#183059] flex items-center justify-center transition-all duration-300"
+                      >
+                        <Mail className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Right Arrow */}
+              <button
+                onClick={() => setActiveLeader((prev) => (prev + 1) % leadership.length)}
+                className="absolute right-[-16px] z-20 w-8 h-8 rounded-full bg-white border border-slate-100 flex items-center justify-center shadow-md text-slate-600 hover:text-blue-500 active:scale-95 transition-transform"
+                aria-label="Next Team Member"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Indicator Dots */}
+            <div className="flex justify-center gap-2 mt-5">
+              {leadership.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveLeader(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeLeader === idx ? "w-6 bg-blue-500" : "w-1.5 bg-slate-300"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -313,18 +511,18 @@ const AboutPage = () => {
                     delay={i * 0.1}
                     className={i % 2 === 0 ? "sm:translate-y-24" : ""}
                   >
-                    <div className="group relative bg-gradient-to-b from-[#1c355e] to-[#0f203b] border border-white/10 rounded-[2.2rem] p-8 text-center shadow-[0_12px_45px_rgba(15,32,59,0.08)] hover:shadow-[0_30px_70px_rgba(15,32,59,0.28)] hover:border-blue-400/30 hover:-translate-y-2 transition-all duration-500 flex flex-col items-center h-full overflow-hidden">
+                    <div className="group relative bg-gradient-to-b from-[#1c355e] to-[#0f203b] border border-white/10 rounded-[2.2rem] p-8 pb-10 text-center shadow-[0_12px_45px_rgba(15,32,59,0.08)] hover:shadow-[0_30px_70px_rgba(15,32,59,0.28)] hover:border-blue-400/35 hover:-translate-y-2 transition-all duration-500 flex flex-col items-center h-full overflow-hidden">
                       
                       {/* Decorative soft glowing light source */}
                       <div className="absolute top-0 right-0 w-36 h-36 bg-white/5 rounded-bl-[100px] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-110" />
 
-                      <div className="relative z-10 w-full flex flex-col items-center flex-grow">
+                      <div className="relative z-10 w-full flex flex-col items-center">
                         {/* Premium Circular Portrait Container with double glow ring */}
                         <div className="relative w-40 h-40 md:w-44 md:h-44 bg-gradient-to-tr from-slate-200 via-blue-50 to-white rounded-full border-4 border-white/10 ring-4 ring-white/5 group-hover:ring-blue-400/30 group-hover:border-white/20 shadow-inner z-10 mb-6 overflow-hidden transition-all duration-500">
                           <img
                             src={person.image}
                             alt={person.name}
-                            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
                             loading="lazy"
                             width={256}
                             height={256}
@@ -335,30 +533,13 @@ const AboutPage = () => {
                         <h3 className="font-display font-extrabold text-white text-xl tracking-tight mb-2 group-hover:text-blue-100 transition-colors duration-300">
                           {person.name}
                         </h3>
-                        <div className="inline-block px-3 py-1 rounded-full text-[9px] tracking-[0.15em] bg-white/5 border border-white/10 text-blue-200 uppercase font-extrabold mb-6">
+                        <div className="inline-block px-4 py-1.5 rounded-full text-[9px] tracking-[0.18em] bg-white/5 border border-white/10 text-blue-200 uppercase font-extrabold transition-all duration-300 group-hover:bg-blue-500/10 group-hover:border-blue-400/30 group-hover:text-blue-100">
                           {person.role}
                         </div>
                       </div>
 
-                      {/* Social Connect Icons (subtle circular design in white) */}
-                      <div className="relative z-10 flex gap-3.5 mt-auto justify-center">
-                        <a
-                          href={person.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`${person.name} LinkedIn`}
-                          className="w-9 h-9 rounded-full bg-white/5 border border-white/10 hover:bg-blue-600 hover:border-blue-500 hover:text-white hover:scale-110 text-white flex items-center justify-center transition-all duration-300 shadow-sm"
-                        >
-                          <Linkedin className="w-4 h-4" />
-                        </a>
-                        <a
-                          href={person.email}
-                          aria-label={`Email ${person.name}`}
-                          className="w-9 h-9 rounded-full bg-white/5 border border-white/10 hover:bg-blue-600 hover:border-blue-500 hover:text-white hover:scale-110 text-white flex items-center justify-center transition-all duration-300 shadow-sm"
-                        >
-                          <Mail className="w-4 h-4" />
-                        </a>
-                      </div>
+                      {/* Bottom Accent line */}
+                      <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-gradient-to-r from-blue-400 to-indigo-500 group-hover:w-full transition-all duration-500"></div>
                     </div>
                   </AnimatedSection>
                 ))}
@@ -369,126 +550,216 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Software Team Section (Tap Academy Inspired Redesign) */}
-      <section className="py-28 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] relative overflow-hidden">
+      {/* Software Team Section (Tagged Image Card Grid Redesign) */}
+      <section className="py-24 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] relative overflow-hidden">
         {/* Glowing Background Blobs */}
         <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-            {/* Text Column */}
-            <div className="lg:col-span-5">
-              <AnimatedSection direction="left">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
-                  Meet Our Software Team
-                </h2>
-                <p className="text-slate-600 text-[15px] leading-relaxed mb-10 font-medium">
-                  Our software engineering team is composed of passionate full-stack developers, cloud architects, and machine learning practitioners. They turn complex requirements into high-performance web applications, reliable APIs, and automated systems.
-                </p>
-
-                {/* Glowing Tap Academy Style Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-white p-5 rounded-2xl border-l-4 border-l-blue-500 border-t border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_15px_30px_rgba(59,130,246,0.12)] hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 cursor-default">
-                    <span className="text-xs font-bold text-blue-500 uppercase tracking-wider block mb-1">01</span>
-                    <h4 className="text-sm font-extrabold text-slate-800 mb-1">Full-Stack Dev</h4>
-                    <p className="text-xs text-slate-500 leading-normal font-medium">React, Python, & Java Ecosystems</p>
-                  </div>
-                  <div className="bg-white p-5 rounded-2xl border-l-4 border-l-indigo-500 border-t border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_15px_30px_rgba(99,102,241,0.12)] hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300 cursor-default">
-                    <span className="text-xs font-bold text-indigo-500 uppercase tracking-wider block mb-1">02</span>
-                    <h4 className="text-sm font-extrabold text-slate-800 mb-1">Cloud Networks</h4>
-                    <p className="text-xs text-slate-500 leading-normal font-medium">AWS, Docker & CI/CD Pipelines</p>
-                  </div>
-                  <div className="bg-white p-5 rounded-2xl border-l-4 border-l-purple-500 border-t border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_15px_30px_rgba(168,85,247,0.12)] hover:border-purple-200 hover:-translate-y-1 transition-all duration-300 cursor-default sm:col-span-2">
-                    <span className="text-xs font-bold text-purple-500 uppercase tracking-wider block mb-1">03</span>
-                    <h4 className="text-sm font-extrabold text-slate-800 mb-1">Advanced AI & ML Systems</h4>
-                    <p className="text-xs text-slate-500 leading-normal font-medium">LLM Integrations, Agentic Workflows, & MLOps Pipelines</p>
-                  </div>
-                </div>
-              </AnimatedSection>
+          <AnimatedSection>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
+                Meet Our Software Team
+              </h2>
+              <p className="text-slate-600 text-base md:text-lg font-medium max-w-2xl mx-auto">
+                Our software engineering team is composed of passionate full-stack developers, cloud architects, and machine learning practitioners.
+              </p>
             </div>
+          </AnimatedSection>
 
-            {/* Image Column with Floating Badges */}
-            <div className="lg:col-span-7">
-              <AnimatedSection direction="right" delay={0.2}>
-                <div className="group relative rounded-[2.5rem] bg-white p-4 border border-slate-200/60 shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden">
-
-                  <div className="aspect-[16/11] overflow-hidden rounded-[2rem] relative bg-slate-100">
-                    <img
-                      src={collaborativeLearning}
-                      alt="Gleamator software team"
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      loading="lazy"
-                      width={800}
-                      height={600}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                  </div>
+          {/* Tagged Image Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Card 1 */}
+            <AnimatedSection delay={0.1}>
+              <div className="group relative w-full aspect-[16/11] sm:aspect-[16/10] md:aspect-[16/11] rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-slate-200/50 hover:shadow-[0_25px_50px_rgba(59,130,246,0.15)] transition-all duration-500">
+                <img
+                  src={collaborativeLearning}
+                  alt="Full-Stack Dev"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+                
+                {/* Arrow Icon Indicator */}
+                <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-slate-900 group-hover:scale-110">
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </div>
-              </AnimatedSection>
-            </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex flex-col justify-end">
+                  <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-1.5 block">01 / CAPABILITY</span>
+                  <h4 className="text-xl sm:text-2xl font-extrabold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                    Full-Stack Dev
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300/90 font-medium leading-relaxed">
+                    React, Python, & Java Ecosystems. Turning complex requirements into high-performance web applications.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Card 2 */}
+            <AnimatedSection delay={0.2}>
+              <div className="group relative w-full aspect-[16/11] sm:aspect-[16/10] md:aspect-[16/11] rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-slate-200/50 hover:shadow-[0_25px_50px_rgba(99,102,241,0.15)] transition-all duration-500">
+                <img
+                  src={aboutOffice}
+                  alt="Cloud Networks"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                {/* Arrow Icon Indicator */}
+                <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-slate-900 group-hover:scale-110">
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex flex-col justify-end">
+                  <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1.5 block">02 / CAPABILITY</span>
+                  <h4 className="text-xl sm:text-2xl font-extrabold text-white mb-2 group-hover:text-indigo-300 transition-colors">
+                    Cloud Networks
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300/90 font-medium leading-relaxed">
+                    AWS, Docker, & CI/CD Pipelines. Implementing stable, secure, and auto-scaling cloud architectures.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Card 3 */}
+            <AnimatedSection delay={0.3}>
+              <div className="group relative w-full aspect-[16/11] sm:aspect-[16/10] md:aspect-[16/11] rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-slate-200/50 hover:shadow-[0_25px_50px_rgba(168,85,247,0.15)] transition-all duration-500">
+                <img
+                  src={teamPhoto}
+                  alt="Advanced AI & ML Systems"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                {/* Arrow Icon Indicator */}
+                <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-slate-900 group-hover:scale-110">
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex flex-col justify-end">
+                  <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest mb-1.5 block">03 / CAPABILITY</span>
+                  <h4 className="text-xl sm:text-2xl font-extrabold text-white mb-2 group-hover:text-purple-300 transition-colors">
+                    Advanced AI & ML Systems
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300/90 font-medium leading-relaxed">
+                    LLM Integrations, Agentic Workflows, & MLOps Pipelines. Crafting state-of-the-art intelligent solutions.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Core Team Section (Tap Academy Inspired Redesign) */}
-      <section className="py-28 bg-white relative overflow-hidden border-t border-slate-100">
+      {/* Core Team Section (Tagged Image Card Grid Redesign) */}
+      <section className="py-24 bg-white relative overflow-hidden border-t border-slate-100">
         {/* Glowing Background Blobs */}
         <div className="absolute top-1/4 -right-20 w-80 h-80 bg-yellow-400/10 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-            {/* Image Column with Floating Badges */}
-            <div className="lg:col-span-7 order-2 lg:order-1">
-              <AnimatedSection direction="left" delay={0.2}>
-                <div className="group relative rounded-[2.5rem] bg-white p-4 border border-slate-200/60 shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden">
-
-                  <div className="aspect-[16/11] overflow-hidden rounded-[2rem] relative bg-slate-100">
-                    <img
-                      src={teamPhoto}
-                      alt="Gleamator core team"
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      loading="lazy"
-                      width={800}
-                      height={600}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                  </div>
-                </div>
-              </AnimatedSection>
+          <AnimatedSection>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
+                Meet Our Core Team
+              </h2>
+              <p className="text-slate-600 text-base md:text-lg font-medium max-w-2xl mx-auto">
+                Our core management team steers project execution, government partnerships, corporate relations, and student onboarding.
+              </p>
             </div>
+          </AnimatedSection>
 
-            {/* Text Column */}
-            <div className="lg:col-span-5 order-1 lg:order-2">
-              <AnimatedSection direction="right">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
-                  Meet Our Core Team
-                </h2>
-                <p className="text-slate-600 text-[15px] leading-relaxed mb-10 font-medium">
-                  Our core management team steers project execution, government partnerships, corporate relations, and student onboarding. They ensure that Gleamator maintains its standards of excellence in skill development and HR solutions.
-                </p>
+          {/* Tagged Image Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Card 1 */}
+            <AnimatedSection delay={0.1}>
+              <div className="group relative w-full aspect-[16/11] sm:aspect-[16/10] md:aspect-[16/11] rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-slate-200/50 hover:shadow-[0_25px_50px_rgba(234,179,8,0.15)] transition-all duration-500">
+                <img
+                  src={teamPhoto}
+                  alt="Executive Board"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
 
-                {/* Glowing Tap Academy Style Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-slate-50 p-5 rounded-2xl border-l-4 border-l-yellow-500 border-t border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.01)] hover:shadow-[0_15px_30px_rgba(234,179,8,0.12)] hover:border-yellow-200 hover:-translate-y-1 transition-all duration-300 cursor-default">
-                    <span className="text-xs font-bold text-yellow-500 uppercase tracking-wider block mb-1">01</span>
-                    <h4 className="text-sm font-extrabold text-slate-800 mb-1">Executive Board</h4>
-                    <p className="text-xs text-slate-500 leading-normal font-medium">Decades of collective MNC governance</p>
-                  </div>
-                  <div className="bg-slate-50 p-5 rounded-2xl border-l-4 border-l-teal-500 border-t border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.01)] hover:shadow-[0_15px_30px_rgba(20,184,166,0.12)] hover:border-teal-200 hover:-translate-y-1 transition-all duration-300 cursor-default">
-                    <span className="text-xs font-bold text-teal-500 uppercase tracking-wider block mb-1">02</span>
-                    <h4 className="text-sm font-extrabold text-slate-800 mb-1">Placement Support</h4>
-                    <p className="text-xs text-slate-500 leading-normal font-medium">Connecting talent with leading tech giants</p>
-                  </div>
-                  <div className="bg-slate-50 p-5 rounded-2xl border-l-4 border-l-pink-500 border-t border-r border-b border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.01)] hover:shadow-[0_15px_30px_rgba(236,72,153,0.12)] hover:border-pink-200 hover:-translate-y-1 transition-all duration-300 cursor-default sm:col-span-2">
-                    <span className="text-xs font-bold text-pink-500 uppercase tracking-wider block mb-1">03</span>
-                    <h4 className="text-sm font-extrabold text-slate-800 mb-1">Pan-India Operations</h4>
-                    <p className="text-xs text-slate-500 leading-normal font-medium">Directing state-of-the-art training facilities and logistics across all centers</p>
-                  </div>
+                {/* Arrow Icon Indicator */}
+                <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-slate-900 group-hover:scale-110">
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </div>
-              </AnimatedSection>
-            </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex flex-col justify-end">
+                  <span className="text-[10px] font-bold text-yellow-400 uppercase tracking-widest mb-1.5 block">01 / OPERATIONS</span>
+                  <h4 className="text-xl sm:text-2xl font-extrabold text-white mb-2 group-hover:text-yellow-300 transition-colors">
+                    Executive Board
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300/90 font-medium leading-relaxed">
+                    Decades of collective MNC governance steering project execution and growth.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Card 2 */}
+            <AnimatedSection delay={0.2}>
+              <div className="group relative w-full aspect-[16/11] sm:aspect-[16/10] md:aspect-[16/11] rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-slate-200/50 hover:shadow-[0_25px_50px_rgba(20,184,166,0.15)] transition-all duration-500">
+                <img
+                  src={collaborativeLearning}
+                  alt="Placement Support"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                {/* Arrow Icon Indicator */}
+                <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-slate-900 group-hover:scale-110">
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex flex-col justify-end">
+                  <span className="text-[10px] font-bold text-teal-400 uppercase tracking-widest mb-1.5 block">02 / PLACEMENT</span>
+                  <h4 className="text-xl sm:text-2xl font-extrabold text-white mb-2 group-hover:text-teal-300 transition-colors">
+                    Placement Support
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300/90 font-medium leading-relaxed">
+                    Connecting talent with leading tech giants and securing dream roles.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Card 3 */}
+            <AnimatedSection delay={0.3}>
+              <div className="group relative w-full aspect-[16/11] sm:aspect-[16/10] md:aspect-[16/11] rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-slate-200/50 hover:shadow-[0_25px_50px_rgba(236,72,153,0.15)] transition-all duration-500">
+                <img
+                  src={aboutOffice}
+                  alt="Pan-India Operations"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                {/* Arrow Icon Indicator */}
+                <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-slate-900 group-hover:scale-110">
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex flex-col justify-end">
+                  <span className="text-[10px] font-bold text-pink-400 uppercase tracking-widest mb-1.5 block">03 / NETWORK</span>
+                  <h4 className="text-xl sm:text-2xl font-extrabold text-white mb-2 group-hover:text-pink-300 transition-colors">
+                    Pan-India Operations
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300/90 font-medium leading-relaxed">
+                    Directing state-of-the-art training facilities and logistics across all centers.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>

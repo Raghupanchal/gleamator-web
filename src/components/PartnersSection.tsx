@@ -82,11 +82,12 @@ const PartnersSection = () => {
       </div>
       
       <div className="relative max-w-4xl mx-auto px-4 mb-24">
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 sm:gap-6 justify-items-center">
+        {/* Desktop view: Grid */}
+        <div className="hidden sm:grid sm:grid-cols-6 gap-6 justify-items-center">
           {officialPartners.map((partner) => (
             <div
               key={partner.name}
-              className="w-20 h-20 sm:w-28 sm:h-28 bg-white border border-gray-100 rounded-full shadow-[0_4px_10px_rgba(0,0,0,0.05)] flex items-center justify-center p-3 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_10px_20px_rgba(0,0,0,0.08)] hover:border-gray-200 overflow-hidden"
+              className="w-28 h-28 bg-white border border-gray-100 rounded-full shadow-[0_4px_10px_rgba(0,0,0,0.05)] flex items-center justify-center p-3 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_10px_20px_rgba(0,0,0,0.08)] hover:border-gray-200 overflow-hidden"
             >
               <img
                 src={partner.logo}
@@ -95,6 +96,28 @@ const PartnersSection = () => {
               />
             </div>
           ))}
+        </div>
+
+        {/* Mobile view: Auto Scroll Animation */}
+        <div className="block sm:hidden overflow-hidden w-full select-none relative">
+          {/* Subtle gradient edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#F4F4F6] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#F4F4F6] to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex animate-scroll-responsive">
+            {[...officialPartners, ...officialPartners, ...officialPartners].map((partner, i) => (
+              <div
+                key={`client-mobile-${partner.name}-${i}`}
+                className="flex-shrink-0 mx-2 w-20 h-20 bg-white border border-gray-100 rounded-full shadow-[0_4px_10px_rgba(0,0,0,0.05)] flex items-center justify-center p-3 overflow-hidden"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="w-full h-full object-contain scale-[1.05]"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
