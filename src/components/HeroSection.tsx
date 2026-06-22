@@ -334,13 +334,13 @@ const HeroSection = () => {
             <div className="grid grid-cols-3 divide-x divide-slate-100">
               {/* Stat 1 */}
               <div className="flex flex-col items-center text-center px-1">
-                <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center mb-2 shadow-sm border border-blue-100/50">
+                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-2.5 shadow-sm border border-blue-100/50">
                   <Users className="w-5 h-5 text-blue-600" />
                 </div>
-                <p className="font-display text-sm sm:text-base font-black text-slate-900 leading-none">
+                <p className="font-display text-lg xs:text-xl sm:text-2xl font-black text-slate-900 leading-none">
                   <AnimatedCounter valueText="15,000+" delay={0.1} />
                 </p>
-                <p className="font-display text-slate-500 text-[9px] sm:text-xs font-semibold tracking-normal mt-1 leading-tight">
+                <p className="font-display text-slate-700 text-[10px] xs:text-xs sm:text-sm font-extrabold tracking-normal mt-1.5 leading-tight">
                   <span className="xs:hidden">Youth Skilled</span>
                   <span className="hidden xs:inline">Youth Skilled Across India</span>
                 </p>
@@ -348,13 +348,13 @@ const HeroSection = () => {
 
               {/* Stat 2 */}
               <div className="flex flex-col items-center text-center px-1">
-                <div className="w-9 h-9 rounded-full bg-orange-50 flex items-center justify-center mb-2 shadow-sm border border-orange-100/50">
+                <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center mb-2.5 shadow-sm border border-orange-100/50">
                   <School className="w-5 h-5 text-[#FF6B00]" />
                 </div>
-                <p className="font-display text-sm sm:text-base font-black text-slate-900 leading-none">
+                <p className="font-display text-lg xs:text-xl sm:text-2xl font-black text-slate-900 leading-none">
                   <AnimatedCounter valueText="100+" delay={0.2} />
                 </p>
-                <p className="font-display text-slate-500 text-[9px] sm:text-xs font-semibold tracking-normal mt-1 leading-tight">
+                <p className="font-display text-slate-700 text-[10px] xs:text-xs sm:text-sm font-extrabold tracking-normal mt-1.5 leading-tight">
                   <span className="xs:hidden">Centers</span>
                   <span className="hidden xs:inline">Training Centers</span>
                 </p>
@@ -362,13 +362,13 @@ const HeroSection = () => {
 
               {/* Stat 3 */}
               <div className="flex flex-col items-center text-center px-1">
-                <div className="w-9 h-9 rounded-full bg-purple-50 flex items-center justify-center mb-2 shadow-sm border border-purple-100/50">
+                <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mb-2.5 shadow-sm border border-purple-100/50">
                   <Briefcase className="w-5 h-5 text-purple-500" />
                 </div>
-                <p className="font-display text-sm sm:text-base font-black text-slate-900 leading-none">
+                <p className="font-display text-lg xs:text-xl sm:text-2xl font-black text-slate-900 leading-none">
                   <AnimatedCounter valueText="50+" delay={0.3} />
                 </p>
-                <p className="font-display text-slate-500 text-[9px] sm:text-xs font-semibold tracking-normal mt-1 leading-tight">
+                <p className="font-display text-slate-700 text-[10px] xs:text-xs sm:text-sm font-extrabold tracking-normal mt-1.5 leading-tight">
                   <span className="xs:hidden">Companies</span>
                   <span className="hidden xs:inline">Hiring Companies</span>
                 </p>
@@ -388,52 +388,52 @@ const HeroSection = () => {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-md sm:max-w-2xl md:max-w-3xl mx-auto w-full mb-4">
             {/* Feature 1: Practical Learning */}
             <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-4 sm:p-5 flex flex-col items-start text-left transition-all hover:shadow-lg">
-              <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 mb-3 shadow-sm border border-blue-100/50">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 mb-3 shadow-sm border border-blue-100/50">
                 <Lightbulb className="w-5 h-5" />
               </div>
-              <h3 className="font-display font-extrabold text-[#0F172A] text-xs sm:text-sm mb-1">
+              <h3 className="font-display font-extrabold text-[#0F172A] text-sm sm:text-base mb-1">
                 Practical Learning
               </h3>
-              <p className="font-display text-slate-500 text-[10px] leading-normal font-medium">
+              <p className="font-display text-slate-500 text-[11px] sm:text-xs leading-normal font-semibold">
                 Learn by doing real industry projects.
               </p>
             </div>
 
             {/* Feature 2: Expert Mentorship */}
             <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-4 sm:p-5 flex flex-col items-start text-left transition-all hover:shadow-lg">
-              <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center text-[#FF6B00] mb-3 shadow-sm border border-orange-100/50">
+              <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-[#FF6B00] mb-3 shadow-sm border border-orange-100/50">
                 <BookOpen className="w-5 h-5" />
               </div>
-              <h3 className="font-display font-extrabold text-[#0F172A] text-xs sm:text-sm mb-1">
+              <h3 className="font-display font-extrabold text-[#0F172A] text-sm sm:text-base mb-1">
                 Expert Mentorship
               </h3>
-              <p className="font-display text-slate-500 text-[10px] leading-normal font-medium">
+              <p className="font-display text-slate-500 text-[11px] sm:text-xs leading-normal font-semibold">
                 Personal guidance from industry experts.
               </p>
             </div>
 
             {/* Feature 3: Career Growth */}
             <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-4 sm:p-5 flex flex-col items-start text-left transition-all hover:shadow-lg">
-              <div className="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 mb-3 shadow-sm border border-purple-100/50">
+              <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 mb-3 shadow-sm border border-purple-100/50">
                 <TrendingUp className="w-5 h-5" />
               </div>
-              <h3 className="font-display font-extrabold text-[#0F172A] text-xs sm:text-sm mb-1">
+              <h3 className="font-display font-extrabold text-[#0F172A] text-sm sm:text-base mb-1">
                 Career Growth
               </h3>
-              <p className="font-display text-slate-500 text-[10px] leading-normal font-medium">
+              <p className="font-display text-slate-500 text-[11px] sm:text-xs leading-normal font-semibold">
                 Placements and internship support.
               </p>
             </div>
 
             {/* Feature 4: Future Ready Skills */}
             <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-4 sm:p-5 flex flex-col items-start text-left transition-all hover:shadow-lg">
-              <div className="w-9 h-9 rounded-xl bg-green-50 flex items-center justify-center text-green-600 mb-3 shadow-sm border border-green-100/50">
+              <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600 mb-3 shadow-sm border border-green-100/50">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h3 className="font-display font-extrabold text-[#0F172A] text-xs sm:text-sm mb-1">
+              <h3 className="font-display font-extrabold text-[#0F172A] text-sm sm:text-base mb-1">
                 Future Ready Skills
               </h3>
-              <p className="font-display text-slate-500 text-[10px] leading-normal font-medium">
+              <p className="font-display text-slate-500 text-[11px] sm:text-xs leading-normal font-semibold">
                 Industry-focused training for tomorrow.
               </p>
             </div>

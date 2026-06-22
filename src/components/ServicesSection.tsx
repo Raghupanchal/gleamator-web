@@ -37,20 +37,25 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="bg-[#F4F4F6] py-24 min-h-screen flex flex-col justify-center">
+    <section id="services" className="bg-[#F8FAFC] py-16 md:py-24 flex flex-col justify-center">
       <div className="container mx-auto px-4 max-w-[1400px]">
-        {/* Section Header - Gap Fixed here (reduced padding and margins) */}
-        <div className="mb-10 border-b border-gray-300 pb-4 flex items-end justify-between">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-            Our Services
-          </h2>
-          <span className="hidden md:block text-gray-500 font-bold text-xs uppercase tracking-[0.15em]">
+        {/* Section Header */}
+        <div className="mb-12 border-b border-slate-200 pb-5 flex items-end justify-between">
+          <div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+              Our Services
+            </h2>
+            <p className="text-xs md:text-sm text-slate-500 font-semibold mt-1.5 uppercase tracking-wider">
+              Empowering your business with specialized expertise
+            </p>
+          </div>
+          <span className="hidden md:block text-slate-400 font-bold text-xs uppercase tracking-[0.2em]">
             Select a pathway
           </span>
         </div>
-
+ 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((s, i) => {
             return (
               <div
@@ -58,33 +63,40 @@ const ServicesSection = () => {
                 onClick={() => handleServiceClick(s.path)}
                 role="button"
                 tabIndex={0}
-                className="group flex flex-col bg-white rounded-none border border-gray-200/50 shadow-sm hover:shadow-2xl hover:shadow-orange-500/5 hover:border-[#FF6B00]/30 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden cursor-pointer"
+                className="group flex flex-col bg-white rounded-2xl border border-slate-100 shadow-md hover:shadow-xl hover:shadow-orange-500/5 hover:border-[#FF6B00]/20 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden cursor-pointer"
               >
                 {/* Top Image Banner */}
-                <div className="relative w-full h-[240px] overflow-hidden bg-white rounded-none">
+                <div className="relative w-full h-[200px] xs:h-[240px] overflow-hidden bg-white">
                   <img
                     src={s.image}
                     alt={s.title}
-                    className={`w-full h-full ${s.fit === "contain" ? "object-contain" : "object-cover"} object-center transition-transform duration-1000 ease-out group-hover:scale-110`}
+                    className={`w-full h-full ${s.fit === "contain" ? "object-contain" : "object-cover"} object-center transition-transform duration-1000 ease-out group-hover:scale-105`}
                   />
+                  {/* Subtle vignette on the image */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
                 </div>
-
+ 
                 {/* Bottom Content Area */}
-                <div className="p-6 lg:p-8 flex flex-col flex-grow justify-between min-h-[220px]">
+                <div className="p-6 sm:p-8 flex flex-col flex-grow justify-between min-h-[240px]">
                   <div className="mb-6">
-                    <h3 className="text-xl lg:text-2xl font-extrabold tracking-tight text-gray-900 mb-3 group-hover:text-[#FF6B00] transition-colors duration-300">
+                    <div className="flex items-center mb-3">
+                      <span className="text-[10px] font-bold text-[#FF6B00] uppercase tracking-widest bg-orange-50 border border-orange-100/50 px-3 py-1 rounded-full">
+                        Pathway 0{i + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 mb-3 group-hover:text-[#FF6B00] transition-colors duration-300">
                       {s.title}
                     </h3>
-                    <p className="text-xs lg:text-sm leading-relaxed text-gray-600 font-medium">
+                    <p className="text-xs sm:text-sm leading-relaxed text-slate-600 font-medium">
                       {s.description}
                     </p>
                   </div>
-
+ 
                   {/* Action Link (Beautiful Premium Learn More Button) */}
-                  <div className="pt-4 border-t border-gray-100">
-                    <span className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#FF6B00] text-white text-sm font-bold rounded-none shadow-sm transition-all duration-300 group-hover:bg-[#E05E00] group-hover:shadow-[0_4px_20px_rgba(255,107,0,0.35)]">
+                  <div className="pt-4 border-t border-slate-100">
+                    <span className="inline-flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-[#FF6B00] to-[#FF8500] text-white text-sm font-bold rounded-xl shadow-md shadow-[#FF6B00]/10 transition-all duration-300 group-hover:from-[#E05E00] group-hover:to-[#FF6B00] group-hover:shadow-lg group-hover:shadow-[#FF6B00]/25">
                       Learn More
-                      <ArrowRight className="w-4 h-4 transition-transform duration-500 ease-out group-hover:translate-x-2" />
+                      <ArrowRight className="w-4 h-4 transition-transform duration-500 ease-out group-hover:translate-x-1.5" />
                     </span>
                   </div>
                 </div>
