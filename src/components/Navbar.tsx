@@ -4,18 +4,18 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "@/assets/gleamator-logo.png";
 
 // Custom Python original SVG logo
-const PythonIcon = () => (
+const PythonIcon = ({ idPrefix = "py" }: { idPrefix?: string }) => (
   <svg viewBox="0 0 128 128" className="w-5 h-5">
-    <linearGradient id="py-a" gradientUnits="userSpaceOnUse" x1="70.252" y1="1237.476" x2="170.659" y2="1151.089" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)">
+    <linearGradient id={`${idPrefix}-a`} gradientUnits="userSpaceOnUse" x1="70.252" y1="1237.476" x2="170.659" y2="1151.089" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)">
       <stop offset="0" stopColor="#5A9FD4"/>
       <stop offset="1" stopColor="#306998"/>
     </linearGradient>
-    <linearGradient id="py-b" gradientUnits="userSpaceOnUse" x1="209.474" y1="1098.811" x2="173.62" y2="1149.537" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)">
+    <linearGradient id={`${idPrefix}-b`} gradientUnits="userSpaceOnUse" x1="209.474" y1="1098.811" x2="173.62" y2="1149.537" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)">
       <stop offset="0" stopColor="#FFD43B"/>
       <stop offset="1" stopColor="#FFE873"/>
     </linearGradient>
-    <path fill="url(#py-a)" d="M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137h-33.961c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491v-11.282c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548v-23.513c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zm-13.354 7.569c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z"/>
-    <path fill="url(#py-b)" d="M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655h-24.665c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412h-24.664v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zm-13.873 59.547c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z"/>
+    <path fill={`url(#${idPrefix}-a)`} d="M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137h-33.961c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491v-11.282c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548v-23.513c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zm-13.354 7.569c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z"/>
+    <path fill={`url(#${idPrefix}-b)`} d="M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655h-24.665c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412h-24.664v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zm-13.873 59.547c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z"/>
   </svg>
 );
 
@@ -73,7 +73,7 @@ const Navbar = () => {
             <div className="absolute top-full left-0 bg-background shadow-lg rounded-xl py-3 px-2 min-w-[260px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all space-y-1">
               <Link to="/courses/python-fullstack" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-foreground hover:bg-muted transition-colors">
                 <div className="w-9 h-9 rounded-full bg-white shadow-sm border border-gray-200/60 flex items-center justify-center p-1.5 flex-shrink-0">
-                  <PythonIcon />
+                  <PythonIcon idPrefix="py-desktop" />
                 </div>
                 <span>Python Fullstack</span>
               </Link>
@@ -132,7 +132,7 @@ const Navbar = () => {
               <div className="pl-6 pr-2 py-2 border-l border-accent/20 my-1 space-y-2">
                 <Link to="/courses/python-fullstack" className="flex items-center gap-3 text-sm font-medium py-1.5 px-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors" onClick={() => setIsOpen(false)}>
                   <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-200/60 flex items-center justify-center p-1.5 flex-shrink-0">
-                    <PythonIcon />
+                    <PythonIcon idPrefix="py-mobile" />
                   </div>
                   <span>Python Fullstack</span>
                 </Link>

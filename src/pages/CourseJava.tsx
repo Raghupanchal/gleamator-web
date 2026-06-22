@@ -55,8 +55,8 @@ import plc5 from "@/assets/plc5.png";
 // --- Utility Components ---
 const FadeUp = ({ children, delay = 0, className = "", duration = 0.6 }) => (
   <motion.div
-    initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
-    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ type: "spring", stiffness: 80, damping: 20, delay, duration }}
     className={className}

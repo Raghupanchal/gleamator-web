@@ -94,8 +94,8 @@ const globalStyles = `
 // --- Utility Components ---
 const FadeUp = ({ children, delay = 0, className = "", duration = 0.6 }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
-    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-40px" }}
     transition={{ type: "spring", stiffness: 60, damping: 18, delay, duration }}
     className={className}
