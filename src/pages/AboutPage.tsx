@@ -12,7 +12,7 @@ import director4 from "@/assets/raghavendra.jpeg";
 import teamPhoto from "@/assets/team-photo.jpg";
 import awardTrophy from "@/assets/award-trophy.jpg";
 import awardCertificate from "@/assets/awards-certificate.jpg";
-import { Eye, Target, Layers, Globe, Settings, Users, Lightbulb, Heart } from "lucide-react";
+import { Eye, Target, Layers, Globe, Settings, Users, Lightbulb, Heart, Linkedin, Mail } from "lucide-react";
 
 const values = [
   { icon: Layers, title: "Comprehensive Service Offerings", description: "We offer a wide range of services, including IT solutions, skill development, corporate training, and HR services. With everything under one roof, we simplify your organizational needs and eliminate the need for multiple service providers." },
@@ -24,16 +24,16 @@ const values = [
 ];
 
 const leadership = [
-  { image: leader1, name: "Vikram J", role: "Managing Director" },
-  { image: leader2, name: "Bhaskar N", role: "CEO" },
-  { image: leader3, name: "Jayanth V", role: "COO" },
+  { image: leader1, name: "Vikram J", role: "Managing Director", linkedin: "#", email: "mailto:contact@gleamator.com" },
+  { image: leader2, name: "Bhaskar N", role: "CEO", linkedin: "#", email: "mailto:contact@gleamator.com" },
+  { image: leader3, name: "Jayanth V", role: "COO", linkedin: "#", email: "mailto:contact@gleamator.com" },
 ];
 
 const directors = [
-  { image: director1, name: "Vishal", role: "Director" },
-  { image: director2, name: "Raghunath S", role: "Director" },
-  { image: director3, name: "Ramesh", role: "Director" },
-  { image: director4, name: "Raghavendra", role: "Director" },
+  { image: director1, name: "Vishal", role: "Director", linkedin: "#", email: "mailto:contact@gleamator.com" },
+  { image: director2, name: "Raghunath S", role: "Director", linkedin: "#", email: "mailto:contact@gleamator.com" },
+  { image: director3, name: "Ramesh", role: "Director", linkedin: "#", email: "mailto:contact@gleamator.com" },
+  { image: director4, name: "Raghavendra", role: "Director", linkedin: "#", email: "mailto:contact@gleamator.com" },
 ];
 
 const AboutPage = () => {
@@ -145,23 +145,74 @@ const AboutPage = () => {
       </section>
 
       {/* Leadership */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-background relative overflow-hidden">
+        {/* Subtle background glow for a premium aesthetic */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Leadership</h2>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-accent/10 text-accent mb-3 inline-block font-display">
+                Executive Board
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight">
+                Our Leadership
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+                Guided by experience and driven by innovation, meet the key leaders steering our vision.
+              </p>
+            </div>
           </AnimatedSection>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {leadership.map((person, i) => (
               <AnimatedSection key={person.name} delay={i * 0.15}>
-                <div className="group relative bg-[#F9F9FB] rounded-[24px] border border-slate-200/40 p-3 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 overflow-hidden flex flex-col justify-start">
-                  {/* Image Wrapper */}
-                  <div className="relative w-full aspect-[4/5] rounded-[18px] overflow-hidden bg-[#FAF6F2] flex items-center justify-center">
-                    <img src={person.image} alt={person.name} className="w-full h-full object-cover object-center scale-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.10]" loading="lazy" width={512} height={512} />
-                  </div>
-                  {/* Floating Text Badge overlapping bottom of image */}
-                  <div className="relative z-10 -mt-10 mx-2 bg-white rounded-[16px] border border-slate-100 shadow-md p-4 text-center">
-                    <h3 className="font-display font-extrabold text-[#0F172A] text-lg tracking-tight mb-1">{person.name}</h3>
-                    <p className="font-display text-slate-500 text-xs font-semibold tracking-wide">{person.role}</p>
+                <div className="group relative p-[1px] bg-slate-200/60 dark:bg-slate-800 rounded-[2.1rem] hover:bg-gradient-to-br hover:from-accent hover:to-primary transition-all duration-500 shadow-sm hover:shadow-[0_25px_60px_rgba(24,95,53,0.15)] hover:-translate-y-2">
+                  <div className="bg-card rounded-[2rem] p-4 overflow-hidden flex flex-col justify-start h-full">
+                    
+                    {/* Image Wrapper */}
+                    <div className="relative w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden bg-[#FAF6F2] flex items-center justify-center">
+                      <img 
+                        src={person.image} 
+                        alt={person.name} 
+                        className="w-full h-full object-cover object-center scale-[1.02] transition-transform duration-700 ease-out group-hover:scale-110" 
+                        loading="lazy" 
+                        width={512} 
+                        height={512} 
+                      />
+                      
+                      {/* Dark/Gradient overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                        <a 
+                          href={person.linkedin} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          aria-label={`${person.name} LinkedIn`}
+                          className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-accent hover:border-accent hover:scale-110 transition-all duration-300"
+                        >
+                          <Linkedin className="w-5 h-5" />
+                        </a>
+                        <a 
+                          href={person.email} 
+                          aria-label={`Email ${person.name}`}
+                          className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-accent hover:border-accent hover:scale-110 transition-all duration-300"
+                        >
+                          <Mail className="w-5 h-5" />
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Card Content Details */}
+                    <div className="pt-6 pb-2 px-2 text-center">
+                      <span className="text-[10px] md:text-xs font-display font-bold uppercase tracking-widest text-accent bg-accent/5 px-3 py-1 rounded-full">
+                        {person.role}
+                      </span>
+                      <h3 className="font-display font-extrabold text-[#0F172A] text-lg md:text-xl tracking-tight mt-3 mb-1 group-hover:text-primary transition-colors duration-300">
+                        {person.name}
+                      </h3>
+                    </div>
+
                   </div>
                 </div>
               </AnimatedSection>
@@ -171,23 +222,73 @@ const AboutPage = () => {
       </section>
 
       {/* Directors */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-secondary relative overflow-hidden">
+        {/* Subtle background glow for a premium aesthetic */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">Directors</h2>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-accent/10 text-accent mb-3 inline-block font-display">
+                Board of Directors
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight">
+                Our Directors
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+                Supported by a strong board of directors providing governance and expertise.
+              </p>
+            </div>
           </AnimatedSection>
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
             {directors.map((person, i) => (
               <AnimatedSection key={person.name} delay={i * 0.1}>
-                <div className="group relative bg-[#F9F9FB] rounded-[24px] border border-slate-200/40 p-3 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 overflow-hidden flex flex-col justify-start">
-                  {/* Image Wrapper */}
-                  <div className="relative w-full aspect-[4/5] rounded-[18px] overflow-hidden bg-[#FAF6F2] flex items-center justify-center">
-                    <img src={person.image} alt={person.name} className="w-full h-full object-cover object-center scale-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.10]" loading="lazy" width={512} height={512} />
-                  </div>
-                  {/* Floating Text Badge overlapping bottom of image */}
-                  <div className="relative z-10 -mt-10 mx-2 bg-white rounded-[16px] border border-slate-100 shadow-md p-4 text-center">
-                    <h3 className="font-display font-extrabold text-[#0F172A] text-sm md:text-base tracking-tight mb-1">{person.name}</h3>
-                    <p className="font-display text-slate-500 text-[10px] md:text-xs font-semibold tracking-wide">{person.role}</p>
+                <div className="group relative p-[1px] bg-slate-200/60 dark:bg-slate-800 rounded-[2.1rem] hover:bg-gradient-to-br hover:from-accent hover:to-primary transition-all duration-500 shadow-sm hover:shadow-[0_25px_60px_rgba(24,95,53,0.15)] hover:-translate-y-2">
+                  <div className="bg-card rounded-[2rem] p-3 overflow-hidden flex flex-col justify-start h-full">
+                    
+                    {/* Image Wrapper */}
+                    <div className="relative w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden bg-[#FAF6F2] flex items-center justify-center">
+                      <img 
+                        src={person.image} 
+                        alt={person.name} 
+                        className="w-full h-full object-cover object-center scale-[1.02] transition-transform duration-700 ease-out group-hover:scale-110" 
+                        loading="lazy" 
+                        width={512} 
+                        height={512} 
+                      />
+                      
+                      {/* Dark/Gradient overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-3">
+                        <a 
+                          href={person.linkedin} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          aria-label={`${person.name} LinkedIn`}
+                          className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-accent hover:border-accent hover:scale-110 transition-all duration-300"
+                        >
+                          <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
+                        </a>
+                        <a 
+                          href={person.email} 
+                          aria-label={`Email ${person.name}`}
+                          className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-accent hover:border-accent hover:scale-110 transition-all duration-300"
+                        >
+                          <Mail className="w-4 h-4 md:w-5 md:h-5" />
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Card Content Details */}
+                    <div className="pt-5 pb-1 px-1 text-center">
+                      <span className="text-[9px] md:text-[11px] font-display font-bold uppercase tracking-wider text-accent bg-accent/5 px-2.5 py-0.5 rounded-full">
+                        {person.role}
+                      </span>
+                      <h3 className="font-display font-extrabold text-[#0F172A] text-sm md:text-lg tracking-tight mt-2.5 mb-0.5 group-hover:text-primary transition-colors duration-300">
+                        {person.name}
+                      </h3>
+                    </div>
+
                   </div>
                 </div>
               </AnimatedSection>

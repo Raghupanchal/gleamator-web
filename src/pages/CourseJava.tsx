@@ -31,7 +31,11 @@ import {
   GitBranch,
   Activity,
   Workflow,
-  TrendingUp
+  TrendingUp,
+  School,
+  Hash,
+  Calendar,
+  Target
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import { supabase } from "@/lib/supabase";
@@ -399,7 +403,17 @@ const CourseJava = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", mobile: "", qualification: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    qualification: "",
+    college: "",
+    stream: "",
+    dob: "",
+    aadhar: "",
+    yearOfPassing: "",
+  });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [bgPosition, setBgPosition] = useState({ x: 0, y: 0 });
@@ -421,6 +435,33 @@ const CourseJava = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    
+    // JS Validations
+    const cleanedMobile = formData.mobile.replace(/\D/g, "");
+    if (cleanedMobile.length !== 10) {
+      toast.error("Please enter a valid 10-digit mobile number");
+      return;
+    }
+
+    if (formData.aadhar && formData.aadhar.replace(/\D/g, "").length !== 12) {
+      toast.error("Aadhar number must be exactly 12 digits");
+      return;
+    }
+
+    if (formData.yearOfPassing && !/^(19|20)\d{2}$/.test(formData.yearOfPassing.trim())) {
+      toast.error("Please enter a valid 4-digit year of passing (between 1900 and 2099)");
+      return;
+    }
+
+    if (formData.dob) {
+      const dobDate = new Date(formData.dob);
+      const today = new Date();
+      if (dobDate >= today) {
+        toast.error("Date of birth cannot be in the future");
+        return;
+      }
+    }
+
     if (formData.name && formData.email && formData.mobile && formData.qualification) {
       const { error } = await supabase
         .from("applications")
@@ -428,8 +469,13 @@ const CourseJava = () => {
           {
             name: formData.name,
             email: formData.email,
-            phone: formData.mobile,
+            phone: cleanedMobile,
             qualification: formData.qualification,
+            college: formData.college,
+            stream: formData.stream,
+            dob: formData.dob || null,
+            aadhar: formData.aadhar,
+            year_of_passing: formData.yearOfPassing,
             looking_for: "Java Full Stack with Cloud & DevOps",
           },
         ]);
@@ -441,7 +487,17 @@ const CourseJava = () => {
         setFormSubmitted(true);
         setTimeout(() => {
           setFormSubmitted(false);
-          setFormData({ name: "", email: "", mobile: "", qualification: "" });
+          setFormData({
+            name: "",
+            email: "",
+            mobile: "",
+            qualification: "",
+            college: "",
+            stream: "",
+            dob: "",
+            aadhar: "",
+            yearOfPassing: "",
+          });
         }, 4000);
       }
     }
@@ -1245,10 +1301,10 @@ const CourseJava = () => {
                             <Phone size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
                             <input
                               type="tel" id="mobile" required placeholder="+91 98765 43210"
-                              value={formData.mobile} onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                              value={formData.mobile} onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) })}
                               className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
                             />
-                            {formData.mobile.trim().length >= 10 && (
+                            {formData.mobile.replace(/\D/g, "").length === 10 && (
                               <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
                             )}
                           </div>
@@ -1257,7 +1313,7 @@ const CourseJava = () => {
                         {/* Qualification */}
                         <div className="flex flex-col gap-2">
                           <label htmlFor="qualification" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
-                            Highest Qualification *
+                            Highest Qualification <span className="text-rose-500">*</span>
                           </label>
                           <div className="relative group/input">
                             <GraduationCap size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
@@ -1267,6 +1323,93 @@ const CourseJava = () => {
                               className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
                             />
                             {formData.qualification.trim().length > 2 && (
+                              <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* College Name */}
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="college" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            College Name
+                          </label>
+                          <div className="relative group/input">
+                            <School size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="text" id="college" placeholder="Please enter your college name"
+                              value={formData.college} onChange={(e) => setFormData({ ...formData, college: e.target.value })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                            />
+                            {formData.college.trim().length > 2 && (
+                              <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Stream */}
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="stream" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            Stream
+                          </label>
+                          <div className="relative group/input">
+                            <Target size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="text" id="stream" placeholder="Your stream (e.g. CS, EC)"
+                              value={formData.stream} onChange={(e) => setFormData({ ...formData, stream: e.target.value })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-950 font-semibold"
+                            />
+                            {formData.stream.trim().length > 1 && (
+                              <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Date of Birth */}
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="dob" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            Date of Birth
+                          </label>
+                          <div className="relative group/input">
+                            <Calendar size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="date" id="dob"
+                              value={formData.dob} onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm text-slate-700"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Year of Passing */}
+                        <div className="flex flex-col gap-2">
+                          <label htmlFor="yearOfPassing" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            Year of Passing
+                          </label>
+                          <div className="relative group/input">
+                            <Award size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="text" id="yearOfPassing" placeholder="Year of passing"
+                              value={formData.yearOfPassing} onChange={(e) => setFormData({ ...formData, yearOfPassing: e.target.value.replace(/\D/g, "").slice(0, 4) })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-950 font-semibold"
+                            />
+                            {/^(19|20)\d{2}$/.test(formData.yearOfPassing.trim()) && (
+                              <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Aadhar Number */}
+                        <div className="flex flex-col gap-2 md:col-span-2">
+                          <label htmlFor="aadhar" className="text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            Aadhar Number
+                          </label>
+                          <div className="relative group/input">
+                            <Hash size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/input:text-red-500 transition-colors" />
+                            <input
+                              type="text" id="aadhar" placeholder="Your Aadhar number"
+                              value={formData.aadhar} onChange={(e) => setFormData({ ...formData, aadhar: e.target.value.replace(/\D/g, "").slice(0, 12) })}
+                              className="w-full pl-12 pr-10 py-4 bg-slate-50/50 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-red-500 focus:ring-0 outline-none rounded-none text-sm md:text-base text-slate-900 font-semibold transition-all duration-300 shadow-sm"
+                            />
+                            {formData.aadhar.replace(/\D/g, "").length === 12 && (
                               <CheckCircle2 size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500" />
                             )}
                           </div>

@@ -27,7 +27,11 @@ import {
   Mail,
   Phone,
   GraduationCap,
-  Quote
+  Quote,
+  School,
+  Hash,
+  Calendar,
+  Target
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import { supabase } from "@/lib/supabase";
@@ -491,7 +495,17 @@ const NeuralNetworkVisualizer = () => {
 // --- Main Page Component ---
 const CourseAIML = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: "", email: "", mobile: "", qualification: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    qualification: "",
+    college: "",
+    stream: "",
+    dob: "",
+    aadhar: "",
+    yearOfPassing: "",
+  });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -505,6 +519,33 @@ const CourseAIML = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    
+    // JS Validations
+    const cleanedMobile = formData.mobile.replace(/\D/g, "");
+    if (cleanedMobile.length !== 10) {
+      toast.error("Please enter a valid 10-digit mobile number");
+      return;
+    }
+
+    if (formData.aadhar && formData.aadhar.replace(/\D/g, "").length !== 12) {
+      toast.error("Aadhar number must be exactly 12 digits");
+      return;
+    }
+
+    if (formData.yearOfPassing && !/^(19|20)\d{2}$/.test(formData.yearOfPassing.trim())) {
+      toast.error("Please enter a valid 4-digit year of passing (between 1900 and 2099)");
+      return;
+    }
+
+    if (formData.dob) {
+      const dobDate = new Date(formData.dob);
+      const today = new Date();
+      if (dobDate >= today) {
+        toast.error("Date of birth cannot be in the future");
+        return;
+      }
+    }
+
     if (formData.name && formData.email && formData.mobile && formData.qualification) {
       const { error } = await supabase
         .from("applications")
@@ -512,8 +553,13 @@ const CourseAIML = () => {
           {
             name: formData.name,
             email: formData.email,
-            phone: formData.mobile,
+            phone: cleanedMobile,
             qualification: formData.qualification,
+            college: formData.college,
+            stream: formData.stream,
+            dob: formData.dob || null,
+            aadhar: formData.aadhar,
+            year_of_passing: formData.yearOfPassing,
             looking_for: "Artificial Intelligence & Machine Learning",
           },
         ]);
@@ -525,7 +571,18 @@ const CourseAIML = () => {
         setFormSubmitted(true);
         setTimeout(() => {
           setFormSubmitted(false);
-          setFormData({ name: "", email: "", mobile: "", qualification: "" });
+
+          setFormData({
+            name: "",
+            email: "",
+            mobile: "",
+            qualification: "",
+            college: "",
+            stream: "",
+            dob: "",
+            aadhar: "",
+            yearOfPassing: "",
+          });
         }, 4000);
       }
     }
@@ -1132,10 +1189,10 @@ const CourseAIML = () => {
                           </div>
                           <input
                             type="tel" id="mobile" required placeholder="9876543210"
-                            value={formData.mobile} onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                            value={formData.mobile} onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) })}
                             className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
                           />
-                          {formData.mobile.trim().length >= 10 && (
+                          {formData.mobile.replace(/\D/g, "").length === 10 && (
                             <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
                           )}
                         </div>
@@ -1163,6 +1220,114 @@ const CourseAIML = () => {
                           )}
                         </div>
                       </div>
+
+                      {/* College Name */}
+                      <div className="flex flex-col gap-2.5 group/input">
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="college" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            College Name
+                          </label>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <School size={20} />
+                          </div>
+                          <input
+                            type="text" id="college" placeholder="Please enter your college name"
+                            value={formData.college} onChange={(e) => setFormData({ ...formData, college: e.target.value })}
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
+                          />
+                          {formData.college.trim().length > 2 && (
+                            <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Stream */}
+                      <div className="flex flex-col gap-2.5 group/input">
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="stream" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            Stream
+                          </label>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <Target size={20} />
+                          </div>
+                          <input
+                            type="text" id="stream" placeholder="Your stream (e.g. CS, EC)"
+                            value={formData.stream} onChange={(e) => setFormData({ ...formData, stream: e.target.value })}
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
+                          />
+                          {formData.stream.trim().length > 1 && (
+                            <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Date of Birth */}
+                      <div className="flex flex-col gap-2.5 group/input">
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="dob" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            Date of Birth
+                          </label>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <Calendar size={20} />
+                          </div>
+                          <input
+                            type="date" id="dob"
+                            value={formData.dob} onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-700 font-semibold text-base"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Year of Passing */}
+                      <div className="flex flex-col gap-2.5 group/input">
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="yearOfPassing" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            Year of Passing
+                          </label>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <Award size={20} />
+                          </div>
+                          <input
+                            type="text" id="yearOfPassing" placeholder="Year of passing"
+                            value={formData.yearOfPassing} onChange={(e) => setFormData({ ...formData, yearOfPassing: e.target.value.replace(/\D/g, "").slice(0, 4) })}
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
+                          />
+                          {/^(19|20)\d{2}$/.test(formData.yearOfPassing.trim()) && (
+                            <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Aadhar Number */}
+                      <div className="flex flex-col gap-2.5 group/input md:col-span-2">
+                        <div className="flex justify-between items-center px-1">
+                          <label htmlFor="aadhar" className="text-xs font-black uppercase tracking-widest text-slate-400 group-focus-within/input:text-orange-500 transition-colors">
+                            Aadhar Number
+                          </label>
+                        </div>
+                        <div className="relative flex items-center bg-slate-50 border border-slate-200/80 focus-within:border-orange-500 focus-within:ring-4 focus-within:ring-orange-500/5 focus-within:bg-white rounded-2xl transition-all duration-300">
+                          <div className="pl-5 pr-3 py-4 text-slate-400 border-r border-slate-200/60 group-focus-within/input:text-orange-500 group-focus-within/input:border-orange-200/60 transition-colors">
+                            <Hash size={20} />
+                          </div>
+                          <input
+                            type="text" id="aadhar" placeholder="Your Aadhar number"
+                            value={formData.aadhar} onChange={(e) => setFormData({ ...formData, aadhar: e.target.value.replace(/\D/g, "").slice(0, 12) })}
+                            className="w-full pl-4 pr-12 py-4.5 bg-transparent border-0 outline-none text-slate-950 font-semibold text-base placeholder:text-slate-400 placeholder:font-normal"
+                          />
+                          {formData.aadhar.replace(/\D/g, "").length === 12 && (
+                            <CheckCircle2 size={18} className="absolute right-5 text-emerald-500" />
+                          )}
+                        </div>
+                      </div>
+
                     </div>
 
                     <button
