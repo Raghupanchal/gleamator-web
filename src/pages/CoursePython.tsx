@@ -44,6 +44,7 @@ import plc2 from "@/assets/plc2.png";
 import plc3 from "@/assets/plc3.png";
 import plc4 from "@/assets/plc4.png";
 import plc5 from "@/assets/plc5.png";
+import reviewVideo from "@/assets/review video.mp4";
 
 // --- Utility Components ---
 
@@ -783,7 +784,7 @@ const CoursePython = () => {
                 <div className="bg-white border border-slate-200/80 rounded-[2rem] shadow-2xl overflow-hidden p-3 md:p-5 group hover:shadow-indigo-100/30 transition-all duration-500">
                   <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-inner group/video">
                     <video
-                      src="https://www.w3schools.com/html/mov_bbb.mp4"
+                      src={reviewVideo}
                       controls
                       playsInline
                       className="w-full h-full object-cover"
