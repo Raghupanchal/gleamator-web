@@ -21,7 +21,7 @@ const values = [
   { icon: Layers, title: "Comprehensive Service Offerings", description: "We offer a wide range of services, including IT solutions, skill development, corporate training, and HR services. With everything under one roof, we simplify your organizational needs and eliminate the need for multiple service providers." },
   { icon: Globe, title: "Pan-India Presence", description: "With a strong partner network and infrastructure across India, we efficiently manage projects anywhere in the country. This ensures local support and scalable solutions for our clients." },
   { icon: Settings, title: "Customized Solutions", description: "We design customized solutions to fit each client's unique requirements. Our personalized approach ensures effective results that align with your specific goals and challenges." },
-  { icon: Users, title: "Expert Team", description: "Backed by over 20 years of experience, our skilled team brings expertise across IT solutions, training, and HR services. We are committed to delivering high-quality results that meet your needs." },
+  { icon: Users, title: "Expert Team", description: "Backed by over 25 years of experience, our skilled team brings expertise across IT solutions, training, and HR services. We are committed to delivering high-quality results that meet your needs." },
   { icon: Lightbulb, title: "Focus On Innovation", description: "Innovation drives us to adopt the latest technologies and methods, enabling us to deliver advanced and impactful solutions that keep you ahead." },
   { icon: Heart, title: "Client-Centric Approach", description: "We build strong relationships by understanding our clients needs. This ensures our solutions are not only robust but also practical and sustainable for long-term success." },
 ];
@@ -150,7 +150,7 @@ const AboutPage = () => {
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">We Are Beyond</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Gleamator is a startup founded in 2024, backed by a team with over 20 years of experience in IT services, skill development, and workforce solutions. We help businesses build stronger systems and stronger teams by combining technology, training, and talent in a way that's practical and effective.
+                  Gleamator is a startup founded in 2024, backed by a team with over 25 years of experience in IT services, skill development, and workforce solutions. We help businesses build stronger systems and stronger teams by combining technology, training, and talent in a way that's practical and effective.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   We believe growth happens when people and systems are aligned. So our work always starts with understanding how your business actually operates — then improving what matters most.
@@ -533,7 +533,7 @@ const AboutPage = () => {
 
                       <div className="relative z-10 w-full flex flex-col items-center">
                         {/* Circular Portrait Container */}
-                        <div className="relative w-28 h-28 rounded-full border-[3px] border-white bg-white shadow-md z-10 mt-4 mb-3 overflow-hidden">
+                        <div className="relative w-[8.5rem] h-[8.5rem] rounded-full border-[3px] border-white bg-white shadow-md z-10 mt-5 mb-4 overflow-hidden">
                           <img
                             src={person.image}
                             alt={person.name}

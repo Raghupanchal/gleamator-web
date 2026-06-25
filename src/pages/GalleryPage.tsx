@@ -27,7 +27,7 @@ import hirasugarInstitute from "@/assets/hirasugar-institute.jpg";
 
 const galleryImages = [
   { id: 26, src: hirasugarInstitute, caption: "MoU Exchange Ceremony at Hirasugar Institute of Technology, Nidasoshi" },
-  { id: 23, src: deepikaaImg, caption: "Trusted & Futuristic Skill Development & IT Consultancy Firm of the Year 2025 - Great Indian Startup Awards" },
+  { id: 23, src: deepikaaImg, caption: "Honored at the Great Indian Startup Awards 2026" },
   { id: 19, src: gleamatoropening, caption: "Gleamator Opening Ceremony" },
   { id: 11, src: image12, caption: "Official MoU Signing Ceremony – Akkamahadevi University" },
   { id: 12, src: image13, caption: "Document Exchange Event" },

@@ -251,7 +251,7 @@ const AboutSection = () => {
                   <div className="mt-auto flex flex-col gap-2.5 sm:gap-3 border-t border-slate-200 pt-3 sm:pt-4 relative z-10 w-full">
                     <div className="flex items-center justify-between">
                       <span className="text-slate-500 text-sm font-medium">Industry Experience</span>
-                      <span className="text-orange-600 font-bold text-sm bg-orange-50 px-2 py-1 rounded">20+ Years</span>
+                      <span className="text-orange-600 font-bold text-sm bg-orange-50 px-2 py-1 rounded">25+ Years</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-slate-500 text-sm font-medium">Founded</span>
@@ -288,7 +288,7 @@ const AboutSection = () => {
               {/* Highlighted Quote Block */}
               <div className="border-l-4 border-orange-500 pl-5 py-4 mb-10 bg-white/80 backdrop-blur-sm rounded-r-xl text-left shadow-sm max-w-2xl mx-auto lg:mx-0">
                 <p className="text-slate-700 italic font-medium text-sm lg:text-base leading-relaxed">
-                  "Our team of seasoned professionals brings over 20 years of collective industry experience, committed to delivering exceptional, transformative services to our clients."
+                  "Our team of seasoned professionals brings over 25 years of collective industry experience, committed to delivering exceptional, transformative services to our clients."
                 </p>
               </div>
 
