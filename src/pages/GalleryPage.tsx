@@ -46,7 +46,7 @@ const galleryImages = [
   { id: 7, src: academicPartnerships, caption: "Academic Partnerships" },
   { id: 17, src: img000, caption: "Gleamator Team Showcasing Innovation at VTU" },
   { id: 8, src: govtSkillProgram, caption: "Govt Skill Program" },
-  { id: 9, src: certificateDay, caption: "Certificate Day Celebration" },
+  { id: 9, src: certificateDay, caption: "-" },
 ];
 
 const frameColors = [
