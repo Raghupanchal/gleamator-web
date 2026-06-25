@@ -23,9 +23,9 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4 text-gray-900">Services</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/services/skill-development">Skill Development Programs</Link></li>
-              <li><Link to="/services/hr-services">HR Services</Link></li>
-              <li><Link to="/services/it-services">IT Services</Link></li>
+              <li><Link to="/services/skill-development" className="transition-colors hover:text-accent">Skill Development Programs</Link></li>
+              <li><Link to="/services/hr-services" className="transition-colors hover:text-accent">HR Services</Link></li>
+              <li><Link to="/services/it-services" className="transition-colors hover:text-accent">IT Services</Link></li>
             </ul>
           </div>
 
@@ -33,11 +33,12 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4 text-gray-900">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/gallery">Gallery</Link></li>
-              <li><Link to="/internships">Internships</Link></li>
-              <li><Link to="/contact">Job Opportunity</Link></li>
-              <li><Link to="/contact">Contact Us</Link></li>
+              <li><Link to="/" className="transition-colors hover:text-accent">Home</Link></li>
+              <li><Link to="/about" className="transition-colors hover:text-accent">About Us</Link></li>
+              <li><Link to="/gallery" className="transition-colors hover:text-accent">Gallery</Link></li>
+              <li><Link to="/internships" className="transition-colors hover:text-accent">Internships</Link></li>
+              <li><Link to="/contact" className="transition-colors hover:text-accent">Job Opportunity</Link></li>
+              <li><Link to="/contact" className="transition-colors hover:text-accent">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -48,7 +49,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-blue-600" />
-                info@gleamator.in
+                <a href="mailto:info@gleamator.in" className="transition-colors hover:text-blue-800">info@gleamator.in</a>
               </li>
 
               <li className="flex items-center gap-2">
@@ -58,8 +59,15 @@ const Footer = () => {
 
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-blue-600 mt-1" />
-                No.130, 1st Block, Dr. Rajkumar Road,
-                Rajajinagar, Bengaluru - 560010
+                <a 
+                  href="https://maps.google.com/?q=No.130,+1st+Block,+Dr.+Rajkumar+Road,+Rajajinagar,+Bengaluru+-+560010" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="transition-colors hover:text-blue-800"
+                >
+                  No.130, 1st Block, Dr. Rajkumar Road,
+                  Rajajinagar, Bengaluru - 560010
+                </a>
               </li>
             </ul>
 

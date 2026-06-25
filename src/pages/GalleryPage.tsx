@@ -40,7 +40,7 @@ const galleryImages = [
   { id: 3, src: workshopDay, caption: "Workshop day" },
   { id: 14, src: img36, caption: "Press Coverage of Event" },
   { id: 5, src: teamPhoto, caption: "Gleamator team" },
-  { id: 15, src: img39, caption: "GGleamator Team at Jyothy Institute of Technology" },
+  { id: 15, src: img39, caption: "Gleamator Team at Jyothy Institute of Technology" },
   { id: 6, src: classroomAction, caption: "Classroom action" },
   { id: 16, src: imgDash, caption: "Inauguration of the VTU Skill Development Centre at Affiliated Colleges." },
   { id: 7, src: academicPartnerships, caption: "Academic Partnerships" },
