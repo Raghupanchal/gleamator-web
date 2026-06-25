@@ -30,11 +30,11 @@ const galleryImages = [
   { id: 23, src: deepikaaImg, caption: "Honored at the Great Indian Startup Awards 2026" },
   { id: 19, src: gleamatoropening, caption: "Gleamator Opening Ceremony" },
   { id: 11, src: image12, caption: "Official MoU Signing Ceremony – Akkamahadevi University" },
-  { id: 12, src: image13, caption: "Document Exchange Event" },
-  { id: 25, src: vtuSdc, caption: "Honoring Guests at VTU Skill Development Center Event" },
+  { id: 12, src: image13, caption: "MoU Exchange Ceremony Between VTU-VRIF and GleamatorTechnologies with the Hon'ble Vice-Chancellor, VTU." },
+  { id: 25, src: vtuSdc, caption: "Farewell Ceremony for Internship Candidates at HKBK College" },
   { id: 10, src: image9, caption: "Welcoming Ceremony" },
   { id: 2, src: vtuSkillDev, caption: "VTU Skill Development Center at Jyothy Institute of Technology" },
-  { id: 13, src: image3, caption: "Group Photo with University Officials" },
+  { id: 13, src: image3, caption: "Gleamator Technologies Team Extends Best Wishes to the New Registrar, VTU" },
   { id: 1, src: campusVisit, caption: "Campus visit" },
   { id: 4, src: awards, caption: "Recognized for Excellence" },
   { id: 3, src: workshopDay, caption: "Workshop day" },
@@ -45,7 +45,7 @@ const galleryImages = [
   { id: 16, src: imgDash, caption: "Inauguration of the VTU Skill Development Centre at Affiliated Colleges." },
   { id: 7, src: academicPartnerships, caption: "Academic Partnerships" },
   { id: 17, src: img000, caption: "Gleamator Team Showcasing Innovation at VTU" },
-  { id: 8, src: govtSkillProgram, caption: "Govt Skill Program" },
+  { id: 8, src: govtSkillProgram, caption: "MoU Between Directorate of Minorities and VTU for Skill Development, Gleamator Participates as Skill Collaborator of VTU" },
   { id: 9, src: certificateDay, caption: "-" },
 ];
 
