@@ -22,33 +22,31 @@ import gleamatoropening from "@/assets/gleamatoropening.jpeg";
 import imgDash from "@/assets/img--.jpeg";
 import img000 from "@/assets/img-000.jpeg";
 import deepikaaImg from "@/assets/deepikaa..jpeg";
-import img43 from "@/assets/img-43.jpeg";
 import vtuSdc from "@/assets/vtu-sdc.jpg";
+import hirasugarInstitute from "@/assets/hirasugar-institute.jpg";
 
 const galleryImages = [
+  { id: 26, src: hirasugarInstitute, caption: "MoU Exchange Ceremony at Hirasugar Institute of Technology, Nidasoshi" },
   { id: 23, src: deepikaaImg, caption: "Trusted & Futuristic Skill Development & IT Consultancy Firm of the Year 2025 - Great Indian Startup Awards" },
   { id: 19, src: gleamatoropening, caption: "Gleamator Opening Ceremony" },
-  { id: 11, src: image12, caption: "MoU Signing at University" },
+  { id: 11, src: image12, caption: "Official MoU Signing Ceremony – Akkamahadevi University" },
   { id: 12, src: image13, caption: "Document Exchange Event" },
-  { id: 24, src: img43, caption: "Gleamator Skill Development Day" },
   { id: 25, src: vtuSdc, caption: "Honoring Guests at VTU Skill Development Center Event" },
   { id: 10, src: image9, caption: "Welcoming Ceremony" },
-  { id: 2, src: vtuSkillDev, caption: "VTU Skill Development Center" },
+  { id: 2, src: vtuSkillDev, caption: "VTU Skill Development Center at Jyothy Institute of Technology" },
   { id: 13, src: image3, caption: "Group Photo with University Officials" },
   { id: 1, src: campusVisit, caption: "Campus visit" },
   { id: 4, src: awards, caption: "Recognized for Excellence" },
   { id: 3, src: workshopDay, caption: "Workshop day" },
   { id: 14, src: img36, caption: "Press Coverage of Event" },
   { id: 5, src: teamPhoto, caption: "Gleamator team" },
-  { id: 15, src: img39, caption: "Gleamator Team at University" },
+  { id: 15, src: img39, caption: "GGleamator Team at Jyothy Institute of Technology" },
   { id: 6, src: classroomAction, caption: "Classroom action" },
-  { id: 16, src: imgDash, caption: "Student Interaction Moment" },
+  { id: 16, src: imgDash, caption: "Inauguration of the VTU Skill Development Centre at Affiliated Colleges." },
   { id: 7, src: academicPartnerships, caption: "Academic Partnerships" },
-  { id: 17, src: img000, caption: "Campus Outreach Snapshot" },
+  { id: 17, src: img000, caption: "Gleamator Team Showcasing Innovation at VTU" },
   { id: 8, src: govtSkillProgram, caption: "Govt Skill Program" },
-  { id: 18, src: image7, caption: "Gleamator and University Partnership" },
   { id: 9, src: certificateDay, caption: "Certificate Day Celebration" },
-  { id: 22, src: img000, caption: "Media Coverage of University Partnership" },
 ];
 
 const frameColors = [
