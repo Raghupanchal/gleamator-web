@@ -41,12 +41,12 @@ const galleryImages = [
   { id: 14, src: img36, caption: "Press Coverage of Event" },
   { id: 5, src: teamPhoto, caption: "Gleamator team" },
   { id: 15, src: img39, caption: "Gleamator Team at Jyothy Institute of Technology" },
-  { id: 6, src: classroomAction, caption: "Classroom action" },
+  { id: 6, src: classroomAction, caption: "Classroom Session at HKBK College of Engineering" },
   { id: 16, src: imgDash, caption: "Inauguration of the VTU Skill Development Centre at Affiliated Colleges." },
-  { id: 7, src: academicPartnerships, caption: "Academic Partnerships" },
+  { id: 7, src: academicPartnerships, caption: "Academic Partnership with HKBK College of Engineering " },
   { id: 17, src: img000, caption: "Gleamator Team Showcasing Innovation at VTU" },
   { id: 8, src: govtSkillProgram, caption: "MoU Between Directorate of Minorities and VTU for Skill Development, Gleamator Participates as Skill Collaborator of VTU" },
-  { id: 9, src: certificateDay, caption: "-" },
+  { id: 9, src: certificateDay, caption: "MoU Signing Ceremony with East West College of Engineering" },
 ];
 
 const frameColors = [
