@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import PageBanner from "@/components/PageBanner";
 import { Link } from "react-router-dom";
 import hrImage from "@/assets/hr-services.jpg";
+import ctaBg from "@/assets/cta-bg.jpg";
 import { Users, UserCheck, FileText, Building, BarChart3, Handshake, CheckCircle } from "lucide-react";
 
 const offerings = [
@@ -39,17 +40,53 @@ const HRServicesPage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-navy">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-hero text-center mb-12">What <span className="font-extrabold">We Offer</span></h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="py-24 relative overflow-hidden bg-[#FAF9F5]">
+        {/* Faded Background Image watermark */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={hrImage} 
+            alt="Faded HR Background" 
+            className="w-full h-full object-cover opacity-[0.06] pointer-events-none filter grayscale" 
+            loading="lazy"
+          />
+        </div>
+
+        {/* Glow Spheres for rich background aesthetic */}
+        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl pointer-events-none z-10"></div>
+        <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl pointer-events-none z-10"></div>
+
+        <div className="container mx-auto px-4 relative z-20 max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto mb-16 flex flex-col items-center">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-3 tracking-tight">
+              What <span className="text-accent font-black">We Offer</span>
+            </h2>
+            <div className="w-16 h-1 bg-accent rounded-full mb-6" />
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {offerings.map((o) => (
-              <div key={o.title} className="bg-navy-light rounded-lg p-6 text-center hover:bg-navy-light/80 transition-colors">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center">
-                  <o.icon className="w-6 h-6 text-accent" />
+              <div 
+                key={o.title} 
+                className="group relative bg-white border border-slate-100 rounded-3xl p-8 hover:border-accent/30 hover:shadow-[0_20px_50px_rgba(255,107,0,0.1)] hover:-translate-y-2 transition-all duration-500 ease-out flex flex-col h-full cursor-default overflow-hidden"
+              >
+                {/* Hover Top Accent Line */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                {/* Inner Content */}
+                <div className="flex flex-col h-full relative z-10">
+                  {/* Icon Container with glowing orange tint */}
+                  <div className="w-14 h-14 mb-6 rounded-2xl bg-accent/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-accent/15 transition-all duration-500 ease-out shadow-sm">
+                    <o.icon className="w-7 h-7 text-accent drop-shadow-sm transition-transform duration-500 group-hover:rotate-12" />
+                  </div>
+
+                  <h3 className="font-extrabold text-lg text-primary mb-3 tracking-tight group-hover:text-accent transition-colors duration-300">
+                    {o.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-sm leading-relaxed flex-grow">
+                    {o.description}
+                  </p>
                 </div>
-                <h3 className="font-bold text-white mb-2 text-sm">{o.title}</h3>
-                <p className="text-white/90 font-medium text-sm leading-relaxed">{o.description}</p>
               </div>
             ))}
           </div>

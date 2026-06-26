@@ -28,6 +28,8 @@ import gimage from "@/assets/gimage.jpeg";
 import gimage1 from "@/assets/Gimage1.jpeg";
 import gimage3 from "@/assets/gimage3.jpeg";
 import gimage4 from "@/assets/gimage4.jpeg";
+import mouHaliyal from "@/assets/mou_haliyal.webp";
+
 
 const galleryImages = [
   { id: 26, src: hirasugarInstitute, caption: "MoU Exchange Ceremony at Hirasugar Institute of Technology, Nidasoshi" },
@@ -55,6 +57,7 @@ const galleryImages = [
   { id: 28, src: gimage1, caption: "Skill Development Inauguration Ceremony at Jyothi College" },
   { id: 29, src: gimage3, caption: "Official MoU between Gleamator and HKBK College" },
   { id: 30, src: gimage4, caption: "Mou between Gleamator and Ghousia College" },
+  { id: 31, src: mouHaliyal, caption: "MoU Exchange Ceremony with KLS Vishwanath’s Rao Deshpande College, Haliyal" },
 ];
 
 const frameColors = [

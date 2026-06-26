@@ -7,8 +7,14 @@ import pm1 from "@/assets/pm1.jpeg";
 import gs2 from "@/assets/gs2.jpeg";
 import gs3 from "@/assets/GS3.jpeg";
 import whyImage from "@/assets/about-office.jpg";
+import gt_ from "@/assets/gt_.webp";
+import gt_1 from "@/assets/gt_1.webp";
+import gtt from "@/assets/gtt.webp";
 import { GraduationCap, Lightbulb, BookOpen, Briefcase } from "lucide-react";
+
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
 
 const offerings = [
   { icon: GraduationCap, title: "Government-Sponsored Training Programs", description: "Affordable and accessible courses backed by leading government schemes." },
@@ -164,6 +170,73 @@ const SkillDevelopmentPage = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Seamless scrolling marquee of candidate mobilization images (no captions) */}
+          <div className="mt-16 overflow-hidden relative w-full max-w-5xl mx-auto rounded-[2rem] border border-slate-100/60 bg-[#FAF9F5] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] flex">
+            {/* Gradient masks on left and right edges for a premium fading overflow effect */}
+            <div className="absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/60 to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#FAF9F5] via-[#FAF9F5]/60 to-transparent z-20 pointer-events-none" />
+
+            <motion.div 
+              animate={{ x: [0, -1152] }}
+              transition={{
+                ease: "linear",
+                duration: 24,
+                repeat: Infinity
+              }}
+              className="flex gap-6 flex-shrink-0"
+            >
+              <div className="w-[280px] sm:w-[360px] aspect-[4/3] overflow-hidden rounded-2xl relative shadow-md hover:shadow-xl flex-shrink-0 group bg-slate-50 border-2 border-white">
+                <img 
+                  src={gt_} 
+                  alt="Government Scheme Candidate Mobilization Camp" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="w-[280px] sm:w-[360px] aspect-[4/3] overflow-hidden rounded-2xl relative shadow-md hover:shadow-xl flex-shrink-0 group bg-slate-50 border-2 border-white">
+                <img 
+                  src={gt_1} 
+                  alt="Mobilized Candidates Training Session" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="w-[280px] sm:w-[360px] aspect-[4/3] overflow-hidden rounded-2xl relative shadow-md hover:shadow-xl flex-shrink-0 group bg-slate-50 border-2 border-white">
+                <img 
+                  src={gtt} 
+                  alt="Mobilized Candidates Group" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              {/* Duplicated for seamless scrolling loop */}
+              <div className="w-[280px] sm:w-[360px] aspect-[4/3] overflow-hidden rounded-2xl relative shadow-md hover:shadow-xl flex-shrink-0 group bg-slate-50 border-2 border-white">
+                <img 
+                  src={gt_} 
+                  alt="Government Scheme Candidate Mobilization Camp Duplicate" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="w-[280px] sm:w-[360px] aspect-[4/3] overflow-hidden rounded-2xl relative shadow-md hover:shadow-xl flex-shrink-0 group bg-slate-50 border-2 border-white">
+                <img 
+                  src={gt_1} 
+                  alt="Mobilized Candidates Training Session Duplicate" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="w-[280px] sm:w-[360px] aspect-[4/3] overflow-hidden rounded-2xl relative shadow-md hover:shadow-xl flex-shrink-0 group bg-slate-50 border-2 border-white">
+                <img 
+                  src={gtt} 
+                  alt="Mobilized Candidates Group Duplicate" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
