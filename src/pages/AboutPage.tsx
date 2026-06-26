@@ -706,7 +706,7 @@ const AboutPage = () => {
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none rounded-2xl" />
                 </div>
                 <p className="mt-4 text-xs font-bold uppercase tracking-wider text-slate-400">Gleamator Technologies Recognition</p>
-                <p className="mt-1 text-sm font-semibold text-slate-800 text-center">Certificate of Excellence - ग्रेट इंडियन स्टार्टअप अवार्ड्स</p>
+                <p className="mt-1 text-sm font-semibold text-slate-800 text-center">Certificate of Excellence - Great Indian Startup Awards</p>
               </div>
             </AnimatedSection>
           </div>
