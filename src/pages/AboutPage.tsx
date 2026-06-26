@@ -8,11 +8,11 @@ import leader3 from "@/assets/leader-3.png";
 import director1 from "@/assets/director-1.png";
 import director2 from "@/assets/director-2.png";
 import director3 from "@/assets/director-3.png";
-import director4 from "@/assets/raghavendra.jpeg";
+import director4 from "@/assets/raghuu.webp";
 import teamPhoto from "@/assets/team-photo.jpg";
 import collaborativeLearning from "@/assets/collaborative_learning.png";
 import awardTrophy from "@/assets/award-trophy.png";
-import awardCertificate from "@/assets/awards-certificate.jpg";
+import awardCertificate from "@/assets/certificate.jpeg";
 import bgpngtrophyy from "@/assets/bgpngtrophyy.png";
 import { Eye, Target, Layers, Globe, Settings, Users, Lightbulb, Heart, Linkedin, Mail, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -362,14 +362,18 @@ const AboutPage = () => {
                   <div className="absolute top-0 right-0 w-44 h-44 bg-[#e3eef7] rounded-bl-[100px] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-105" />
 
                   {/* Leaf-shaped Image Container (Larger & Crisper) */}
-                  <div className="relative w-40 h-40 bg-white border-[6px] border-[#3f434c] rounded-[40px_0_40px_0] p-1 flex items-center justify-center shadow-sm z-10 mb-5 transition-transform duration-500 group-hover:scale-105">
+                  <div className="relative w-40 h-40 bg-white border-[6px] border-[#3f434c] rounded-[40px_0_40px_0] p-1 flex items-center justify-center shadow-sm z-10 mb-5 transition-transform duration-500 group-hover:scale-105 overflow-hidden isolate" style={{ transform: "translate3d(0, 0, 0)" }}>
                     <img
                       src={person.image}
                       alt={person.name}
-                      className="w-full h-full object-cover rounded-[32px_0_32px_0]"
+                      className="w-full h-full object-cover rounded-[32px_0_32px_0] will-change-transform"
+                      style={{
+                        imageRendering: "-webkit-optimize-contrast",
+                        backfaceVisibility: "hidden"
+                      }}
                       loading="lazy"
-                      width={256}
-                      height={256}
+                      width={320}
+                      height={320}
                     />
                   </div>
 
@@ -579,23 +583,19 @@ const AboutPage = () => {
                   <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-br from-[#0c1e3d] to-[#15305b] rounded-b-[30px] pointer-events-none z-0" />
 
                   <div className="relative z-10 w-full flex flex-col items-center">
-                    {/* Circular Portrait Container */}
-                    <div className="relative w-[8.5rem] h-[8.5rem] rounded-full border-[3px] border-white bg-white shadow-md z-10 mt-5 mb-3 overflow-hidden isolate" style={{ transform: "translateZ(0)" }}>
-                      <img
-                        src={person.image}
-                        alt={person.name}
-                        className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.08] ${person.name === "Raghunath S" ? "scale-[1.05] object-cover" : ""
-                          }`}
-                        style={{
-                          transform: "translateZ(0)",
-                          backfaceVisibility: "hidden",
-                          imageRendering: "-webkit-optimize-contrast"
-                        }}
-                        loading="lazy"
-                        width={256}
-                        height={256}
-                      />
-                    </div>
+                    {/* Circular Portrait Container (Using background-image to avoid clipping blur) */}
+                    <div
+                      className="relative w-[150px] h-[150px] rounded-full border-[3px] border-white bg-white shadow-md z-10 mt-5 mb-3 transition-transform duration-700 ease-out group-hover:scale-[1.08] will-change-transform"
+                      style={{
+                        backgroundImage: `url(${person.image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        transform: "translate3d(0,0,0)",
+                        backfaceVisibility: "hidden"
+                      }}
+                      role="img"
+                      aria-label={person.name}
+                    />
 
                     {/* Paint Brush Stroke Arc */}
                     <div className="w-24 h-3.5 mb-3 text-[#14b8a6] transition-transform duration-500 group-hover:scale-110">
