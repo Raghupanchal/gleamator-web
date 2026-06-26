@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Layout from "@/components/Layout";
 import PageBanner from "@/components/PageBanner";
 
@@ -29,6 +30,11 @@ import gimage1 from "@/assets/Gimage1.jpeg";
 import gimage3 from "@/assets/gimage3.jpeg";
 import gimage4 from "@/assets/gimage4.jpeg";
 import mouHaliyal from "@/assets/mou_haliyal.webp";
+import bietDavangere from "@/assets/biet-davangere.jpg";
+import vtuMouSigning from "@/assets/vtu-mou-signing.jpg";
+import newspaperCoverage from "@/assets/newspaper-coverage.jpg";
+import sriSiddharthaMou from "@/assets/sri-siddhartha-mou.jpg";
+import essciCeoVisit from "@/assets/essci-ceo-visit.png";
 
 
 const galleryImages = [
@@ -49,15 +55,19 @@ const galleryImages = [
   { id: 15, src: img39, caption: "Gleamator Team at Jyothy Institute of Technology" },
   { id: 6, src: classroomAction, caption: "Classroom Session at HKBK College of Engineering" },
   { id: 16, src: imgDash, caption: "Inauguration of the VTU Skill Development Centre at Affiliated Colleges." },
-  { id: 7, src: academicPartnerships, caption: "Academic Partnership with HKBK College of Engineering " },
   { id: 17, src: img000, caption: "Gleamator Team Showcasing Innovation at VTU" },
   { id: 8, src: govtSkillProgram, caption: "MoU Between Directorate of Minorities and VTU for Skill Development, Gleamator Participates as Skill Collaborator of VTU" },
-  { id: 9, src: certificateDay, caption: "MoU Signing Ceremony with East West College of Engineering" },
-  { id: 27, src: gimage, caption: "Skill Development Training Session" },
+  { id: 9, src: certificateDay, caption: "Official Institutional Collaboration with East West College of Engineering" },
+  { id: 27, src: gimage, caption: "Formal discussion held between Devaraj Urs Nigama and Gleamator regarding potential collaboration and development initiatives." },
   { id: 28, src: gimage1, caption: "Skill Development Inauguration Ceremony at Jyothi College" },
-  { id: 29, src: gimage3, caption: "Official MoU between Gleamator and HKBK College" },
-  { id: 30, src: gimage4, caption: "Mou between Gleamator and Ghousia College" },
-  { id: 31, src: mouHaliyal, caption: "MoU Exchange Ceremony with KLS Vishwanath’s Rao Deshpande College, Haliyal" },
+  { id: 29, src: gimage3, caption: "Official Institutional Collaboration between Gleamator and HKBK College" },
+  { id: 30, src: gimage4, caption: "Institutional Collaboration between Gleamator and Ghousia College" },
+  { id: 31, src: mouHaliyal, caption: "Academic Partnership Ceremony with KLS Vishwanath’s Rao Deshpande College, Haliyal" },
+  { id: 32, src: bietDavangere, caption: "Institutional collaboration with Bapuji engineering college Davangere" },
+  { id: 33, src: vtuMouSigning, caption: "Signing of a Memorandum of Understanding between Visvesvaraya Technological University and Gleamator." },
+  { id: 34, src: newspaperCoverage, caption: "Press Coverage." },
+  { id: 35, src: sriSiddharthaMou, caption: "MoU Signing between Gleamator Technologies LLP and Sri Siddhartha School of Engineering" },
+  { id: 36, src: essciCeoVisit, caption: "Formal and ceremonial visit of the CEO of the Electronics Sector Skills Council of India to our office." },
 ];
 
 const frameColors = [
@@ -69,6 +79,8 @@ const frameColors = [
 ];
 
 const GalleryPage = () => {
+  const [selectedImage, setSelectedImage] = useState<{ src: string; caption: string } | null>(null);
+
   return (
     <Layout showCTA={false}>
       <PageBanner subtitle="Gallery" title="Gleamator Times" />
@@ -100,7 +112,8 @@ const GalleryPage = () => {
               return (
                 <div
                   key={img.id}
-                  className={`group ${colors.bg} border-4 ${colors.border} p-2.5 sm:p-3.5 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_45px_rgba(255,107,0,0.18)] transition-all duration-500 hover:-translate-y-2.5 hover:scale-[1.03] flex flex-col h-full relative ${rotationClass} hover:rotate-0`}
+                  onClick={() => setSelectedImage(img)}
+                  className={`group cursor-pointer ${colors.bg} border-4 ${colors.border} p-2.5 sm:p-3.5 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_45px_rgba(255,107,0,0.18)] transition-all duration-500 hover:-translate-y-2.5 hover:scale-[1.03] flex flex-col h-full relative ${rotationClass} hover:rotate-0`}
                 >
                   {/* Washi Tape Hanger Element */}
                   <div className={`absolute -top-3.5 left-1/2 -translate-x-1/2 w-12 h-4.5 ${colors.tape} backdrop-blur-[1px] rotate-[-3deg] shadow-sm z-20 transition-all duration-300 group-hover:scale-105 group-hover:rotate-0`} />
@@ -110,7 +123,7 @@ const GalleryPage = () => {
                     <img
                       src={img.src}
                       alt={img.caption}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                      className={`w-full h-full transition-transform duration-700 ease-out group-hover:scale-108 ${img.src === newspaperCoverage ? 'object-contain bg-white p-1.5' : 'object-cover'}`}
                     />
                     <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none rounded-xl" />
                   </div>
@@ -132,6 +145,33 @@ const GalleryPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-slate-950/90 z-50 flex items-center justify-center p-4 backdrop-blur-md cursor-zoom-out"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-[90vh] flex flex-col items-center">
+            <button
+              className="absolute -top-12 right-0 text-white hover:text-[#FF6B00] transition-colors p-2 text-lg font-bold"
+              onClick={() => setSelectedImage(null)}
+            >
+              ✕ Close
+            </button>
+            <div className="bg-white p-2 rounded-2xl shadow-2xl border border-slate-100 flex items-center justify-center">
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.caption}
+                className="max-w-full max-h-[75vh] object-contain rounded-xl"
+              />
+            </div>
+            <p className="mt-4 text-white text-center text-sm md:text-base font-semibold max-w-2xl px-4 drop-shadow-md">
+              {selectedImage.caption}
+            </p>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 };
