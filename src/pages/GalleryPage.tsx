@@ -21,9 +21,13 @@ import image7 from "@/assets/image-7.jpeg";
 import gleamatoropening from "@/assets/gleamatoropening.jpeg";
 import imgDash from "@/assets/img--.jpeg";
 import img000 from "@/assets/img-000.jpeg";
-import deepikaaImg from "@/assets/deepikaa..jpeg";
+import deepikaaImg from "@/assets/aardfunction.JPG22.webp";
 import vtuSdc from "@/assets/vtu-sdc.jpg";
 import hirasugarInstitute from "@/assets/hirasugar-institute.jpg";
+import gimage from "@/assets/gimage.jpeg";
+import gimage1 from "@/assets/Gimage1.jpeg";
+import gimage3 from "@/assets/gimage3.jpeg";
+import gimage4 from "@/assets/gimage4.jpeg";
 
 const galleryImages = [
   { id: 26, src: hirasugarInstitute, caption: "MoU Exchange Ceremony at Hirasugar Institute of Technology, Nidasoshi" },
@@ -47,6 +51,10 @@ const galleryImages = [
   { id: 17, src: img000, caption: "Gleamator Team Showcasing Innovation at VTU" },
   { id: 8, src: govtSkillProgram, caption: "MoU Between Directorate of Minorities and VTU for Skill Development, Gleamator Participates as Skill Collaborator of VTU" },
   { id: 9, src: certificateDay, caption: "MoU Signing Ceremony with East West College of Engineering" },
+  { id: 27, src: gimage, caption: "Skill Development Training Session" },
+  { id: 28, src: gimage1, caption: "Skill Development Inauguration Ceremony at Jyothi College" },
+  { id: 29, src: gimage3, caption: "Official MoU between Gleamator and HKBK College" },
+  { id: 30, src: gimage4, caption: "Mou between Gleamator and Ghousia College" },
 ];
 
 const frameColors = [

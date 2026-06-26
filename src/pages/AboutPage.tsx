@@ -11,8 +11,9 @@ import director3 from "@/assets/director-3.png";
 import director4 from "@/assets/raghavendra.jpeg";
 import teamPhoto from "@/assets/team-photo.jpg";
 import collaborativeLearning from "@/assets/collaborative_learning.png";
-import awardTrophy from "@/assets/award-trophy.jpg";
+import awardTrophy from "@/assets/award-trophy.png";
 import awardCertificate from "@/assets/awards-certificate.jpg";
+import bgpngtrophyy from "@/assets/bgpngtrophyy.png";
 import { Eye, Target, Layers, Globe, Settings, Users, Lightbulb, Heart, Linkedin, Mail, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -21,9 +22,7 @@ const values = [
   { icon: Layers, title: "Comprehensive Service Offerings", description: "We offer a wide range of services, including IT solutions, skill development, corporate training, and HR services. With everything under one roof, we simplify your organizational needs and eliminate the need for multiple service providers." },
   { icon: Globe, title: "Pan-India Presence", description: "With a strong partner network and infrastructure across India, we efficiently manage projects anywhere in the country. This ensures local support and scalable solutions for our clients." },
   { icon: Settings, title: "Customized Solutions", description: "We design customized solutions to fit each client's unique requirements. Our personalized approach ensures effective results that align with your specific goals and challenges." },
-  { icon: Users, title: "Expert Team", description: "Backed by over 25 years of experience, our skilled team brings expertise across IT solutions, training, and HR services. We are committed to delivering high-quality results that meet your needs." },
-  { icon: Lightbulb, title: "Focus On Innovation", description: "Innovation drives us to adopt the latest technologies and methods, enabling us to deliver advanced and impactful solutions that keep you ahead." },
-  { icon: Heart, title: "Client-Centric Approach", description: "We build strong relationships by understanding our clients needs. This ensures our solutions are not only robust but also practical and sustainable for long-term success." },
+  { icon: Users, title: "Expert Team", description: "Our team of experienced professionals brings industry expertise and innovative thinking to deliver exceptional results with dedication and precision." },
 ];
 
 // Updated leadership list with bio description text
@@ -228,48 +227,109 @@ const AboutPage = () => {
       </section>
 
       {/* Values (Updated UI) */}
-      <section className="py-24 bg-secondary relative overflow-hidden">
+      <section className="py-24 bg-[#FAF9F5] relative overflow-hidden">
         {/* Subtle background glow for a premium aesthetic */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 max-w-7xl">
           <AnimatedSection>
-            <div className="text-center max-w-2xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight">
+            <div className="text-center max-w-2xl mx-auto mb-16 flex flex-col items-center">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-primary mb-3 tracking-tight">
                 Why Choose Us
               </h2>
-              <p className="text-muted-foreground text-lg">
+              {/* Custom underline */}
+              <div className="w-16 h-1 bg-accent rounded-full mb-6" />
+              <p className="text-muted-foreground text-base md:text-lg">
                 Delivering excellence through innovation, expertise, and a commitment to your success.
               </p>
             </div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {values.map((v, i) => (
-              <AnimatedSection key={v.title} delay={i * 0.1}>
-                <div className="group relative bg-card/80 backdrop-blur-md border border-border/40 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out h-full overflow-hidden cursor-default">
+          <div className="grid lg:grid-cols-12 gap-8 items-center">
+            {/* Left side: Grid of cards (Slightly smaller size) */}
+            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-5 md:gap-6">
+              {values.map((v, i) => (
+                <AnimatedSection key={v.title} delay={i * 0.1}>
+                  <motion.div 
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="group relative bg-white border border-slate-105/80 rounded-2xl p-5 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.01)] hover:shadow-[0_20px_45px_rgba(255,107,0,0.11)] hover:border-accent/30 transition-all duration-500 ease-out h-full overflow-hidden cursor-default"
+                  >
+                    {/* Animated Top Border */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                  {/* Animated Top Border */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {/* Inner Content */}
+                    <div className="flex flex-col h-full relative z-10">
+                      {/* Icon Container with peach/orange background */}
+                      <div className="w-10 h-10 mb-4 rounded-xl bg-accent/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-accent/15 transition-all duration-500 ease-out shadow-sm">
+                        <v.icon className="w-5.5 h-5.5 text-accent drop-shadow-sm group-hover:rotate-12 transition-transform duration-500" />
+                      </div>
 
-                  {/* Inner Content */}
-                  <div className="flex flex-col h-full relative z-10">
-                    {/* Icon Container with subtle inner shadow and hover scale */}
-                    <div className="w-16 h-16 mb-8 rounded-2xl bg-accent/5 border border-accent/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-accent/10 group-hover:border-accent/30 transition-all duration-500 ease-out shadow-sm">
-                      <v.icon className="w-8 h-8 text-accent drop-shadow-sm transition-transform duration-500" />
+                      <h3 className="font-bold text-base sm:text-lg text-primary mb-2 tracking-tight group-hover:text-accent transition-colors duration-300">
+                        {v.title}
+                      </h3>
+
+                      <p className="text-slate-500 text-xs sm:text-sm leading-relaxed flex-grow">
+                        {v.description}
+                      </p>
                     </div>
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </div>
 
-                    <h3 className="font-bold text-xl text-foreground mb-3 tracking-wide group-hover:text-accent transition-colors duration-300">
-                      {v.title}
-                    </h3>
+            {/* Right side: Trophy Presentation (Larger size) */}
+            <div className="lg:col-span-5 flex justify-center relative mt-12 lg:mt-0">
+              <AnimatedSection direction="right" delay={0.3}>
+                <div className="relative flex items-center justify-center p-4">
+                  {/* Outer Glowing Rings */}
+                  <div className="absolute w-[360px] h-[360px] sm:w-[460px] sm:h-[460px] border border-accent/20 rounded-full animate-[spin_45s_linear_infinite] pointer-events-none" />
+                  <div className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] border border-dashed border-accent/25 rounded-full animate-[spin_65s_linear_infinite_reverse] pointer-events-none" />
+                  
+                  {/* Subtle inner glow circle */}
+                  <div className="absolute w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-2xl pointer-events-none" />
 
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
-                      {v.description}
-                    </p>
-                  </div>
+                  {/* Sparkles / Stars with floating animations */}
+                  <motion.div 
+                    animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.8, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-4 right-16 w-2.5 h-2.5 bg-accent/50 rounded-full blur-[0.5px]" 
+                  />
+                  <motion.div 
+                    animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.7, 0.2] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute top-1/3 -left-2 w-3.5 h-3.5 bg-accent/40 rounded-full blur-[0.5px]" 
+                  />
+                  <motion.div 
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.9, 0.3] }}
+                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute bottom-1/4 -right-1 w-3 h-3 bg-accent/55 rounded-full blur-[0.5px]" 
+                  />
+                  <motion.div 
+                    animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.65, 0.15] }}
+                    transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    className="absolute -bottom-2 left-1/3 w-2 h-2 bg-accent/40 rounded-full blur-[0.5px]" 
+                  />
+
+                  {/* Trophy Image */}
+                  <motion.div 
+                    animate={{ y: [0, -12, 0] }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="relative z-10 w-[280px] sm:w-[380px] lg:w-[420px] transition-transform duration-700 hover:scale-[1.03]"
+                  >
+                    <img 
+                      src={bgpngtrophyy} 
+                      alt="Gleamator Award Trophy" 
+                      className="w-full h-auto object-contain filter drop-shadow-[0_20px_40px_rgba(255,107,0,0.18)]"
+                    />
+                  </motion.div>
                 </div>
               </AnimatedSection>
-            ))}
+            </div>
           </div>
         </div>
       </section>
