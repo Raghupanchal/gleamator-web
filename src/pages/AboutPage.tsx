@@ -67,6 +67,14 @@ Together, let’s build, innovate, and achieve more.”`,
 
 const directors = [
   {
+    image: director3,
+    name: "Ramesh S Patil",
+    role: "Director - Strategy and Business Development",
+    description: "Shaping growth strategies and building partnerships for long-term impact.",
+    linkedin: "#",
+    email: "mailto:contact@gleamator.com"
+  },
+  {
     image: director4,
     name: "Raghavendra L",
     role: "Director - Skilling",
@@ -87,14 +95,6 @@ const directors = [
     name: "Raghunath S",
     role: "Director - Operation",
     description: "Ensuring operational excellence through efficiency, quality, and innovation.",
-    linkedin: "#",
-    email: "mailto:contact@gleamator.com"
-  },
-  {
-    image: director3,
-    name: "Ramesh S Patil",
-    role: "Director - Strategy and Business Development",
-    description: "Shaping growth strategies and building partnerships for long-term impact.",
     linkedin: "#",
     email: "mailto:contact@gleamator.com"
   },
@@ -250,7 +250,7 @@ const AboutPage = () => {
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-5 md:gap-6">
               {values.map((v, i) => (
                 <AnimatedSection key={v.title} delay={i * 0.1}>
-                  <motion.div 
+                  <motion.div
                     whileHover={{ y: -8, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="group relative bg-white border border-slate-105/80 rounded-2xl p-5 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.01)] hover:shadow-[0_20px_45px_rgba(255,107,0,0.11)] hover:border-accent/30 transition-all duration-500 ease-out h-full overflow-hidden cursor-default"
@@ -285,34 +285,34 @@ const AboutPage = () => {
                   {/* Outer Glowing Rings */}
                   <div className="absolute w-[360px] h-[360px] sm:w-[460px] sm:h-[460px] border border-accent/20 rounded-full animate-[spin_45s_linear_infinite] pointer-events-none" />
                   <div className="absolute w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] border border-dashed border-accent/25 rounded-full animate-[spin_65s_linear_infinite_reverse] pointer-events-none" />
-                  
+
                   {/* Subtle inner glow circle */}
                   <div className="absolute w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-2xl pointer-events-none" />
 
                   {/* Sparkles / Stars with floating animations */}
-                  <motion.div 
+                  <motion.div
                     animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.8, 0.3] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-4 right-16 w-2.5 h-2.5 bg-accent/50 rounded-full blur-[0.5px]" 
+                    className="absolute top-4 right-16 w-2.5 h-2.5 bg-accent/50 rounded-full blur-[0.5px]"
                   />
-                  <motion.div 
+                  <motion.div
                     animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.7, 0.2] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute top-1/3 -left-2 w-3.5 h-3.5 bg-accent/40 rounded-full blur-[0.5px]" 
+                    className="absolute top-1/3 -left-2 w-3.5 h-3.5 bg-accent/40 rounded-full blur-[0.5px]"
                   />
-                  <motion.div 
+                  <motion.div
                     animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.9, 0.3] }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="absolute bottom-1/4 -right-1 w-3 h-3 bg-accent/55 rounded-full blur-[0.5px]" 
+                    className="absolute bottom-1/4 -right-1 w-3 h-3 bg-accent/55 rounded-full blur-[0.5px]"
                   />
-                  <motion.div 
+                  <motion.div
                     animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.65, 0.15] }}
                     transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                    className="absolute -bottom-2 left-1/3 w-2 h-2 bg-accent/40 rounded-full blur-[0.5px]" 
+                    className="absolute -bottom-2 left-1/3 w-2 h-2 bg-accent/40 rounded-full blur-[0.5px]"
                   />
 
                   {/* Trophy Image */}
-                  <motion.div 
+                  <motion.div
                     animate={{ y: [0, -12, 0] }}
                     transition={{
                       duration: 4,
@@ -321,9 +321,9 @@ const AboutPage = () => {
                     }}
                     className="relative z-10 w-[280px] sm:w-[380px] lg:w-[420px] transition-transform duration-700 hover:scale-[1.03]"
                   >
-                    <img 
-                      src={bgpngtrophyy} 
-                      alt="Gleamator Award Trophy" 
+                    <img
+                      src={bgpngtrophyy}
+                      alt="Gleamator Award Trophy"
                       className="w-full h-auto object-contain filter drop-shadow-[0_20px_40px_rgba(255,107,0,0.18)]"
                     />
                   </motion.div>
@@ -418,8 +418,8 @@ const AboutPage = () => {
                   key={person.name}
                   onClick={() => setActiveLeader(idx)}
                   className={`relative transition-all duration-500 rounded-full p-0.5 ${activeLeader === idx
-                      ? "ring-4 ring-offset-2 ring-offset-background ring-blue-400 scale-110"
-                      : "opacity-60 scale-90 hover:opacity-100"
+                    ? "ring-4 ring-offset-2 ring-offset-background ring-blue-400 scale-110"
+                    : "opacity-60 scale-90 hover:opacity-100"
                     }`}
                 >
                   <div className="w-12 h-12 rounded-full overflow-hidden border border-slate-200">
@@ -539,132 +539,90 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Directors (Updated UI with reference design image_0.png) */}
+      {/* Directors (Updated UI with single-row layout) */}
       <section className="pt-28 pb-40 bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-100/90 relative overflow-hidden">
         {/* Floating Glowing Accent Blobs */}
         <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-[#ff6b00]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-            {/* Left Column: Title and Details */}
-            <div className="max-w-xl">
-              <AnimatedSection direction="left">
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#ff6b00]/10 border border-[#ff6b00]/20 mb-6">
-                  <Users className="w-4 h-4 text-[#ff6b00]" />
-                  <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#0c1e3d]">
-                    BOARD OF GOVERNANCE
-                  </span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-extrabold text-[#0c1e3d] mb-2 tracking-tight leading-tight">
-                  Guiding Our <br />Long-Term <span className="text-[#ff6b00]">Vision</span>
-                </h2>
-                <div className="w-12 h-[3px] bg-[#ff6b00] rounded-full mb-6" />
-                <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-8 font-medium">
-                  Our Board of Directors brings together seasoned leadership, diverse industry experience, and strong governance to guide Gleamator Technologies toward sustainable growth and innovation.
-                </p>
-                
-                <div className="flex gap-4 items-center bg-white border border-slate-100 p-5 rounded-2xl mb-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)]">
-                  <div className="w-10 h-10 rounded-full bg-[#0c1e3d] flex items-center justify-center text-white shrink-0 shadow-sm">
-                    <Users className="w-4.5 h-4.5 text-[#ff6b00]" />
-                  </div>
-                  <p className="text-slate-600 text-sm font-semibold leading-relaxed">
-                    Leveraging decades of corporate stewardship to empower our executive teams.
-                  </p>
-                </div>
-
-              </AnimatedSection>
-            </div>
-
-            {/* Right Column: Staggered Stacking Profile Cards */}
-            <div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 pb-12 sm:pb-0">
-                {directors.map((person, i) => (
-                  <AnimatedSection
-                    key={person.name}
-                    delay={i * 0.1}
-                    className={i % 2 === 0 ? "sm:translate-y-8" : ""}
-                  >
-                    <div className="group relative bg-white border border-slate-100 rounded-[1.75rem] p-5 pb-7 text-center shadow-[0_12px_35px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:border-slate-200 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center h-full overflow-hidden">
-                      
-                      {/* Curved dark blue background shape */}
-                      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-br from-[#0c1e3d] to-[#15305b] rounded-b-[30px] pointer-events-none z-0" />
-
-                      <div className="relative z-10 w-full flex flex-col items-center">
-                        {/* Circular Portrait Container */}
-                        <div className="relative w-[8.5rem] h-[8.5rem] rounded-full border-[3px] border-white bg-white shadow-md z-10 mt-5 mb-4 overflow-hidden">
-                          <img
-                            src={person.image}
-                            alt={person.name}
-                            className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.08] ${
-                              person.name === "Raghunath S" ? "scale-[1.05] object-cover" : ""
-                            }`}
-                            loading="lazy"
-                            width={256}
-                            height={256}
-                          />
-                        </div>
-
-                        {/* Name and Role tag */}
-                        <h4 className="font-display font-extrabold text-[#0c1e3d] text-base mb-1 tracking-tight">
-                          {person.name}
-                        </h4>
-                        
-                        <p className="text-[11.5px] uppercase font-extrabold tracking-wider text-[#ff6b00] mb-1 leading-normal max-w-[90%]">
-                          {person.role}
-                        </p>
-                      </div>
-
-                    </div>
-                  </AnimatedSection>
-                ))}
+        <div className="container mx-auto px-4 relative z-10 max-w-7xl">
+          {/* Centered Board Header */}
+          <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col items-center">
+            <AnimatedSection>
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#ff6b00]/10 border border-[#ff6b00]/20 mb-6">
+                <Users className="w-4 h-4 text-[#ff6b00]" />
+                <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#0c1e3d]">
+                  BOARD OF GOVERNANCE
+                </span>
               </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Our Team Section */}
-      <section className="py-24 bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] relative overflow-hidden">
-        {/* Glowing Background Blobs */}
-        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection>
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-blue-600 mb-3.5 block">
-                OUR PEOPLE
-              </span>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-                Meet Our Team
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#0c1e3d] mb-4 tracking-tight leading-tight">
+                Guiding Our Long-Term <span className="text-[#ff6b00]">Vision</span>
               </h2>
-              <p className="text-slate-600 text-base md:text-lg font-medium max-w-2xl mx-auto">
-                A dedicated group of educators, developers, operators, and industry leaders driving growth and skill enablements nationwide.
+              <div className="w-16 h-[3px] bg-[#ff6b00] rounded-full mb-6" />
+              <p className="text-slate-600 text-base md:text-lg leading-relaxed font-medium">
+                Our Board of Directors brings together seasoned leadership, diverse industry experience, and strong governance to guide Gleamator Technologies toward sustainable growth and innovation.
               </p>
-            </div>
-          </AnimatedSection>
-
-          {/* Team Photo Container with Premium Framed Styling */}
-          <div className="max-w-5xl mx-auto">
-            <AnimatedSection delay={0.2}>
-              <div className="group relative bg-white border-[12px] border-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(15,32,59,0.08)] hover:shadow-[0_30px_70px_rgba(15,32,59,0.18)] transition-all duration-500 hover:-translate-y-1 overflow-hidden">
-                <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-slate-100">
-                  <img
-                    src={teamPhoto}
-                    alt="Gleamator Team"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
             </AnimatedSection>
           </div>
+
+          {/* Grid Layout: Displays all 4 directors in one single row on large screens */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {directors.map((person, i) => (
+              <AnimatedSection
+                key={person.name}
+                delay={i * 0.1}
+                direction="up"
+              >
+                <div className="group relative bg-white border border-slate-100 rounded-[1.75rem] p-5 pb-7 text-center shadow-[0_12px_35px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:border-slate-200 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center h-full overflow-hidden">
+
+                  {/* Curved dark blue background shape */}
+                  <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-br from-[#0c1e3d] to-[#15305b] rounded-b-[30px] pointer-events-none z-0" />
+
+                  <div className="relative z-10 w-full flex flex-col items-center">
+                    {/* Circular Portrait Container */}
+                    <div className="relative w-[8.5rem] h-[8.5rem] rounded-full border-[3px] border-white bg-white shadow-md z-10 mt-5 mb-3 overflow-hidden isolate" style={{ transform: "translateZ(0)" }}>
+                      <img
+                        src={person.image}
+                        alt={person.name}
+                        className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.08] ${person.name === "Raghunath S" ? "scale-[1.05] object-cover" : ""
+                          }`}
+                        style={{
+                          transform: "translateZ(0)",
+                          backfaceVisibility: "hidden",
+                          imageRendering: "-webkit-optimize-contrast"
+                        }}
+                        loading="lazy"
+                        width={256}
+                        height={256}
+                      />
+                    </div>
+
+                    {/* Paint Brush Stroke Arc */}
+                    <div className="w-24 h-3.5 mb-3 text-[#14b8a6] transition-transform duration-500 group-hover:scale-110">
+                      <svg viewBox="0 0 120 18" className="w-full h-full fill-current" preserveAspectRatio="none">
+                        <path d="M6 15.5c15-4.5 35-7.5 54-7.5s39 3 54 7.5c-6-1.5-18-4.5-34-5.5-12-.8-26-.8-38 0-18 1.2-30 4.2-36 5.5z" />
+                        <path d="M12 13.5c12-3.5 28-5.5 48-5.5s36 2 48 5.5c-10-1.5-22-3.5-38-4-10-.3-20-.3-30 0-16 .5-28 2.5-28 4z" opacity="0.7" />
+                        <path d="M25 10.5c10-2 20-3 35-3s25 1 35 3c-15-1.5-25-2-35-2s-20 .5-35 2z" opacity="0.5" />
+                      </svg>
+                    </div>
+
+                    {/* Name and Role tag */}
+                    <h4 className="font-display font-extrabold text-[#0c1e3d] text-base mb-1 tracking-tight">
+                      {person.name}
+                    </h4>
+
+                    <p className="text-[11.5px] uppercase font-extrabold tracking-wider text-[#ff6b00] mb-1 leading-normal max-w-[90%] font-semibold">
+                      {person.role}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
+
+
 
       {/* Awards */}
       <section className="py-20 bg-secondary">
