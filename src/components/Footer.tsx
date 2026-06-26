@@ -59,15 +59,35 @@ const Footer = () => {
 
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-blue-600 mt-1" />
-                <a 
-                  href="https://maps.google.com/?q=No.130,+1st+Block,+Dr.+Rajkumar+Road,+Rajajinagar,+Bengaluru+-+560010" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="transition-colors hover:text-blue-800"
-                >
-                  No.130, 1st Block, Dr. Rajkumar Road,
-                  Rajajinagar, Bengaluru - 560010
-                </a>
+                <div>
+                  <span className="font-semibold block text-gray-900">Headquarters:</span>
+                  <a 
+                    href="https://maps.app.goo.gl/H4Kiydy8jqDm52sY6" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="transition-colors hover:text-blue-800 block mt-0.5"
+                  >
+                    No.130, 1st Block, Dr. Rajkumar Road,<br />
+                    Rajajinagar, Bengaluru - 560010
+                  </a>
+                </div>
+              </li>
+
+              <li className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-blue-600 mt-1" />
+                <div>
+                  <span className="font-semibold block text-gray-900">Branch Office:</span>
+                  <a 
+                    href="https://maps.google.com/?q=No.+24,+Annapoorneshwari+Arcade,+BM+Main+Road,+Opposite+to+Royal+Convention+Hall,+Ramanagara+562159,+Karnataka,+India" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="transition-colors hover:text-blue-800 block mt-0.5"
+                  >
+                    No. 24, Annapoorneshwari Arcade,<br />
+                    BM Main Road, Opposite to Royal Convention Hall,<br />
+                    Ramanagara - 562159, Karnataka, India
+                  </a>
+                </div>
               </li>
             </ul>
 

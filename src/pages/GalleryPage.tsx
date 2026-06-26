@@ -28,7 +28,7 @@ import hirasugarInstitute from "@/assets/hirasugar-institute.jpg";
 const galleryImages = [
   { id: 26, src: hirasugarInstitute, caption: "MoU Exchange Ceremony at Hirasugar Institute of Technology, Nidasoshi" },
   { id: 23, src: deepikaaImg, caption: "Honored at the Great Indian Startup Awards 2026" },
-  { id: 19, src: gleamatoropening, caption: "Gleamator Opening Ceremony" },
+  { id: 19, src: gleamatoropening, caption: "Gleamator Headquarters Inauguration Ceremony at Rajajinagar, Bengaluru" },
   { id: 11, src: image12, caption: "Official MoU Signing Ceremony – Akkamahadevi University" },
   { id: 12, src: image13, caption: "MoU Exchange Ceremony Between VTU-VRIF and GleamatorTechnologies with the Hon'ble Vice-Chancellor, VTU." },
   { id: 25, src: vtuSdc, caption: "Farewell Ceremony for Internship Candidates at HKBK College" },
@@ -36,7 +36,7 @@ const galleryImages = [
   { id: 2, src: vtuSkillDev, caption: "VTU Skill Development Center at Jyothy Institute of Technology" },
   { id: 13, src: image3, caption: "Gleamator Technologies Team Extends Best Wishes to the New Registrar, VTU" },
   { id: 1, src: campusVisit, caption: "Campus visit" },
-  { id: 4, src: awards, caption: "Recognized for Excellence" },
+  { id: 4, src: awards, caption: "Honored by BKIT College, Bhalki" },
   { id: 3, src: workshopDay, caption: "Workshop day" },
   { id: 14, src: img36, caption: "Press Coverage of Event" },
   { id: 5, src: teamPhoto, caption: "Gleamator team" },
